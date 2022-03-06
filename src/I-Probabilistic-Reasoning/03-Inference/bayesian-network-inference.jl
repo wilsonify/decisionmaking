@@ -1,0 +1,31 @@
+"""
+The factor product of two factors produces a new factor over the union of
+their variables. Below we produce a new factor from two factors that share a
+variable.
+"""
+function Base.:*(ϕ::Factor, ψ::Factor)
+    ϕnames = variablenames(ϕ)
+    ψnames = variablenames(ψ)
+    ψonly = setdiff(ψ.vars, ϕ.vars)
+    table = FactorTable()
+    for (ϕa, ϕp) in ϕ.table
+        for a in assignments(ψonly)
+            a = merge(ϕa, a)
+            ψa = select(a, ψnames)
+            table[a] = ϕp * get(ψ.table, ψa, 0.0)
+        end
+    end
+    vars = vcat(ϕ.vars, ψonly)
+    return Factor(vars, table)
+end
+
+
+function marginalize(ϕ::Factor, name)
+    table = FactorTable()
+    for (a, p) in ϕ.table
+        a′ = delete!(copy(a), name)
+        table[a′] = get(table, a′, 0.0) + p
+    end
+    vars = filter(v -> v.name != name, ϕ.vars)
+    return Factor(vars, table)
+end
