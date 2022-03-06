@@ -29,3 +29,34 @@ function marginalize(ϕ::Factor, name)
     vars = filter(v -> v.name != name, ϕ.vars)
     return Factor(vars, table)
 end
+
+in_scope(name, ϕ) = any(name == v.name for v in ϕ.vars)
+function condition(ϕ::Factor, name, value)
+    if !in_scope(name, ϕ)
+        return ϕ
+    end
+    table = FactorTable()
+    for (a, p) in ϕ.table
+        if a[name] == value
+            table[delete!(copy(a), name)] = p
+        end
+    end
+    vars = filter(v -> v.name != name, ϕ.vars)
+    return Factor(vars, table)
+end
+function condition(ϕ::Factor, evidence)
+    for (name, value) in pairs(evidence)
+        ϕ = condition(ϕ, name, value)
+    end
+    return ϕ
+end
+
+struct ExactInference end
+function infer(M::ExactInference, bn, query, evidence)
+    ϕ = prod(bn.factors)
+    ϕ = condition(ϕ, evidence)
+    for name in setdiff(variablenames(ϕ), query)
+        ϕ = marginalize(ϕ, name)
+    end
+    return normalize!(ϕ)
+end
