@@ -3,10 +3,7 @@ A method for sampling an assignment from a Bayesian network bn .
 We also provide a method for sampling an assignment from a factor ϕ .
 
 A. B. Kahn, “Topological Sorting of Large Networks,” 
-Communications of the ACM, vol. 5, no. 11, pp. 558–562, 1962. An implemen-
-tation of topological sorting is pro-
-vided by the LightGraphs.jl pack-
-age.
+Communications of the ACM, vol. 5, no. 11, pp. 558–562, 1962. An implementation of topological sorting is provided by the LightGraphs.jl package.
 
 """
 
@@ -41,9 +38,7 @@ a list of query variables query , and evidence evidence .
 The method
 draws m samples from the Bayesian
 network and retains those samples
-that are consistent with the evi-
-dence. A factor over the query vari-
-ables is returned. This method can
+that are consistent with the evidence. A factor over the query variables is returned. This method can
 fail if no samples that satisfy the
 evidence are found.
 
