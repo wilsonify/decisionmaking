@@ -1,11 +1,9 @@
 function simulate(𝒫::MDP, s, π, d)
     """
-    A method for gen-
-        erating a trajectory associated with
+    A method for gen        erating a trajectory associated with
         problem 𝒫 starting in state s and
         executing policy π to depth d . It
-        creates a vector τ containing state-
-        action-reward tuples.
+        creates a vector τ containing state        action-reward tuples.
     """
     τ = []
     for i = 1:d
@@ -19,8 +17,7 @@ end
 
 struct FiniteDifferenceGradient
     """
-    A method for es-
-        timating a policy gradient using
+    A method for es        timating a policy gradient using
         finite differences for problem 𝒫 , a
         parameterized policy π(θ, s) , and
         policy parameterization vector θ .

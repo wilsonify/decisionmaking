@@ -1,13 +1,10 @@
 struct RestrictedPolicyUpdate
     """
-    The update func-
-tion for the restricted policy gra-
-dient method at θ for a problem
+    The update function for the restricted policy gradient method at θ for a problem
 𝒫 with initial state distribution b .
 The gradient is estimated from an
 initial state distribution b to depth
-d with m simulations of parameter-
-ized policy π(θ, s) with log policy
+d with m simulations of parameterized policy π(θ, s) with log policy
 gradient ∇logπ .
     """
 

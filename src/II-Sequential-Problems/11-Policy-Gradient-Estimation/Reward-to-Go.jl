@@ -3,12 +3,8 @@ struct RewardToGoGradient
     A method that
 uses reward-to-go for estimating
 a policy gradient of a policy π(s)
-for an MDP 𝒫 with initial state dis-
-tribution b . The gradient with re-
-spect to the parameterization vec-
-tor θ is estimated from m rollouts to
-depth d using the log policy gradi-
-ents ∇logπ .
+for an MDP 𝒫 with initial state distribution b . The gradient with respect to the parameterization vector θ is estimated from m rollouts to
+depth d using the log policy gradients ∇logπ .
     """
     𝒫::Any # problem
     b::Any # initial state distribution

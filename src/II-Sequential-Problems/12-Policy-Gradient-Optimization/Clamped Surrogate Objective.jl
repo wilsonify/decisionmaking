@@ -1,17 +1,13 @@
 struct ClampedSurrogateUpdate
     """
-    an implementa-
-tion of clamped surrogate policy
+    an implementation of clamped surrogate policy
 optimization, which returns a new
 policy parameterization for policy
 π(s) of an MDP 𝒫 with initial state
-distribution b . This implementa-
-tion samples m trajectories to depth
+distribution b . This implementation samples m trajectories to depth
 d , and then uses them to estimate
-the policy gradient in k_max subse-
-quent updates. The policy gradient
-using the clamped objective is con-
-structed using the policy gradients
+the policy gradient in k_max subsequent updates. The policy gradient
+using the clamped objective is constructed using the policy gradients
 ∇p with clamping parameter ϵ .
     """
     𝒫::Any # problem
