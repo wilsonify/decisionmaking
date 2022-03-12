@@ -1,31 +1,15 @@
 """
-Types and func-
-tions relevant to working with fac-
-tors over a set of discrete variables.
-A variable is given a name (repre-
-sented as a symbol) and may take
-on an integer from 1 to m. An as-
-signment is a mapping from vari-
-able names to values represented
-as integers. A factor is defined by
-a factor table that assigns values
-to different assignments involving
-a set of variables. A factor table
-is a mapping from assignments to
-real values. This mapping is repre-
-sented by a dictionary. Any assign-
-ments not contained in the dictio-
-nary are set to 0. Also included in
-this algorithm block are some util-
-ity functions for returning the vari-
-able names associated with a factor,
-selecting a subset of an assignment,
-enumerating possible assignments,
-and normalizing factors. As dis-
-cussed in appendix G.3.3, product
-produces the Cartesian product of
-a set of collections. It is imported
-from Base.Iterators .
+Types and functions relevant to working with factors over a set of discrete variables.
+A variable is given a name (represented as a symbol) and may take on an integer from 1 to m.
+An assignment is a mapping from variable names to values represented as integers. 
+A factor is defined by a factor table that assigns values to different assignments involving a set of variables.
+A factor table is a mapping from assignments to real values. 
+This mapping is represented by a dictionary.
+Any assignments not contained in the dictionary are set to 0. 
+Also included in this algorithm block are some utility functions for returning the variable names associated with a factor,
+selecting a subset of an assignment, enumerating possible assignments, and normalizing factors.
+As discussed in appendix, product produces the Cartesian product of a set of collections. 
+It is imported from Base.Iterators .
 """
 
 # Example joint distribution involving binary variables X, Y, and Z.
@@ -77,9 +61,14 @@ end
 X = Variable(:x, 2)
 Y = Variable(:y, 2)
 Z = Variable(:z, 2)
-ϕ = Factor([X, Y, Z], FactorTable(
-    (x = 1, y = 1, z = 1) => 0.08, (x = 1, y = 1, z = 2) => 0.31,
-    (x = 1, y = 2, z = 1) => 0.09, (x = 1, y = 2, z = 2) => 0.37,
-    (x = 2, y = 1, z = 1) => 0.01, (x = 2, y = 1, z = 2) => 0.05,
-    (x = 2, y = 2, z = 1) => 0.02, (x = 2, y = 2, z = 2) => 0.07,
+ϕ = Factor([X, Y, Z],FactorTable(
+    Dict(pairs((x = 1, y = 1, z = 1))) => 0.08,
+    Dict(pairs((x = 1, y = 1, z = 2))) => 0.31,
+    Dict(pairs((x = 1, y = 2, z = 1))) => 0.09, 
+    Dict(pairs((x = 1, y = 2, z = 2))) => 0.37,
+    Dict(pairs((x = 2, y = 1, z = 1))) => 0.01,
+    Dict(pairs((x = 2, y = 1, z = 2))) => 0.05,
+    Dict(pairs((x = 2, y = 2, z = 1))) => 0.02,
+    Dict(pairs((x = 2, y = 2, z = 2))) => 0.07
 ))
+println(ϕ)
