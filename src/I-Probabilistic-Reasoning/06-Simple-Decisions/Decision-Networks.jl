@@ -3,16 +3,16 @@ struct SimpleProblem
     simple problem
     as a decision network. A decision
     network is a Bayesian network with
-    chance, decision, and utility vari    ables. Utility variables are treated
+    chance, decision, and utility variables. Utility variables are treated
     as deterministic. Because variables
-    in our Bayesian network take val    ues from 1 : ri , the utility variables
+    in our Bayesian network take values from 1 : ri , the utility variables
     are mapped to real values by the
     utilities field. For example, if we
     have a utility variable :u1, the ith
     utility associated with that variable
     is utilities[:u1][i]. The solve
-    function takes as input the prob    lem, evidence, and an inference
-    method. It returns the best assign    ment to the decision variables and
+    function takes as input the problem, evidence, and an inference
+    method. It returns the best assignment to the decision variables and
     its associated expected utility.
     """
     bn::BayesianNetwork

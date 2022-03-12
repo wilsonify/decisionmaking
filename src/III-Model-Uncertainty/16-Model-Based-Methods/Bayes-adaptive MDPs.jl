@@ -1,13 +1,13 @@
 mutable struct BayesianMDP
     """
-    A Bayesian up    date method when the posterior
-    distribution over transition mod    els is represented as a product of
+    A Bayesian update method when the posterior
+    distribution over transition models is represented as a product of
     Dirichlet distributions. We assume
-    in this implementation that the re    ward model R is known, though
+    in this implementation that the reward model R is known, though
     we can use Bayesian methods to
-    estimate expected reward from ex    perience. The matrix D associates
+    estimate expected reward from experience. The matrix D associates
     Dirichlet distributions with every
-    state-action pair to model uncer    tainty in the transition to their suc    cessor states.
+    state-action pair to model uncertainty in the transition to their successor states.
     """
     𝒮::Any # state space (assumes 1:nstates)
     𝒜::Any # action space (assumes 1:nactions)

@@ -14,10 +14,10 @@ function update(M::PolicyGradientUpdate, θ)
 end
 
 """
-Methods for gra    dient scaling and clipping. Gradi    ent scaling limits the magnitude
+Methods for gradient scaling and clipping. Gradient scaling limits the magnitude
     of the provided gradient vector ∇
-    to L2_max . Gradient clipping pro    vides elementwise clamping of the
-    provided gradient vector ∇ to be    tween a and b .
+    to L2_max . Gradient clipping provides elementwise clamping of the
+    provided gradient vector ∇ to between a and b .
 """
 scale_gradient(∇, L2_max) = min(L2_max / norm(∇), 1) * ∇
 clip_gradient(∇, a, b) = clamp.(∇, a, b)

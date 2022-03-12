@@ -18,14 +18,14 @@ policy would be replaced with
 queries to a human expert.
 """
 struct DatasetAggregation
-    𝒫::Any     # problem with unknown reward function
-    bc::Any     # behavioral cloning struct
+    𝒫::Any # problem with unknown reward function
+    bc::Any # behavioral cloning struct
     k_max::Any # number of iterations
-    m::Any     # number of rollouts per iteration
-    d::Any     # rollout depth
-    b::Any     # initial state distribution
-    πE::Any     # expert
-    πθ::Any     # parameterized policy
+    m::Any # number of rollouts per iteration
+    d::Any # rollout depth
+    b::Any # initial state distribution
+    πE::Any # expert
+    πθ::Any # parameterized policy
 end
 function optimize(M::DatasetAggregation, D, θ)
     𝒫, bc, k_max, m = M.𝒫, M.bc, M.k_max, M.m

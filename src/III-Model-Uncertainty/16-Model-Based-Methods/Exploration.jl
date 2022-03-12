@@ -1,8 +1,8 @@
 """
     The prioritized
     sweeping algorithm maintains a
-    priority queue pq of states that de    termines which are to be updated.
-    With each update, we set the pre    vious state to have infinite prior    ity. We then perform m Bellman up    dates of the value function U at the
+    priority queue pq of states that determines which are to be updated.
+    With each update, we set the previous state to have infinite priority. We then perform m Bellman updates of the value function U at the
     highest priority states.
 """
 struct PrioritizedUpdate

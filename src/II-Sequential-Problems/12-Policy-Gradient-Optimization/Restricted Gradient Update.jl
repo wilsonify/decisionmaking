@@ -9,7 +9,7 @@ gradient ∇logπ .
     """
 
     𝒫::Any # problem
-    b::Any # initial state distribution    
+    b::Any # initial state distribution
     d::Any # depth
     m::Any # number of samples
     ∇logπ::Any # gradient of log likelihood

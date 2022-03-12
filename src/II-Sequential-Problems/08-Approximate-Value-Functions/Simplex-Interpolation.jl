@@ -1,11 +1,11 @@
 """
-    A method for con    ducting multilinear interpolation
-    to estimate the value of state vec    tor s for known state values θ
-    over a grid defined by a lower    left vertex o and vector of widths
+    A method for conducting multilinear interpolation
+    to estimate the value of state vector s for known state values θ
+    over a grid defined by a lowerleft vertex o and vector of widths
     δ . Vertices of the grid can all be
-    written o + δ.*i for some non    negative integral vector i . The
+    written o + δ.*i for some nonnegative integral vector i . The
     package Interpolations.jl also
-    provides multilinear and other in    terpolation methods.
+    provides multilinear and other interpolation methods.
 """
 mutable struct MultilinearValueFunction
     o::Any # position of lower-left corner
@@ -50,11 +50,11 @@ end
 
 mutable struct SimplexValueFunction
     """
-    A method for con        ducting simplex interpolation to
+    A method for conducting simplex interpolation to
         estimate the value of state vector
         s for known state values θ over a
-        grid defined by a lower-left ver        tex o and vector of widths δ . Ver        tices of the grid can all be written
-        o + δ.*i for some non-negative in        tegral vector i . Simplex interpola        tion is also implemented in the gen        eral GridInterpolations.jl pack        age.
+        grid defined by a lower-left vertex o and vector of widths δ . Vertices of the grid can all be written
+        o + δ.*i for some non-negative integral vector i . Simplex interpolation is also implemented in the general GridInterpolations.jl package.
     """
     o::Any # position of lower-left corner
     δ::Any # vector of widths

@@ -1,9 +1,9 @@
 struct LikelihoodRatioGradient
     """
-    A method for esti        mating a policy gradient of a pol        icy π(s) for an MDP 𝒫 with initial
-        state distribution b using the likeli        hood ratio trick. The gradient with
-        respect to the parameterization vec        tor θ is estimated from m rollouts to
-        depth d using the log policy gradi        ents ∇logπ .
+    A method for estimating a policy gradient of a policy π(s) for an MDP 𝒫 with initial
+        state distribution b using the likelihood ratio trick. The gradient with
+        respect to the parameterization vector θ is estimated from m rollouts to
+        depth d using the log policy gradients ∇logπ .
     """
     𝒫 # problem
     b # initial state distribution

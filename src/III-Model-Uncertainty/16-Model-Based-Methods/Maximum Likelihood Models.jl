@@ -1,13 +1,13 @@
 mutable struct MaximumLikelihoodMDP
     """
-    A method for up    dating the transition and reward
-    model for maximum likelihood re    inforcement learning with discrete
-    state and action spaces. We incre    ment N[s,a,s′] after observing a
+    A method for updating the transition and reward
+    model for maximum likelihood reinforcement learning with discrete
+    state and action spaces. We increment N[s,a,s′] after observing a
     transition from s to s′ after taking
     action a , and we add r to ρ[s,a] .
-    The model also contains an esti    mate of the value function U and
+    The model also contains an estimate of the value function U and
     a planner. This algorithm block
-    also includes methods for perform    ing backup and lookahead with re    spect to this model.
+    also includes methods for performing backup and lookahead with respect to this model.
     """
     𝒮::Any # state space (assumes 1:nstates)
     𝒜::Any # action space (assumes 1:nactions)

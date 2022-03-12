@@ -9,14 +9,14 @@ acting according to the expert policy. The method returns the probabilities Ps a
     """
 
     𝒫::Any # problem with unknown reward
-    bc::Any     # Behavioral cloning struct
+    bc::Any # Behavioral cloning struct
     k_max::Any # number of iterations
-    m::Any     # number of rollouts per iteration
-    d::Any     # rollout depth
-    b::Any    # initial state distribution
-    β::Any    # mixing scalar (e.g., d^-3)
-    πE::Any    # expert policy
-    πθ::Any    # parameterized policy
+    m::Any # number of rollouts per iteration
+    d::Any # rollout depth
+    b::Any# initial state distribution
+    β::Any# mixing scalar (e.g., d^-3)
+    πE::Any# expert policy
+    πθ::Any# parameterized policy
 end
 function optimize(M::SMILe, θ)
     𝒫, bc, k_max, m = M.𝒫, M.bc, M.k_max, M.m

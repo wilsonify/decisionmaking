@@ -1,13 +1,13 @@
 function value_of_information(𝒫, query, evidence, M)
     """
-    A method for de        cision network evaluation, which
+    A method for decision network evaluation, which
         takes a simple problem 𝒫, a list of
         query variables query, a dictionary
-        containing observed chance vari        ables and their values evidence,
+        containing observed chance variables and their values evidence,
         and an inference strategy M. The
         method returns an assignment of
         decision values that maximizes
-        the expected utility, given the evi        dence.
+        the expected utility, given the evidence.
     """
     φ = infer(M, 𝒫.bn, query, evidence)
     voi = -solve(𝒫, evidence, M).u

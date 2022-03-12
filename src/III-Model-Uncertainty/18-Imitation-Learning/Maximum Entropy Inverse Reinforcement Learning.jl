@@ -1,8 +1,8 @@
 
 struct MaximumEntropyIRL
     """
-    Maximum en    tropy inverse reinforcement learn    ing, which finds a stochastic pol    icy that maximizes the likelihood
-    of the expert demonstrations un    der a maximum-entropy trajectory
+    Maximum entropy inverse reinforcement learning, which finds a stochastic policy that maximizes the likelihood
+    of the expert demonstrations under a maximum-entropy trajectory
     distribution. This implementation
     computes the expected visitations
     using dynamic programming over
@@ -11,13 +11,13 @@ struct MaximumEntropyIRL
     """
 
     𝒫::Any # problem
-    b::Any     # initial state distribution
-    d::Any    # depth
-    π::Any     # parameterized policy π(θ,s)
-    Pπ::Any     # parameterized policy likelihood π(θ, a, s)
-    ∇R::Any     # reward function gradient
-    RL::Any    # reinforcement learning method
-    α::Any    # step size
+    b::Any # initial state distribution
+    d::Any# depth
+    π::Any # parameterized policy π(θ,s)
+    Pπ::Any # parameterized policy likelihood π(θ, a, s)
+    ∇R::Any # reward function gradient
+    RL::Any# reinforcement learning method
+    α::Any# step size
     k_max::Any # number of iterations
 end
 
@@ -48,7 +48,7 @@ function optimize(M::MaximumEntropyIRL, D, ϕ, θ)
         b = discounted_state_visitations(M, θ)
         ∇Rτ = τ -> sum(γ^(i - 1) * ∇R(ϕ, s, a) for (i, (s, a)) in enumerate(τ))
         ∇f =
-            sum(∇Rτ(τ) for τ in D)             nD * sum(
+            sum(∇Rτ(τ) for τ in D) nD * sum(
                 b[si] * sum(Pπ(θ, a, s) * ∇R(ϕ, s, a) for (ai, a) in enumerate(𝒜)) for
                 (si, s) in enumerate(𝒮)
             )

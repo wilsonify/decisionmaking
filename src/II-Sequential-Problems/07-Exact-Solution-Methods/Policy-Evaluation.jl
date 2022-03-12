@@ -1,9 +1,9 @@
 function lookahead(𝒫::MDP, U, s, a)
     """
-    Functions for com        puting the lookahead state-action
+    Functions for computing the lookahead state-action
         value from a state s given an action
         a using an estimate of the value
-        function U for the MDP 𝒫 . The sec        ond version handles the case when
+        function U for the MDP 𝒫 . The second version handles the case when
         U is a vector.
     """
     𝒮, T, R, γ = 𝒫.𝒮, 𝒫.T, 𝒫.R, 𝒫.γ

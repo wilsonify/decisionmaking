@@ -1,6 +1,6 @@
 """
     Q-learning with
-    function approximation and ex    perience replay. The update de    pends on a parameterized policy
+    function approximation and experience replay. The update depends on a parameterized policy
     Q(θ,s,a) and gradient ∇Q(θ,s,a) .
     It updates the parameter vector θ
     and the circular memory buffer
@@ -12,13 +12,13 @@
 struct ReplayGradientQLearning
 
     𝒜::Any # action space (assumes 1:nactions)
-    γ::Any     # discount
-    Q::Any     # parameterized action value funciton Q(θ,s,a)
-    ∇Q::Any     # gradient of action value function
-    θ::Any     # action value function parameter
-    α::Any     # learning rate
+    γ::Any # discount
+    Q::Any # parameterized action value funciton Q(θ,s,a)
+    ∇Q::Any # gradient of action value function
+    θ::Any # action value function parameter
+    α::Any # learning rate
     buffer::Any # circular memory buffer
-    m::Any     # number of steps between gradient updates
+    m::Any # number of steps between gradient updates
     m_grad::Any # batch size
 end
 

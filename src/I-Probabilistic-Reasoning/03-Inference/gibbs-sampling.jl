@@ -1,3 +1,4 @@
+
 function blanket(bn, a, i)
     """
     A method for obtaining P ( X i | x − i ) 
@@ -24,10 +25,7 @@ function update_gibbs_sample!(a, bn, evidence, ordering)
     end
     end
     end
-    Algorithm 3.10. Gibbs sampling
-    implemented for a Bayesian net    work bn with evidence evidence
-    and an ordering ordering . The
-    method iteratively updates the as    signment a for m iterations.
+    
     function gibbs_sample!(a, bn, evidence, ordering, m)
     for j in 1:m
     update_gibbs_sample!(a, bn, evidence, ordering)

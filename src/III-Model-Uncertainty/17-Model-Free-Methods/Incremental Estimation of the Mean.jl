@@ -1,7 +1,7 @@
 """
-A type for main    taining an incremental estimate of
+A type for maintaining an incremental estimate of
     the mean of a random variable. The
-    associated type maintains a cur    rent mean value μ , a learning rate
+    associated type maintains a current mean value μ , a learning rate
     function α , and an iteration count m .
     Calling update! with a new value
     x updates the estimate.

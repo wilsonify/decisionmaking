@@ -1,12 +1,12 @@
 struct BehavioralCloning
     """
     A method for
-        learning a parameterized stochas        tic policy from expert demonstra        tions in the form of a set of state        action tuples D . The policy param        eterization vector θ is iteratively
+        learning a parameterized stochastic policy from expert demonstrations in the form of a set of stateaction tuples D . The policy parameterization vector θ is iteratively
         improved by maximizing the log
         likelihood of the actions given the
         states. Behavioral cloning requires
         a step size α , an iteration count
-        k_max , and a log likelihood gradi        ent ∇logπ .
+        k_max , and a log likelihood gradient ∇logπ .
     """
     # step size
     α

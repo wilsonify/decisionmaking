@@ -12,7 +12,7 @@
     struct has a weight vector ϕ that
     can be updated with new values.
     The method returns the stochastic
-    weightings λ and parameteri    zations θs for the component
+    weightings λ and parameterizations θs for the component
     policies.
 """
 function calc_weighting(M::InverseReinforcementLearning, μs)

@@ -9,11 +9,11 @@ such as ǫ-greedy in the simulate
 function in algorithm 15.9.
 """
 mutable struct QLearning
-    𝒮::Any #     state space (assumes 1:nstates)
-    𝒜::Any #     action space (assumes 1:nactions)
-    γ::Any #     discount
-    Q::Any #     action value function
-    α::Any #     learning rate
+    𝒮::Any # state space (assumes 1:nstates)
+    𝒜::Any # action space (assumes 1:nactions)
+    γ::Any # discount
+    Q::Any # action value function
+    α::Any # learning rate
 end
 
 

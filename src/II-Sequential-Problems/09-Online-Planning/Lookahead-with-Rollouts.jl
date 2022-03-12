@@ -1,11 +1,11 @@
 struct RolloutLookahead
     """
     A function that
-        runs a rollout of policy π in prob        lem 𝒫 from state s to depth d . It re        turns the total discounted reward.
+        runs a rollout of policy π in problem 𝒫 from state s to depth d . It returns the total discounted reward.
         This function can be used with
         the greedy function (introduced in
-        algorithm 7.5) to generate an ac        tion that is likely to be an improve        ment over the original rollout pol        icy. We will use this algorithm later
-        for problems other than MDPs, re        quiring us to only have to modify
+        algorithm 7.5) to generate an action that is likely to be an improvement over the original rollout policy. We will use this algorithm later
+        for problems other than MDPs, requiring us to only have to modify
         randstep appropriately.
     """
     𝒫::Any # problem

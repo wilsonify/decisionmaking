@@ -1,8 +1,8 @@
 """
     The Q-learning
     update with action value function
-    approximation. With each new ex    perience tuple s , a , r , s′ , we up    date our vector θ with constant
-    learning rate α . Our parameter    ized action value function is given
+    approximation. With each new experience tuple s , a , r , s′ , we update our vector θ with constant
+    learning rate α . Our parameterized action value function is given
     by Q(θ,s,a) and its gradient is
     ∇Q(θ,s,a) .
     """

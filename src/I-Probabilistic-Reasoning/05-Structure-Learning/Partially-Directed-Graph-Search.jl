@@ -1,9 +1,9 @@
 function are_markov_equivalent(G, H)
     """
-    A method for de        termining whether the directed
+    A method for determining whether the directed
         acyclic graphs G and H are Markov
         equivalent. The subsets function
-        from IterTools.jl returns all sub        sets of a given set and a specified
+        from IterTools.jl returns all subsets of a given set and a specified
         size.
     """
     if nv(G) != nv(H) ||

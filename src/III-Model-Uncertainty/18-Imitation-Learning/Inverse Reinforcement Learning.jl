@@ -1,6 +1,6 @@
 struct InverseReinforcementLearning
     """
-    A structure for in    verse reinforcement learning and
+    A structure for inverse reinforcement learning and
     a method for estimating a feature
     expectations vector from rollouts.
     """

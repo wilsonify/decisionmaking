@@ -2,11 +2,11 @@
 A method for
     solving a discrete MDP using a
     linear program formulation. For
-    convenience in specifying the lin    ear program, we define a func    tion for converting an MDP into
+    convenience in specifying the linear program, we define a function for converting an MDP into
     its tensor form, where the states
-    and actions consist of integer in    dices, the reward function is a ma    trix, and the transition function is
+    and actions consist of integer indices, the reward function is a matrix, and the transition function is
     a three-dimensional tensor. It uses
-    the JuMP.jl package for mathemat    ical programming. The optimizer
+    the JuMP.jl package for mathematical programming. The optimizer
     is set to use GLPK.jl , but others can
     be used instead. We also define the
     default solve behavior for MDPs to

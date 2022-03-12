@@ -1,14 +1,14 @@
 struct NaturalPolicyUpdate
     """
-    The update func    tion for the natural policy gradi    ent given policy π(θ, s) for an
-    MDP 𝒫 with initial state distribu    tion b . The natural gradient with
+    The update function for the natural policy gradient given policy π(θ, s) for an
+    MDP 𝒫 with initial state distribution b . The natural gradient with
     respect to the parameter vector θ is
     estimated from m rollouts to depth
     d using the log policy gradients
     ∇logπ . The natural_update helper
-    method conducts an update ac    cording to equation (12.12) given
+    method conducts an update according to equation (12.12) given
     an objective gradient ∇f(τ) and a
-    Fisher matrix F(τ) for a list of tra    jectories.
+    Fisher matrix F(τ) for a list of trajectories.
     """
     𝒫::Any # problem
     b::Any # initial state distribution

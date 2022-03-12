@@ -1,8 +1,8 @@
 struct ValueFunctionPolicy
     """
     A value function
-    policy extracted from a value func    tion U for an MDP 𝒫 . The greedy
-    function will be used in other al    gorithms. This two-argument ver    sion of findmax is defined in ap    pendix G.5.
+    policy extracted from a value function U for an MDP 𝒫 . The greedy
+    function will be used in other algorithms. This two-argument version of findmax is defined in appendix G.5.
     """
     𝒫::Any # problem
     U::Any # utility function
