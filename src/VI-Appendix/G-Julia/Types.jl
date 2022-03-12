@@ -137,18 +137,18 @@ array_comprehension = [sin(x) for x = 1:5]
 @assert(Vector{Float64} == Vector{Float64}) # alias for a 1-dimensional array
 
 #We index into vectors using square brackets.
-@assert(x[1]==3.1415)  # first element is indexed by 1
-@assert(x[3]==2.7182)  # third element
-@assert(x[end]==2.7182)  # use end to reference the end of the array
-@assert(x[end-1]==1.618)  # this returns the second to last element
+@assert(x[1] == 3.1415)  # first element is indexed by 1
+@assert(x[3] == 2.7182)  # third element
+@assert(x[end] == 2.7182)  # use end to reference the end of the array
+@assert(x[end-1] == 1.618)  # this returns the second to last element
 
 
 # We can pull out a range of elements from an array. Ranges are specified using a colon notation.
 x = [1, 2, 5, 3, 1]
-@assert(x==[1,2,5,3,1])
-@assert(x[1:3] == [1,2,5])# pull out the first three elements
-@assert(x[1:2:end] ==[1,5,1]) # pull out every other element
-@assert(x[end:-1:1] == [1,3,5,2,1]) # pull out all the elements in reverse order
+@assert(x == [1, 2, 5, 3, 1])
+@assert(x[1:3] == [1, 2, 5])# pull out the first three elements
+@assert(x[1:2:end] == [1, 5, 1]) # pull out every other element
+@assert(x[end:-1:1] == [1, 3, 5, 2, 1]) # pull out all the elements in reverse order
 
 """
 We can perform a variety of different operations on arrays. The exclamation
@@ -156,46 +156,84 @@ mark at the end of function names is used to indicate that the function mutates
 (i.e., changes) the input.
 """
 
-@assert(length(x)==5)
-@assert([x, x] == [[1, 2, 5, 3, 1],[1, 2, 5, 3, 1]]) # concatenation
+@assert(length(x) == 5)
+@assert([x, x] == [[1, 2, 5, 3, 1], [1, 2, 5, 3, 1]]) # concatenation
 
 push!(x, -1)
-@assert(x==[1, 2, 5, 3, 1,-1])#add an element to the end
+@assert(x == [1, 2, 5, 3, 1, -1])#add an element to the end
 pop!(x)
-@assert(x==[1, 2, 5, 3, 1])#remove an element from the end
+@assert(x == [1, 2, 5, 3, 1])#remove an element from the end
 append!(x, [2, 3])
-@assert(x==[1, 2, 5, 3, 1,2,3])#append [2, 3] to the end of x
+@assert(x == [1, 2, 5, 3, 1, 2, 3])#append [2, 3] to the end of x
 sort!(x)
-@assert(x==[1,1,2,2,3,3,5])#sort the elements, altering the same vector
-y=sort(x);
-@assert(y==[1,1,2,2,3,3,5])#sort the elements as a new vector
+@assert(x == [1, 1, 2, 2, 3, 3, 5])#sort the elements, altering the same vector
+y = sort(x);
+@assert(y == [1, 1, 2, 2, 3, 3, 5])#sort the elements as a new vector
 x[1] = 2
-@assert(x==[2,1,2,2,3,3,5])#change the first element to 2
+@assert(x == [2, 1, 2, 2, 3, 3, 5])#change the first element to 2
 x = [1, 2];
 y = [3, 4];
-@assert(x + y==[4,6])#add vectors
-@assert(3x - [1, 2]==[2,4])#multiply by a scalar and subtract
+@assert(x + y == [4, 6])#add vectors
+@assert(3x - [1, 2] == [2, 4])#multiply by a scalar and subtract
 
 using LinearAlgebra
 
-@assert( dot(x, y) == 11)# dot product available after using LinearAlgebra
-@assert( x⋅y == 11)# dot product using unicode character, use \cdot[tab] in console
-@assert( prod(y) == 12) # product of all the elements in y
+@assert(dot(x, y) == 11)# dot product available after using LinearAlgebra
+@assert(x ⋅ y == 11)# dot product using unicode character, use \cdot[tab] in console
+@assert(prod(y) == 12) # product of all the elements in y
 
+"""
+It is often useful to apply various functions elementwise to vectors. This is a
+form of broadcasting. With infix operators (e.g., + , * , and ^ ), a dot is prefixed to
+indicate elementwise broadcasting. With functions like sqrt and sin , the dot is
+postfixed.
+"""
 
+@assert(x .* y == [3, 8]) # elementwise multiplication
+@assert(x .^ 2 == [1, 4]) # elementwise squaring 
+@assert(sin.(x) == [0.8414709848078965, 0.9092974268256817])# elementwise application of sin
+@assert(sqrt.(x) == [1.0, 1.4142135623730951]) # elementwise application of sqrt
 
+"""
+Matrices
+A matrix is a two-dimensional array. Like a vector, it is constructed using square
+brackets. We use spaces to delimit elements in the same row and semicolons to
+delimit rows. We can also index into the matrix and output submatrices using
+ranges
+"""
+X = [1 2 3; 4 5 6; 7 8 9; 10 11 12];
 
+@assert(typeof(X) == Matrix{Int64})  # a 2-dimensional array of Int64s
+@assert(X[2] == 4) # second element using column-major ordering
+@assert(X[3, 2] == 8) # element in third row and second column
+@assert(X[1, :] == [1, 2, 3]) # extract the first row
+@assert(X[:, 2] == [2, 5, 8, 11]) # extract the second column
+@assert(X[:, 1:2] == [[1, 2], [4, 5], [7, 8], [10, 11]]) # extract the first two columns
+@assert(X[1:2, 1:2] == [[1, 2], [4, 5]]) # extract a 2x2 submatrix from the top left of x
 
+"""
+We can also construct a variety of special matrices and use array comprehen-
+sions:
+"""
+@assert(Matrix(1.0I, 3, 3) == [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]) # 3x3 identity matrix
+@assert(Matrix(Diagonal([3, 2, 1])) == [[3, 0, 0], [0, 2, 0], [0, 0, 1]]) # 3x3 diagonal matrix with 3, 2, 1 on diagonal
+@assert(zeros(3, 2) == [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]]) # 3x2 matrix of zeros
+@assert(rand(3, 2) == [[0.166378, 0.463069], [0.153106, 0.411195], [0.632025, 0.111383]]) # 3x2 random matrix
+@assert(
+    [sin(x + y) for x = 1:3, y = 1:2] == [[0.909297, 0.14112], [0.14112, -0.756802]][-0.756802, -0.958924]
+) # array comprehension
 
+"""
+Matrix operations include the following:
+"""
 
-
-
-
-
-
-
-
-
-
-
-
+@assert(X' == [[1, 4, 7, 10], [2, 5, 8, 11], [3, 6, 9, 12]]) # complex conjugate transpose
+@assert(3X .+ 2 == [[5, 8, 11], [14, 17, 20], [23, 26, 29], [32, 35, 38]]) # multiplying by scalar and adding scalar
+X = [1 3; 3 1]; # create an invertible matrix
+@assert(inv(X) == [[-0.125, 0.375], [0.375, -0.125]]) # inversion
+@assert(det(X) == -8.0) # determinant (requires LinearAlgebra)
+@assert([X X] == [[1, 3, 1, 3], [3, 1, 3, 1]]) # horizontal concatenation, same as hcat(X, X)
+@assert([X; X] == [[1, 3], [3, 1], [1, 3], [3, 1]]) # vertical concatenation, same as vcat(X, X)
+@assert(sin.(X) == [0.841471, 0.14112], [0.14112, 0.841471]) # elementwise application of sin
+@assert(map(sin, X) == [[0.841471 0.14112], [0.14112, 0.841471]]) # elementwise application of sin
+@assert(vec(X) == [1, 3, 3, 1]) # reshape an array as a vector
