@@ -1,3 +1,5 @@
+using LightGraphs
+
 """
 a Bayesian network for a satellite-monitoring problem involving five binary variables.
 Fortunately, battery failure and solar panel failures are both rare, although solar panel failures are somewhat more likely than battery failures. 
@@ -14,6 +16,37 @@ Because B and S do not have any parents, we only need to
     ( e 1 , b 0 , s 0 ) .
 """
 
+struct Variable
+    name::Symbol
+    m::Int # number of possible values
+end
+
+const Assignment = Dict{Symbol,Int}
+const FactorTable = Dict{Assignment,Float64}
+
+struct Factor
+    vars::Vector{Variable}
+    table::FactorTable
+end
+
+variablenames(ϕ::Factor) = [var.name for var in ϕ.vars]
+
+select(a::Assignment, varnames::Vector{Symbol}) =
+    Assignment(n => a[n] for n in varnames)
+
+function assignments(vars::AbstractVector{Variable})
+    names = [var.name for var in vars]
+    return vec([Assignment(n => v for (n, v) in zip(names, values)) for values in product((1:v.m for v in vars)...)])
+end
+
+function normalize!(ϕ::Factor)
+    z = sum(p for (a, p) in ϕ.table)
+    for (a, p) in ϕ.table
+        ϕ.table[a] = p / z
+    end
+    return ϕ
+end
+
 
 struct BayesianNetwork
     vars::Vector{Variable}
@@ -26,19 +59,31 @@ E = Variable(:e, 2)
 D = Variable(:d, 2); C = Variable(:c, 2)
 vars = [B, S, E, D, C]
 factors = [
-Factor([B], FactorTable((b=1,) => 0.99, (b=2,) => 0.01)),
-Factor([S], FactorTable((s=1,) => 0.98, (s=2,) => 0.02)),
+Factor([B], FactorTable(
+    Dict(pairs((b=1,))) => 0.99,
+    Dict(pairs((b=2,))) => 0.01)),
+Factor([S], FactorTable(
+    Dict(pairs((s=1,))) => 0.98,
+    Dict(pairs((s=2,))) => 0.02)),
 Factor([E,B,S], FactorTable(
-(e=1,b=1,s=1) => 0.90, (e=1,b=1,s=2) => 0.04,
-(e=1,b=2,s=1) => 0.05, (e=1,b=2,s=2) => 0.01,
-(e=2,b=1,s=1) => 0.10, (e=2,b=1,s=2) => 0.96,
-(e=2,b=2,s=1) => 0.95, (e=2,b=2,s=2) => 0.99)),
+Dict(pairs((e=1,b=1,s=1))) => 0.90, 
+Dict(pairs((e=1,b=1,s=2))) => 0.04,
+Dict(pairs((e=1,b=2,s=1))) => 0.05, 
+Dict(pairs((e=1,b=2,s=2))) => 0.01,
+Dict(pairs((e=2,b=1,s=1))) => 0.10, 
+Dict(pairs((e=2,b=1,s=2))) => 0.96,
+Dict(pairs((e=2,b=2,s=1))) => 0.95, 
+Dict(pairs((e=2,b=2,s=2))) => 0.99)),
 Factor([D, E], FactorTable(
-(d=1,e=1) => 0.96, (d=1,e=2) => 0.03,
-(d=2,e=1) => 0.04, (d=2,e=2) => 0.97)),
+Dict(pairs((d=1,e=1))) => 0.96, 
+Dict(pairs((d=1,e=2))) => 0.03,
+Dict(pairs((d=2,e=1))) => 0.04, 
+Dict(pairs((d=2,e=2))) => 0.97)),
 Factor([C, E], FactorTable(
-(c=1,e=1) => 0.98, (c=1,e=2) => 0.01,
-(c=2,e=1) => 0.02, (c=2,e=2) => 0.99))
+Dict(pairs((c=1,e=1))) => 0.98, 
+Dict(pairs((c=1,e=2))) => 0.01,
+Dict(pairs((c=2,e=1))) => 0.02, 
+Dict(pairs((c=2,e=2))) => 0.99))
 ]
 graph = SimpleDiGraph(5)
 add_edge!(graph, 1, 3); add_edge!(graph, 2, 3)

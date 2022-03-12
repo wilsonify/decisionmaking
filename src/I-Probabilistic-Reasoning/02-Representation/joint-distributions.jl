@@ -11,7 +11,6 @@ selecting a subset of an assignment, enumerating possible assignments, and norma
 As discussed in appendix, product produces the Cartesian product of a set of collections. 
 It is imported from Base.Iterators .
 """
-
 # Example joint distribution involving binary variables X, Y, and Z.
 
 #| X | Y | Z | P(X,Y,Z) |
@@ -56,15 +55,14 @@ function normalize!(ϕ::Factor)
     end
     return ϕ
 end
-
 # We can instantiate the table from table 2.1 using the Factor type
 X = Variable(:x, 2)
 Y = Variable(:y, 2)
 Z = Variable(:z, 2)
-ϕ = Factor([X, Y, Z],FactorTable(
+ϕ = Factor([X, Y, Z], FactorTable(
     Dict(pairs((x = 1, y = 1, z = 1))) => 0.08,
     Dict(pairs((x = 1, y = 1, z = 2))) => 0.31,
-    Dict(pairs((x = 1, y = 2, z = 1))) => 0.09, 
+    Dict(pairs((x = 1, y = 2, z = 1))) => 0.09,
     Dict(pairs((x = 1, y = 2, z = 2))) => 0.37,
     Dict(pairs((x = 2, y = 1, z = 1))) => 0.01,
     Dict(pairs((x = 2, y = 1, z = 2))) => 0.05,
@@ -72,3 +70,4 @@ Z = Variable(:z, 2)
     Dict(pairs((x = 2, y = 2, z = 2))) => 0.07
 ))
 println(ϕ)
+
