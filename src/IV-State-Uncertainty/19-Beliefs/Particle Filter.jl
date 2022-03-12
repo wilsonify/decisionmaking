@@ -3,11 +3,7 @@ struct ParticleFilter
     A belief updater
 for particle filters, which updates
 a vector of states representing the
-belief based on the agent’s ac-
-tion a and its observation o . Ap-
-pendix G.5 provides an implemen-
-tation of SetCategorical for defin-
-ing distributions over discrete sets.
+belief based on the agent’s action a and its observation o . Appendix G.5 provides an implementation of SetCategorical for defining distributions over discrete sets.
     """
     states::Any # vector of state samples
 end
@@ -22,8 +18,7 @@ end
 
 struct RejectionParticleFilter
     """
-    Updating a par-
-ticle filter with rejection, which
+    Updating a particle filter with rejection, which
 forces sampled states to match the
 input observation o .
     """

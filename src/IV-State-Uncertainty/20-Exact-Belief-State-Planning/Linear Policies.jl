@@ -1,12 +1,10 @@
 """
     The expansion
-    step in value iteration, which con-
-    structs all k + 1-step conditional
+    step in value iteration, which constructs all k + 1-step conditional
     plans and associated alpha vectors
     from a set of k-step conditional
     plans and alpha vectors. The way
-    we combine alpha vectors of sub-
-    plans follows equation (20.17).
+    we combine alpha vectors of subplans follows equation (20.17).
 """
 function ConditionalPlan(𝒫::POMDP, a, plans)
     subplans = Dict(o => π for (o, π) in zip(𝒫.𝒪, plans))

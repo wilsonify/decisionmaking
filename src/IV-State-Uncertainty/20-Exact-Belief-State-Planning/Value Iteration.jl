@@ -1,13 +1,6 @@
 """
     Value iteration for
-    POMDPs, which finds the domi-
-    nating h-step plans for a finite hori-
-    zon POMDP of horizon k_max by it-
-    eratively constructing optimal sub-
-    plans. The ValueIteration struc-
-    ture is the same as what was de-
-    fined in algorithm 7.8 in the con-
-    text of MDPs.
+    POMDPs, which finds the dominating h-step plans for a finite horizon POMDP of horizon k_max by iteratively constructing optimal subplans. The ValueIteration structure is the same as what was defined in algorithm 7.8 in the context of MDPs.
 """
 function value_iteration(𝒫::POMDP, k_max)
     𝒮, 𝒜, R = 𝒫.𝒮, 𝒫.𝒜, 𝒫.R

@@ -6,12 +6,9 @@
     current belief is represented by
     mean μb and covariance Σb . The
     problem 𝒫 specifies the nonlinear
-    dynamics using the mean tran-
-    sition dynamics function fT and
-    mean observation dynamics func-
-    tion fO . The sigma points used in
-    the unscented transforms are con-
-    trolled by the spread parameter λ .
+    dynamics using the mean transition dynamics function fT and
+    mean observation dynamics function fO . The sigma points used in
+    the unscented transforms are controlled by the spread parameter λ .
     """
 struct UnscentedKalmanFilter
     μb::Any # mean vector

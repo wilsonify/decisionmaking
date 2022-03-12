@@ -1,8 +1,6 @@
 """
 Iteration structure
-for updating a set of alpha vec-
-tors Γ used by several of the meth-
-ods in this chapter. The various
+for updating a set of alpha vectors Γ used by several of the methods in this chapter. The various
 methods, including QMDP, differ
 in their implementation of update .
 After k_max iterations, this function
@@ -18,14 +16,9 @@ end
 
 
 """
- The QMDP al-
-gorithm, which finds an approxi-
-mately optimal policy for an infi-
-nite horizon POMDP with a dis-
-crete state and action space, where
+ The QMDP algorithm, which finds an approximately optimal policy for an infinite horizon POMDP with a discrete state and action space, where
 k_max is the number of iterations.
-QMDP assumes perfect observabil-
-ity.
+QMDP assumes perfect observability.
 """
 struct QMDP
     k_max::Any # maximum number of iterations

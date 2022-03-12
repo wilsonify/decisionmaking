@@ -94,8 +94,7 @@ x = "optimal"
 
 """
 Symbols
-A symbol represents an identifier. It can be written using the : operator or con-
-structed from strings.
+A symbol represents an identifier. It can be written using the : operator or constructed from strings.
 """
 
 :A
@@ -212,8 +211,7 @@ X = [1 2 3; 4 5 6; 7 8 9; 10 11 12];
 @assert(X[1:2, 1:2] == [[1, 2], [4, 5]]) # extract a 2x2 submatrix from the top left of x
 
 """
-We can also construct a variety of special matrices and use array comprehen-
-sions:
+We can also construct a variety of special matrices and use array comprehensions:
 """
 @assert(Matrix(1.0I, 3, 3) == [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]) # 3x3 identity matrix
 @assert(Matrix(Diagonal([3, 2, 1])) == [[3, 0, 0], [0, 2, 0], [0, 0, 1]]) # 3x3 diagonal matrix with 3, 2, 1 on diagonal

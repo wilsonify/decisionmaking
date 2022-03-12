@@ -1,9 +1,6 @@
 """
-policy repre-
-sented by a set of alpha vectors Γ .
-It uses one-step lookahead to pro-
-duce an optimal action and asso-
-ciated utility. Equation (20.13) is
+policy represented by a set of alpha vectors Γ .
+It uses one-step lookahead to produce an optimal action and associated utility. Equation (20.13) is
 used to compute the lookahead.
 """
 
@@ -34,16 +31,13 @@ end
 
 
 """
-A method for find-
-    ing the belief vector b for which
+A method for finding the belief vector b for which
     the alpha vector α improves the
     most compared to the set of alpha
     vectors Γ . Nothing is returned if
     no such belief exists. The packages
     JuMP.jl and GLPK.jl provide a
-    mathematical optimization frame-
-    work and a solver for linear pro-
-    grams, respectively.
+    mathematical optimization framework and a solver for linear programs, respectively.
 """
 function find_maximal_belief(α, Γ)
     m = length(α)
@@ -63,17 +57,11 @@ function find_maximal_belief(α, Γ)
 end
 
 """A method for
-pruning dominated alpha vec-
-tors and associated plans. The
-find_dominating function identi-
-fies all of the dominating alpha vec-
-tors in the set Γ . It uses binary vec-
-tors candidates and dominating
+pruning dominated alpha vectors and associated plans. The
+find_dominating function identifies all of the dominating alpha vectors in the set Γ . It uses binary vectors candidates and dominating
 to track which alpha vectors are
 candidates for inclusion in the
-dominating set and which are cur-
-rently in the dominating set, re-
-spectively.
+dominating set and which are currently in the dominating set, respectively.
 """
 function find_dominating(Γ)
     n = length(Γ)

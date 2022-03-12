@@ -4,8 +4,7 @@ struct InjectionParticleFilter
 update with injection, in which
 m_inject particles are sampled
 from the injection distribution
-D_inject to reduce the risk of par-
-ticle deprivation.
+D_inject to reduce the risk of particle deprivation.
     """
     states::Any # vector of state samples
     m_inject::Any # number of samples to inject

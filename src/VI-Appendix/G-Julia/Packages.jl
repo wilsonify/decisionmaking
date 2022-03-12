@@ -15,8 +15,7 @@ using Distributions
 
 # LightGraphs.jl
 """
-We use the LightGraphs.jl package (version 1.3) to represent graphs and per-
-form operations on them:
+We use the LightGraphs.jl package (version 1.3) to represent graphs and perform operations on them:
 """
 using LightGraphs
 G = SimpleDiGraph(3); # create a directed graph with three nodes

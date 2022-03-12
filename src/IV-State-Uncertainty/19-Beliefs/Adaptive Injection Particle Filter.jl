@@ -1,12 +1,7 @@
 """
-A particle fil-
-ter with adaptive injection, which
-maintains fast and slow expo-
-nential moving averages w_fast
-and w_slow of the mean parti-
-cle weight with smoothness fac-
-tors α_fast and α_slow , respec-
-tively. Particles are only injected
+A particle filter with adaptive injection, which
+maintains fast and slow exponential moving averages w_fast
+and w_slow of the mean particle weight with smoothness factors α_fast and α_slow , respectively. Particles are only injected
 if the fast moving average of the
 mean particle weight is less than
 1/ν of the slow moving average.
@@ -16,11 +11,11 @@ original paper are α_fast = 0.1 ,
 """
 mutable struct AdaptiveInjectionParticleFilter
     states::Any # vector of state samples
-    w_slow::Any     # slow moving average
-    w_fast::Any     # fast moving average
-    α_slow::Any    # slow moving average parameter
-    α_fast::Any    # fast moving average parameter
-    ν::Any    # injection parameter
+    w_slow::Any # slow moving average
+    w_fast::Any # fast moving average
+    α_slow::Any# slow moving average parameter
+    α_fast::Any# fast moving average parameter
+    ν::Any# injection parameter
     D_inject::Any # injection distribution
 end
 
