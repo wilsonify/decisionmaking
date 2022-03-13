@@ -20,8 +20,7 @@ function solve(M::NashEquilibrium, 𝒫::SimpleGame)
         model,
         Min,
         sum(
-            U[i] -
-            sum(prod(π[j, a[j]] for j in ℐ) * R[y][i] for (y, a) in enumerate(joint(𝒜))) for
+            U[i] - sum(prod(π[j, a[j]] for j in ℐ) * R[y][i] for (y, a) in enumerate(joint(𝒜))) for
             i in ℐ
         )
     )
