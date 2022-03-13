@@ -4,7 +4,7 @@ which takes in a Bayesian Network bn,
 a list of query variables query , 
 and evidence.
 
-The variables are processed in the order given by the ordering .
+The variables are processed in the order given by ordering .
 """
 struct VariableElimination
     ordering::Any # array of variable indices

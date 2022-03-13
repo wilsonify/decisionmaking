@@ -1,13 +1,13 @@
 """
-A method for sampling an assignment from a Bayesian network bn .
-We also provide a method for sampling an assignment from a factor ϕ .
-
 A. B. Kahn, “Topological Sorting of Large Networks,” 
 Communications of the ACM, vol. 5, no. 11, pp. 558–562, 1962. An implementation of topological sorting is provided by the LightGraphs.jl package.
-
 """
 
 function Base.rand(ϕ::Factor)
+    """
+    a method for sampling an assignment from a factor ϕ .
+    """ 
+
     tot, p, w = 0.0, rand(), sum(values(ϕ.table))
     for (a, v) in ϕ.table
         tot += v / w
@@ -21,6 +21,11 @@ end
 7
 
 function Base.rand(bn::BayesianNetwork)
+    """
+    A method for sampling an assignment from a Bayesian network bn .
+    
+
+    """
     a = Assignment()
     for i in topological_sort(bn.graph)
         name, ϕ = bn.vars[i].name, bn.factors[i]
@@ -32,16 +37,14 @@ end
 struct DirectSampling
     """
     The direct sampling inference method, 
-which takes a Bayesian network bn , 
-a list of query variables query , and evidence evidence .
+    which takes a Bayesian network bn , 
+    a list of query variables query , 
+    and evidence evidence .
 
-The method
-draws m samples from the Bayesian
-network and retains those samples
-that are consistent with the evidence. A factor over the query variables is returned. This method can
-fail if no samples that satisfy the
-evidence are found.
-
+    The method m samples from the Bayesian network and retains those samples
+    that are consistent with the evidence. 
+    A factor over the query variables is returned. 
+    This method can fail if no samples that satisfy the evidence are found.
     """
     m::Any # number of samples
 end
