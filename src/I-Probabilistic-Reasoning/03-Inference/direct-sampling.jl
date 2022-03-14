@@ -1,3 +1,4 @@
+include("../02-Representation/bayesian-networks.jl")
 """
 A. B. Kahn, “Topological Sorting of Large Networks,” 
 Communications of the ACM, vol. 5, no. 11, pp. 558–562, 1962. An implementation of topological sorting is provided by the LightGraphs.jl package.

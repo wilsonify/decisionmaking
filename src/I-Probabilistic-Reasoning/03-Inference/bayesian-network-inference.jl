@@ -1,3 +1,4 @@
+include("../02-Representation/representation-library.jl")
 """
 An implementation of the factor product,
 which constructs the factor representing the
@@ -5,6 +6,7 @@ joint distribution of two smaller factors ϕ and ψ .
 If we want to compute the factor product of ϕ and ψ , 
 we simply write ϕ*ψ .
 """
+
 function Base.:*(ϕ::Factor, ψ::Factor)
     ϕnames = variablenames(ϕ)
     ψnames = variablenames(ψ)
