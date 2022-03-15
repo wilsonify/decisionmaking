@@ -4,4 +4,4 @@ installed.txt:
 	julia packages.jl
 
 test: installed.txt
-	julia test-gaussian-model-inference.jl
+	julia test-bayesian-networks.jl
