@@ -3,6 +3,7 @@ using DelimitedFiles
 
 dependencies = [
     "LightGraphs",
+    "Distributions"
 ]
 
 Pkg.add(dependencies)
