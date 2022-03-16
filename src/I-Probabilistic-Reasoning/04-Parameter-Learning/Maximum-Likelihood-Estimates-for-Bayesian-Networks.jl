@@ -14,6 +14,7 @@ function sub2ind(siz, x)
     k = vcat(1, cumprod(siz[1:end-1]))
     return dot(k, x .- 1) + 1
 end
+
 function statistics(vars, G, D::Matrix{Int})
     n = size(D, 1)
     r = [vars[i].r for i = 1:n]
