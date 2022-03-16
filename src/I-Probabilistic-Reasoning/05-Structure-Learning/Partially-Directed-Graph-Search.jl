@@ -1,10 +1,9 @@
+using IterTools
+
 function are_markov_equivalent(G, H)
     """
-    A method for determining whether the directed
-        acyclic graphs G and H are Markov
-        equivalent. The subsets function
-        from IterTools.jl returns all subsets of a given set and a specified
-        size.
+    A method for determining whether the directed acyclic graphs G and H are Markov equivalent. 
+    The subsets function from IterTools.jl returns all subsets of a given set and a specified size.
     """
     if nv(G) != nv(H) ||
        ne(G) != ne(H) ||
