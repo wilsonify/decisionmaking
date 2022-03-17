@@ -1,12 +1,10 @@
+include("Undirected Exploration Strategies.jl")
 """
-The Q-learning
-update for model-free reinforcement learning, which can be applied to problems with unknown
-transition and reward functions.
-The update modifies Q , which is a
-matrix of state-action values. This
-update function can be used together with an exploration strategy,
-such as ǫ-greedy in the simulate
-function in algorithm 15.9.
+The Q-learning update for model-free reinforcement learning, 
+which can be applied to problems with unknown transition and reward functions.
+The update modifies Q, which is a matrix of state-action values. 
+This update function can be used together with an exploration strategy,
+such as ǫ-greedy in the simulate function in simulate.
 """
 mutable struct QLearning
     𝒮::Any # state space (assumes 1:nstates)

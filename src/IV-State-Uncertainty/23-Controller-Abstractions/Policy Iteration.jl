@@ -1,3 +1,4 @@
+include("Belief Initialization.jl")
 struct ControllerPolicyIteration
     k_max::Any
     # number of iterations

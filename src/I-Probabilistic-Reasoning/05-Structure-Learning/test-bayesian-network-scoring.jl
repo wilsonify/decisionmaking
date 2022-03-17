@@ -1,4 +1,5 @@
 using Test
+include("../03-Inference/inference-library.jl")
 @testset "bayesian scoreing tests" begin
     @testset "bayesian_score_component" begin
         M = statistics(vars, G, D)

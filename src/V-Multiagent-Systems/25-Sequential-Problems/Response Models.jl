@@ -1,10 +1,9 @@
+include("Markov Games.jl")
 """
-For a Markov
-game 𝒫 , we can compute a deterministic best response policy for
-agent i given that the other agents
-are playing policies in π . We can
-solve the MDP exactly using one of
-the methods from chapter 7.
+For a Markov game 𝒫, 
+we can compute a deterministic best response policy 
+for agent i given that the other agents are playing policies in π . 
+We can solve the MDP exactly using one of the methods from "Exact Solution Methods".
 """
 function best_response(𝒫::MG, π, i)
     𝒮, 𝒜, R, T, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.R, 𝒫.T, 𝒫.γ

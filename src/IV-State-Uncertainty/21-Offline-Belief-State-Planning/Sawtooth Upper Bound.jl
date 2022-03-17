@@ -1,3 +1,4 @@
+include("Belief Initialization.jl")
 struct SawtoothPolicy
     𝒫::Any # POMDP problem
     V::Any # dictionary mapping beliefs to utilities

@@ -1,3 +1,4 @@
+using ForwardDiff
 """
     The expansion
     step in value iteration, which constructs all k + 1-step conditional

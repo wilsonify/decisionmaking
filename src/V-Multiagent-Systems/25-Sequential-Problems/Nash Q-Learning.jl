@@ -1,15 +1,15 @@
+include("Markov Games.jl")
+
 """
-Nash Q-learning
-for an agent i in an MG 𝒫 . The algorithm performs joint-action Qlearning to learn a state-action
-value function for all agents. A simple game is built with Q , and we
-compute a Nash equilibrium using
-algorithm 24.5. The equilibrium
-is then used to update the value
-function. This implementation also
-uses a variable learning rate proportional to the number of times
-state-joint-action pairs are visited,
-which is stored in N . Additionally,
-it uses ǫ-greedy exploration to ensure all states and actions are explored.
+Nash Q-learning 
+for an agent i in an MG 𝒫 .
+The algorithm performs joint-action Qlearning to learn a state-action
+value function for all agents. 
+A simple game is built with Q , and we compute a Nash equilibrium using algorithm 24.5. 
+The equilibrium is then used to update the value function. 
+This implementation also uses a variable learning rate proportional to the number of times
+state-joint-action pairs are visited, which is stored in N . 
+Additionally, it uses ǫ-greedy exploration to ensure all states and actions are explored.
 """
 mutable struct NashQLearning
     𝒫::Any # Markov game

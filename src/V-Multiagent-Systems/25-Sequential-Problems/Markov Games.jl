@@ -1,7 +1,7 @@
+include("Response Models.jl")
 struct MG
     """
-    Data structure for
-        a Markov game.
+    Data structure for a Markov game.
     """
     γ::Any # discount factor
     ℐ::Any # agents
@@ -10,7 +10,6 @@ struct MG
     T::Any # transition function
     R::Any # joint reward function
 end
-
 
 struct MGPolicy
     """

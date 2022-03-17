@@ -1,8 +1,6 @@
+include("Belief Initialization.jl")
 """
-We can generate
-an alpha vector from a conditional
-plan by calling evaluate_plan
-from all possible initial states.
+We can generate an alpha vector from a conditional plan by calling evaluate_plan from all possible initial states.
 """
 function alphavector(𝒫::POMDP, π::ConditionalPlan)
     return [evaluate_plan(𝒫, π, s) for s in 𝒫.𝒮]
@@ -10,14 +8,11 @@ end
 
 struct AlphaVectorPolicy
     """
-        n alpha vector
-policy is defined in terms of a set
-of alpha vectors Γ and an array of
-associated actions a . Given the current belief b , it will find the alpha
-vector that gives the highest value
-at that belief point. It will return
-the associated action.
-        """
+    n alpha vector policy is defined in terms of a set of alpha vectors Γ and an array of associated actions a . 
+    Given the current belief b , 
+    it will find the alpha vector that gives the highest value at that belief point. 
+    It will return the associated action.
+    """
     𝒫::Any # POMDP problem
     Γ::Any # alpha vectors
     a::Any # actions associated with alpha vectors

@@ -1,3 +1,4 @@
+include("Simple Games.jl")
 """
 An implementation of gradient ascent for an agent
 i of a simple game 𝒫 . The algorithm

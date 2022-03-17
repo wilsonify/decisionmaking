@@ -1,3 +1,4 @@
+include("../02-Representation/representation-library.jl")
 struct SimpleProblem
     """
     simple problem

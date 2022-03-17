@@ -1,3 +1,4 @@
+include("Decentralized Partially Observable Markov Decision Processes.jl")
 struct DecPOMDPIteratedBestResponse
     """
     Iterated best response for a collaborative DecPOMDP 𝒫 iteratively performs a deterministic best response to rapidly

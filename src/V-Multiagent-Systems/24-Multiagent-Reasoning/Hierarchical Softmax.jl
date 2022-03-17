@@ -1,3 +1,4 @@
+include("Simple Games.jl")
 struct HierarchicalSoftmax
     """
     The hierarchical

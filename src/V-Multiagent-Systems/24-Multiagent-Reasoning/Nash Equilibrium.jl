@@ -1,3 +1,4 @@
+include("Simple Games.jl")
 """This nonlinear
 program computes a Nash equilibrium for a simple game 𝒫 .
     """

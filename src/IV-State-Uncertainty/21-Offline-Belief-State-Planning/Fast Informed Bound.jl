@@ -1,3 +1,4 @@
+include("Belief Initialization.jl")
 """The fast informed
     bound algorithm, which finds an
     approximately optimal policy for

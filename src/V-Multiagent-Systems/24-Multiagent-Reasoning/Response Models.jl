@@ -1,3 +1,4 @@
+include("Simple Games.jl")
 struct SimpleGamePolicy
     """
     A policy associated with an agent is represented

@@ -1,4 +1,4 @@
-
+using("../02-Representation/representation-library.jl")
 function blanket(bn, a, i)
     """
     A method for obtaining P ( X i | x − i ) 

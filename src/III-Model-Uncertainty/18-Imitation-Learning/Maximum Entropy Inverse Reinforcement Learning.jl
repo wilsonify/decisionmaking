@@ -47,8 +47,7 @@ function optimize(M::MaximumEntropyIRL, D, ϕ, θ)
         θ = optimize(RL, π, θ)
         b = discounted_state_visitations(M, θ)
         ∇Rτ = τ -> sum(γ^(i - 1) * ∇R(ϕ, s, a) for (i, (s, a)) in enumerate(τ))
-        ∇f =
-            sum(∇Rτ(τ) for τ in D) nD * sum(
+        ∇f = sum(∇Rτ(τ) for τ in D) nD * sum(
                 b[si] * sum(Pπ(θ, a, s) * ∇R(ϕ, s, a) for (ai, a) in enumerate(𝒜)) for
                 (si, s) in enumerate(𝒮)
             )

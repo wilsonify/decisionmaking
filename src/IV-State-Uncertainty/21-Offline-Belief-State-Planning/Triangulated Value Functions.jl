@@ -1,3 +1,4 @@
+include("Belief Initialization.jl")
 struct TriangulatedPolicy
     """
     A policy representation using Freudenthal

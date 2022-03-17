@@ -1,3 +1,4 @@
+include("Belief Initialization.jl")
 struct SawtoothHeuristicSearch
     """
     The sawtooth

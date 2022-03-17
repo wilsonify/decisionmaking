@@ -1,4 +1,4 @@
-
+include("Partially Observable Markov Games.jl")
 """
 Conditional plans
 represent policies in a finite horizon POMG. They are defined for

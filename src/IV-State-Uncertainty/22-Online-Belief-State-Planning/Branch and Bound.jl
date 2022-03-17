@@ -1,3 +1,5 @@
+include("Fast Informed Bound.jl")
+
 """
 In this example, we apply branch and bound to the crying baby problem
 with a depth of 5. The upper bound comes from the fast informed bound
@@ -5,10 +7,7 @@ and the lower bound comes from point-based value iteration. We compute
 the action from belief [ 0.4, 0.6 ] .
 """
 
-"""An application of
-branch and bound to the crying
-baby problem.
-"""
+""" An application of branch and bound to the crying baby problem. """
 k_max = 10 # maximum number of iterations for bounds
 πFIB = solve(FastInformedBound(k_max), 𝒫)
 d = 5 # depth

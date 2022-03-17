@@ -1,3 +1,4 @@
+include("Decentralized Partially Observable Markov Decision Processes.jl")
 struct DecPOMDPHeuristicSearch
     """
     Memory bounded

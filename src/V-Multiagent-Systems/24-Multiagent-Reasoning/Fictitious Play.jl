@@ -1,3 +1,4 @@
+include("Simple Games.jl")
 """
 The simulation of
 a joint policy in simple game 𝒫 for

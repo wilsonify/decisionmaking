@@ -1,23 +1,14 @@
+include("Bayes-adaptive MDPs.jl")
 """
-The update
-method for posterior sampling.
-After updating the parameters
-of the Bayesian posterior, we
-sample an MDP problem from that
-posterior. This implementation
-assumes a discrete state and
-action space with a Dirichlet
-modeling our uncertainty in the
-transition probabilities from each
-state-action pair. To generate the
-transition model, we iterate over
-every state and action and sample
-from the associated Dirichlet
-distribution. Once we have a
-sampled problem 𝒫 , we solve it
-using the linear programming
-formulation and store the resulting
-value function U .
+The update method for posterior sampling.
+After updating the parameters of the Bayesian posterior, 
+we sample an MDP problem from that posterior. 
+This implementation assumes a discrete state and action space with a 
+Dirichlet modeling our uncertainty in the transition probabilities from each state-action pair. 
+To generate the transition model, we iterate over every state and action and sample 
+from the associated Dirichlet distribution. 
+Once we have a sampled problem 𝒫 , 
+we solve it using the linear programming formulation and store the resulting value function U .
 """
 struct PosteriorSamplingUpdate end
 function Base.rand(model::BayesianMDP)

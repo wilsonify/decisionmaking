@@ -1,4 +1,4 @@
-
+using("../02-Representation/representation-library.jl")
 struct LikelihoodWeightedSampling
     """
     The likelihood weighted sampling inference method,

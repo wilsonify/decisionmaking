@@ -1,3 +1,4 @@
+include("Belief Initialization.jl")
 """
 A function for
     randomly sampling the next belief

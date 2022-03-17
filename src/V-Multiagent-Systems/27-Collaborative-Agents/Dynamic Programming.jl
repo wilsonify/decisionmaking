@@ -1,12 +1,11 @@
+include("Decentralized Partially Observable Markov Decision Processes.jl")
+
 struct DecPOMDPDynamicProgramming
     """
-    Dynamic programming computes the optimal
-joint policy π for a Dec-POMDP 𝒫 ,
-given an initial belief b and horizon
-depth d . We can directly use the
-POMG algorithm as Dec-POMDPs
-are a special collaborative class of
-POMGs.
+    Dynamic programming computes the optimal joint policy π for a Dec-POMDP 𝒫 ,
+    given an initial belief b and horizon depth d . 
+    We can directly use the POMG algorithm as 
+    Dec-POMDPs are a special collaborative class of POMGs.
     """
 
     b::Any # initial belief
