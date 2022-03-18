@@ -1,4 +1,5 @@
 using Test
+include("foo.jl")
 @testset "Disassembler tests" begin
     @testset "add numbers" begin
         @test 1+1==2
@@ -6,6 +7,6 @@ using Test
     end
 
     @testset "add strings" begin
-        @test "A"+"B"=="AB"
+        @test foo()
     end
 end
