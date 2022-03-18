@@ -2,6 +2,7 @@ using Pkg
 using DelimitedFiles
 
 dependencies = [
+    "Formatting",
     "LightGraphs",
     "Distributions"
 ]
