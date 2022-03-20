@@ -1,5 +1,5 @@
 path_to_parent=dirname(@__DIR__)
-include("$path_to_parent/02-Representation/representation-library.jl")
+include("$path_to_parent/02-Representation/factor-table.jl")
 include("$path_to_parent/04-Parameter-Learning/Maximum-Likelihood-Estimates-for-Bayesian-Networks.jl")
 
 struct LikelihoodWeightedSampling

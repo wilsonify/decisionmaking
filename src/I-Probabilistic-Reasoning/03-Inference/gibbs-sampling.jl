@@ -1,5 +1,7 @@
 path_to_parent=dirname(@__DIR__)
-include("$path_to_parent/02-Representation/representation-library.jl")
+include("$path_to_parent/02-Representation/factor.jl")
+include("$path_to_parent/02-Representation/factor-table.jl")
+
 function blanket(bn, a, i)
     """
     A method for obtaining P ( X i | x − i ) 
@@ -35,11 +37,11 @@ function gibbs_sample!(a, bn, evidence, ordering, m)
         update_gibbs_sample!(a, bn, evidence, ordering)
     end
 end
+
 struct GibbsSampling
     m_samples # number of samples
     m_burnin # number of samples
-    m_skip
-    # number of samples
+    m_skip # number of samples
     ordering # array of variable
 end
 

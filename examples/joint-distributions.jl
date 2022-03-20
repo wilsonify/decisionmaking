@@ -1,3 +1,5 @@
+using DecisionMakingAlgorithms
+ 
 """
 Example joint distribution involving binary variables X, Y, and Z.
 
@@ -13,8 +15,7 @@ Example joint distribution involving binary variables X, Y, and Z.
 | 1 | 1 | 1 | 0.07     |
 
 """
-path_to_here=@__DIR__
-include("$path_to_here/representation-library.jl")
+
 # We can instantiate the table from table 2.1 using the Factor type
 X = Variable(:x, 2)
 Y = Variable(:y, 2)
