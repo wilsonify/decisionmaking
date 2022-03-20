@@ -1,4 +1,5 @@
-include("../02-Representation/representation-library.jl")
+path_to_parent= dirname(__DIR__)
+include("$path_to_parent/02-Representation/representation-library.jl")
 struct SimpleProblem
     """
     simple problem

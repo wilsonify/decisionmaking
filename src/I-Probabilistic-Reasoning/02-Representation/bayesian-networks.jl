@@ -18,8 +18,8 @@ Because B and S do not have any parents, we only need to
     { 0, 1 } for all of the variables. For example, (e=2,b=1,s=1) corresponds to
     ( e 1 , b 0 , s 0 ) .
 """
-
-include("representation-library.jl")
+path_to_here=@__DIR__
+include("$path_to_here/representation-library.jl")
 
 struct BayesianNetwork
     vars::Vector{Variable}

@@ -1,5 +1,6 @@
 using LightGraphs
-include("../02-Representation/representation-library.jl")
+path_to_parent=dirname(@__DIR__)
+include("$path_to_parent/02-Representation/representation-library.jl")
 """
 Using the statistics function for extracting the statistics from a data set. 
 Bayesian parameter learning can be used to avoid n a n values,

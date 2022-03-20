@@ -1,7 +1,6 @@
 module DecisionMakingAlgorithms
 
 include("I-Probabilistic-Reasoning/01-Introduction/foo.jl")
-include("I-Probabilistic-Reasoning/01-Introduction/reciever.jl")
 include("I-Probabilistic-Reasoning/02-Representation/bayesian-networks.jl")
 include("I-Probabilistic-Reasoning/02-Representation/joint-distributions.jl")
 include("I-Probabilistic-Reasoning/02-Representation/representation-library.jl")

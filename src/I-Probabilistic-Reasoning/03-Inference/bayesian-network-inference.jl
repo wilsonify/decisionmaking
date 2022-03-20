@@ -1,4 +1,6 @@
-include("../02-Representation/representation-library.jl")
+path_to_here=@__DIR__
+path_to_parent=dirname(@__DIR__)
+include("$path_to_parent/02-Representation/representation-library.jl")
 """
 An implementation of the factor product,
 which constructs the factor representing the
