@@ -1,11 +1,18 @@
 using Formatting
 using AMQPClient
-const HOST = "localhost"
-const PORT = "5762"
-const VIRTUALHOST = "/"
-const ROUTING_KEY = "julia"
+const HOST = get(ENV, "AMQP_HOST", "localhost") 
+const PORT = get(ENV, "AMQP_PORT", "5762")
+const VIRTUALHOST = get(ENV, "AMQP_VIRTUALHOST", "/")
+const ROUTING_KEY = get(ENV, "AMQP_ROUTING_KEY", "julia")
+const USERNAME = get(ENV, "AMQP_USERNAME", "guest")
+const PASSWORD = get(ENV, "AMQP_PASSWORD", "guest")
+
 
 function receive()
+    println("HOST=$HOST")
+    println("PORT=$PORT")
+    println("VIRTUALHOST=$VIRTUALHOST")
+    println("ROUTING_KEY=$ROUTING_KEY")
     connection(; virtualhost = VIRTUALHOST, host = HOST, port = parse(Int64, PORT)) do conn
         channel(conn, AMQPClient.UNUSED_CHANNEL, true) do chan
             exchange_name = format("try_{:s}", ROUTING_KEY)
