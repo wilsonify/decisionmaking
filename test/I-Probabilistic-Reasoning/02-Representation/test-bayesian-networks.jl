@@ -1,5 +1,6 @@
 using Test
-include("bayesian-networks.jl")
+path_to_top = dirname(dirname(dirname(@__DIR__)))
+include("$path_to_top/src/I-Probabilistic-Reasoning/02-Representation/bayesian-networks.jl")
 
 a = Dict(pairs((b = 1, s = 1, e = 1, d = 2, c = 1)))
 @testset "BayesianNetwork" begin
