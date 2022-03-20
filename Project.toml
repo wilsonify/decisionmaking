@@ -9,6 +9,7 @@ Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 Formatting = "59287772-0a20-5a39-b81b-1366585eb4c0"
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [compat]
 julia = "1.7"
