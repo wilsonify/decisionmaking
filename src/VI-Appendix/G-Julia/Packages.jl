@@ -6,8 +6,8 @@ a few of the key packages that we build upon. To add a registered package like
 Distributions.jl , we can run:
 using Pkg
 """
-Pkg.add("Distributions")
-Pkg.update()#To update packages
+#Pkg.add("Distributions")
+#Pkg.update()#To update packages
 
 
 # To use a package, we use the keyword using

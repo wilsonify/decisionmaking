@@ -1,4 +1,4 @@
-include("Decentralized Partially Observable Markov Decision Processes.jl")
+
 mutable struct MGGradientAscent
     """
     Gradient ascent

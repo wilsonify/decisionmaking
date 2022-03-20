@@ -1,5 +1,4 @@
-include("Markov Games.jl")
-include("Response Models.jl")
+
 """
 This nonlinear
 program computes a Nash equilibrium for a Markov game 𝒫 .

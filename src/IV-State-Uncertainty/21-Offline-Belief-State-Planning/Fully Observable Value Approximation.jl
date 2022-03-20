@@ -1,4 +1,4 @@
-include("Belief Initialization.jl")
+
 """
 Iteration structure
 for updating a set of alpha vectors Γ used by several of the methods in this chapter. The various

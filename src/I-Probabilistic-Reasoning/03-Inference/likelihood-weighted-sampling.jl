@@ -1,6 +1,3 @@
-path_to_parent=dirname(@__DIR__)
-include("$path_to_parent/02-Representation/factor-table.jl")
-include("$path_to_parent/04-Parameter-Learning/Maximum-Likelihood-Estimates-for-Bayesian-Networks.jl")
 
 struct LikelihoodWeightedSampling
     """
@@ -16,9 +13,10 @@ struct LikelihoodWeightedSampling
     the final inference estimate is accurate. 
     A factor over the query variables is returned.
     """
-    m::Any # number of samples
+    m::Int # number of samples
 end
-function infer(M::LikelihoodWeightedSampling, bn, query, evidence)
+
+function infer(M::LikelihoodWeightedSampling, bn::BayesianNetwork, query, evidence)
     table = FactorTable()
     ordering = topological_sort(bn.graph)
     for i = 1:(M.m)
@@ -29,7 +27,7 @@ function infer(M::LikelihoodWeightedSampling, bn, query, evidence)
                 a[name] = evidence[name]
                 w *= ϕ.table[select(a, variablenames(ϕ))]
             else
-                a[name] = rand(condition(ϕ, a))[name]
+                a[name] = rand(conditioning(ϕ, a))[name]
             end
         end
         b = select(a, query)

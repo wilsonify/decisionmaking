@@ -1,5 +1,4 @@
-path_to_parent= dirname(__DIR__)
-include("$path_to_parent/02-Representation/variable.jl")
+
 struct SimpleProblem
     """
     simple problem

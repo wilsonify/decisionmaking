@@ -1,4 +1,4 @@
-include("Bayes-adaptive MDPs.jl")
+
 """
 The update method for posterior sampling.
 After updating the parameters of the Bayesian posterior, 

@@ -1,4 +1,4 @@
-include("Belief Initialization.jl")
+
 struct NonlinearProgramming
     """
     A nonlinear programming approach to compute

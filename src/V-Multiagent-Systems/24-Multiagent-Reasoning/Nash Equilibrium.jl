@@ -1,7 +1,7 @@
-include("Simple Games.jl")
-"""This nonlinear
-program computes a Nash equilibrium for a simple game 𝒫 .
-    """
+
+"""
+This nonlinear program computes a Nash equilibrium for a simple game 𝒫 . 
+"""
 struct NashEquilibrium end
 function tensorform(𝒫::SimpleGame)
     ℐ, 𝒜, R = 𝒫.ℐ, 𝒫.𝒜, 𝒫.R

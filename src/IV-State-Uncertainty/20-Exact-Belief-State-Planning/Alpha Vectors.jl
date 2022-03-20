@@ -1,4 +1,4 @@
-include("Belief Initialization.jl")
+
 """
 We can generate an alpha vector from a conditional plan by calling evaluate_plan from all possible initial states.
 """

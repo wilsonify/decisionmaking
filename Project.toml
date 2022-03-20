@@ -3,6 +3,13 @@ uuid = "e23d689e-ee0f-4cb2-9691-51c80dfd6c90"
 authors = ["Mykel Kochenderfer", "Tim Wheeler", "Kyle Wray", "Thomas Wilson"]
 version = "0.1.0"
 
+[deps]
+AMQPClient = "79c8b4cd-a41a-55fa-907c-fab5288e1383"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Formatting = "59287772-0a20-5a39-b81b-1366585eb4c0"
+LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
 [compat]
 julia = "1.7"
 
@@ -11,9 +18,3 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Test"]
-
-[deps]
-AMQPClient = "79c8b4cd-a41a-55fa-907c-fab5288e1383"
-Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
-Formatting = "59287772-0a20-5a39-b81b-1366585eb4c0"
-LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"

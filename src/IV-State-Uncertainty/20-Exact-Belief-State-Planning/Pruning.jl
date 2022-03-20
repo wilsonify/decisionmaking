@@ -1,4 +1,3 @@
-include("Belief Initialization.jl")
 """
 policy represented by a set of alpha vectors Γ .
 It uses one-step lookahead to produce an optimal action and associated utility. Equation (20.13) is

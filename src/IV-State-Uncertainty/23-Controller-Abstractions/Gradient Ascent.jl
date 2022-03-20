@@ -1,4 +1,4 @@
-include("Belief Initialization.jl")
+
 struct ControllerGradient
     """
     An implementation of a controller gradient ascent

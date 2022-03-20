@@ -1,11 +1,7 @@
-include("Simple Games.jl")
+
 """
-The simulation of
-a joint policy in simple game 𝒫 for
-k_max iterations. The joint policy π
-is a vector of policies that can be
-individually updated through calls
-to update!(πi, a) .
+The simulation of a joint policy in simple game 𝒫 for k_max iterations. 
+The joint policy π is a vector of policies that can be individually updated through calls to update!(πi, a) .
 """
 function simulate(𝒫::SimpleGame, π, k_max)
     for k = 1:k_max

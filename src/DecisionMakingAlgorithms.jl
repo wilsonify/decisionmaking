@@ -3,17 +3,18 @@ module DecisionMakingAlgorithms
 include("I-Probabilistic-Reasoning/01-Introduction/foo.jl")
 include("I-Probabilistic-Reasoning/01-Introduction/receive.jl")
 include("I-Probabilistic-Reasoning/02-Representation/variable.jl")
-include("I-Probabilistic-Reasoning/02-Representation/factor.jl")
+include("I-Probabilistic-Reasoning/02-Representation/assignment.jl")
 include("I-Probabilistic-Reasoning/02-Representation/factor-table.jl")
-include("I-Probabilistic-Reasoning/02-Representation/bayesian-networks.jl")
-include("I-Probabilistic-Reasoning/03-Inference/bayesian-network-inference.jl")
+include("I-Probabilistic-Reasoning/02-Representation/factor.jl")
+include("I-Probabilistic-Reasoning/02-Representation/bayesian-network.jl")
+include("I-Probabilistic-Reasoning/03-Inference/exact-inference.jl")
 include("I-Probabilistic-Reasoning/03-Inference/direct-sampling.jl")
 include("I-Probabilistic-Reasoning/03-Inference/Gaussian-Model-Inference.jl")
 include("I-Probabilistic-Reasoning/03-Inference/gibbs-sampling.jl")
-include("I-Probabilistic-Reasoning/03-Inference/inference-library.jl")
 include("I-Probabilistic-Reasoning/03-Inference/likelihood-weighted-sampling.jl")
 include("I-Probabilistic-Reasoning/03-Inference/variable-elimination.jl")
-include("I-Probabilistic-Reasoning/04-Parameter-Learning/Bayesian-Learning-for-Bayesian-Networks.jl")
+include("I-Probabilistic-Reasoning/04-Parameter-Learning/Maximum-Likelihood-Estimates-for-Bayesian-Networks.jl")
+
 #include("I-Probabilistic-Reasoning/04-Parameter-Learning/Bayesian-Parameter-Learning.jl")
 #include("I-Probabilistic-Reasoning/04-Parameter-Learning/Maximum-Likelihood-Estimates-for-Bayesian-Networks.jl")
 #include("I-Probabilistic-Reasoning/04-Parameter-Learning/Nonparametric-Learning.jl")
@@ -163,10 +164,12 @@ include("I-Probabilistic-Reasoning/04-Parameter-Learning/Bayesian-Learning-for-B
 export foo 
 export receive
 export Variable
+export Assignment
 export Factor
 export FactorTable
 export SimpleDiGraph
 export add_edge!
 export BayesianNetwork
-
+export statistics
+export normalize
 end

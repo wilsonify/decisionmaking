@@ -1,4 +1,4 @@
-include("Undirected Exploration Strategies.jl")
+
 """
 The Q-learning update for model-free reinforcement learning, 
 which can be applied to problems with unknown transition and reward functions.

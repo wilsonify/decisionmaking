@@ -1,4 +1,3 @@
-include("Belief Initialization.jl")
 """
 Implementation of the best-action worst-state (BAWS)
 lower bound from equation (21.5) represented as an alpha vector.

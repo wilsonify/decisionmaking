@@ -1,3 +1,4 @@
+using LinearAlgebra
 function sub2ind(siz, x)
     """
     A function for extracting the statistics, or counts, from a discrete data set D,

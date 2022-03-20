@@ -1,4 +1,4 @@
-include("Response Models.jl")
+
 struct MG
     """
     Data structure for a Markov game.

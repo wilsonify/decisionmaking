@@ -1,4 +1,3 @@
-include("Belief Initialization.jl")
 """
 Implementation of
 the blind lower bound represented

@@ -1,4 +1,3 @@
-include("Belief Initialization.jl")
 """
 Value iteration for POMDPs, 
 which finds the dominating h-step plans for a finite horizon POMDP of horizon k_max by 
