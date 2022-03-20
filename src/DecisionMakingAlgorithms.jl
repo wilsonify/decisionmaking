@@ -1,6 +1,7 @@
 module DecisionMakingAlgorithms
 
 include("I-Probabilistic-Reasoning/01-Introduction/foo.jl")
+include("I-Probabilistic-Reasoning/01-Introduction/receive.jl")
 include("I-Probabilistic-Reasoning/02-Representation/bayesian-networks.jl")
 include("I-Probabilistic-Reasoning/02-Representation/joint-distributions.jl")
 include("I-Probabilistic-Reasoning/02-Representation/representation-library.jl")
@@ -159,4 +160,5 @@ include("I-Probabilistic-Reasoning/04-Parameter-Learning/Bayesian-Learning-for-B
 #include("VI-Appendix/G-Julia/Types.jl")
 
 export foo 
+export receive
 end

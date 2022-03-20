@@ -6,7 +6,7 @@ const VIRTUALHOST = "/"
 const ROUTING_KEY = "julia"
 
 function receive()
-    connection(; virtualhost = VIRTUALHOST, host = HOST, port = Int64(PORT)) do conn
+    connection(; virtualhost = VIRTUALHOST, host = HOST, port = parse(Int64, PORT)) do conn
         channel(conn, AMQPClient.UNUSED_CHANNEL, true) do chan
             exchange_name = format("try_{:s}", ROUTING_KEY)
             queue_name = format("try_{:s}", ROUTING_KEY)
@@ -34,5 +34,5 @@ end
 
 
 
-receive()
+
 
