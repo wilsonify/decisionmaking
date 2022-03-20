@@ -29,12 +29,12 @@ and T ( s ′ | s, π ( s )) . The policy evaluation function will compute a vec
 end
 (πi::MGPolicy)(s, ai) = πi.p[s](ai)
 (πi::SimpleGamePolicy)(s, ai) = πi(ai)
-probability(𝒫::MG, s, π, a) = prod(πj(s, aj) for (πj, aj) in zip(π, a))
-reward(𝒫::MG, s, π, i) = sum(𝒫.R(s, a)[i] * probability(𝒫, s, π, a) for a in joint(𝒫.𝒜))
-transition(𝒫::MG, s, π, s′) =
-    sum(𝒫.T(s, a, s′) * probability(𝒫, s, π, a) for a in joint(𝒫.𝒜))
-function policy_evaluation(𝒫::MG, π, i)
-    𝒮, 𝒜, R, T, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.R, 𝒫.T, 𝒫.γ
+probability(problem::MG, s, π, a) = prod(πj(s, aj) for (πj, aj) in zip(π, a))
+reward(problem::MG, s, π, i) = sum(problem.R(s, a)[i] * probability(problem, s, π, a) for a in joint(problem.𝒜))
+transition(problem::MG, s, π, s′) =
+    sum(problem.T(s, a, s′) * probability(problem, s, π, a) for a in joint(problem.𝒜))
+function policy_evaluation(problem::MG, π, i)
+    𝒮, 𝒜, R, T, γ = problem.𝒮, problem.𝒜, problem.R, problem.T, problem.γ
     p(s, a) = prod(πj(s, aj) for (πj, aj) in zip(π, a))
     R′ = [sum(R(s, a)[i] * p(s, a) for a in joint(𝒜)) for s in 𝒮]
     T′ = [sum(T(s, a, s′) * p(s, a) for a in joint(𝒜)) for s in 𝒮, s′ in 𝒮]

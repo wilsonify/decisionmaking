@@ -13,11 +13,11 @@ value of the states in S to the utilities in U . Different parametric approximat
     # set of discrete states for performing backups
     k_max::Any # maximum number of iterations
 end
-function solve(M::ApproximateValueIteration, 𝒫::MDP)
+function solve(M::ApproximateValueIteration, problem::MDP)
     Uθ, S, k_max = M.Uθ, M.S, M.k_max
     for k = 1:k_max
-        U = [backup(𝒫, Uθ, s) for s in S]
+        U = [backup(problem, Uθ, s) for s in S]
         fit!(Uθ, S, U)
     end
-    return ValueFunctionPolicy(𝒫, Uθ)
+    return ValueFunctionPolicy(problem, Uθ)
 end

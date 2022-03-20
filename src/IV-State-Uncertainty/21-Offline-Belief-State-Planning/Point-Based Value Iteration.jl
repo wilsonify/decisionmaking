@@ -3,10 +3,10 @@ Implementation of
 the blind lower bound represented
 as a set of alpha vectors.
 """
-function blind_lowerbound(𝒫, k_max)
-    𝒮, 𝒜, T, R, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.T, 𝒫.R, 𝒫.γ
+function blind_lowerbound(problem, k_max)
+    𝒮, 𝒜, T, R, γ = problem.𝒮, problem.𝒜, problem.T, problem.R, problem.γ
     Q(s, a, α) = R(s, a) + γ * sum(T(s, a, s′) * α[j] for (j, s′) in enumerate(𝒮))
-    Γ = [baws_lowerbound(𝒫) for a in 𝒜]
+    Γ = [baws_lowerbound(problem) for a in 𝒜]
     for k = 1:k_max
         Γ = [[Q(s, a, α) for s in 𝒮] for (α, a) in zip(Γ, 𝒜)]
     end
@@ -23,14 +23,14 @@ A method for
     update method for vector beliefs is
     defined in algorithm 19.2.
 """
-function backup(𝒫::POMDP, Γ, b)
-    𝒮, 𝒜, 𝒪, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, 𝒫.γ
-    R, T, O = 𝒫.R, 𝒫.T, 𝒫.O
+function backup(problem::POMDP, Γ, b)
+    𝒮, 𝒜, 𝒪, γ = problem.𝒮, problem.𝒜, problem.𝒪, problem.γ
+    R, T, O = problem.R, problem.T, problem.O
     Γa = []
     for a in 𝒜
         Γao = []
         for o in 𝒪
-            b′ = update(b, 𝒫, a, o)
+            b′ = update(b, problem, a, o)
             push!(Γao, argmax(α -> α ⋅ b′, Γ))
         end
         α = [
@@ -55,12 +55,12 @@ struct PointBasedValueIteration
     B::Any
     k_max::Any # maximum number of iterations
 end
-function update(𝒫::POMDP, M::PointBasedValueIteration, Γ)
-    return [backup(𝒫, Γ, b) for b in M.B]
+function update(problem::POMDP, M::PointBasedValueIteration, Γ)
+    return [backup(problem, Γ, b) for b in M.B]
 end
 
-function solve(M::PointBasedValueIteration, 𝒫)
-    Γ = fill(baws_lowerbound(𝒫), length(𝒫.𝒜))
-    Γ = alphavector_iteration(𝒫, M, Γ)
-    return LookaheadAlphaVectorPolicy(𝒫, Γ)
+function solve(M::PointBasedValueIteration, problem)
+    Γ = fill(baws_lowerbound(problem), length(problem.𝒜))
+    Γ = alphavector_iteration(problem, M, Γ)
+    return LookaheadAlphaVectorPolicy(problem, Γ)
 end

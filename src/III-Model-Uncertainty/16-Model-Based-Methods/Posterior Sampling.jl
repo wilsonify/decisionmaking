@@ -7,7 +7,7 @@ This implementation assumes a discrete state and action space with a
 Dirichlet modeling our uncertainty in the transition probabilities from each state-action pair. 
 To generate the transition model, we iterate over every state and action and sample 
 from the associated Dirichlet distribution. 
-Once we have a sampled problem 𝒫 , 
+Once we have a sampled problem problem , 
 we solve it using the linear programming formulation and store the resulting value function U .
 """
 struct PosteriorSamplingUpdate end
@@ -22,8 +22,8 @@ function Base.rand(model::BayesianMDP)
     return MDP(T, model.R, model.γ)
 end
 function update!(planner::PosteriorSamplingUpdate, model, s, a, r, s′)
-    𝒫 = rand(model)
-    U = solve(𝒫).U
+    problem = rand(model)
+    U = solve(problem).U
     copy!(model.U, U)
 end
 

@@ -7,19 +7,19 @@ struct RandomizedPointBasedValueIteration
     which
     updates the alpha vectors Γ
     associated with beliefs B for the
-    𝒫 . This backup can be used in
+    problem . This backup can be used in
     place of point_based_update
     """
     # set of belief points
     B::Any
     k_max::Any # maximum number of iterations
 end
-function update(𝒫::POMDP, M::RandomizedPointBasedValueIteration, Γ)
+function update(problem::POMDP, M::RandomizedPointBasedValueIteration, Γ)
     Γ′, B′ = [], copy(M.B)
     while !isempty(B′)
         b = rand(B′)
         α = argmax(α -> α ⋅ b, Γ)
-        α′ = backup(𝒫, Γ, b)
+        α′ = backup(problem, Γ, b)
         if α′ ⋅ b ≥ α ⋅ b
             push!(Γ′, α′)
         else
@@ -30,8 +30,8 @@ function update(𝒫::POMDP, M::RandomizedPointBasedValueIteration, Γ)
     return Γ′
 end
 
-function solve(M::RandomizedPointBasedValueIteration, 𝒫)
-    Γ = [baws_lowerbound(𝒫)]
-    Γ = alphavector_iteration(𝒫, M, Γ)
-    return LookaheadAlphaVectorPolicy(𝒫, Γ)
+function solve(M::RandomizedPointBasedValueIteration, problem)
+    Γ = [baws_lowerbound(problem)]
+    Γ = alphavector_iteration(problem, M, Γ)
+    return LookaheadAlphaVectorPolicy(problem, Γ)
 end

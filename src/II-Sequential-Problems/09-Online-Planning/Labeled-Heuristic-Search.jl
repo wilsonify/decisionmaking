@@ -11,7 +11,7 @@ States are considered solved when
 their utility residuals fall below δ .
 A value function policy is returned.
     """
-    𝒫::Any
+    problem::Any
     # problem
     Uhi::Any
     # upper bound on value function
@@ -21,11 +21,11 @@ A value function policy is returned.
     # gap threshold
 end
 function (π::LabeledHeuristicSearch)(s)
-    U, solved = [π.Uhi(s) for s in 𝒫.𝒮], Set()
+    U, solved = [π.Uhi(s) for s in problem.𝒮], Set()
     while s ∉ solved
         simulate!(π, U, solved, s)
     end
-    return greedy(π.𝒫, U, s).a
+    return greedy(π.problem, U, s).a
 end
 
 function simulate!(π::LabeledHeuristicSearch, U, solved, s)
@@ -42,9 +42,9 @@ states we visited in reverse order.
             break
         end
         push!(visited, s)
-        a, u = greedy(π.𝒫, U, s)
+        a, u = greedy(π.problem, U, s)
         U[s] = u
-        s = rand(π.𝒫.T(s, a))
+        s = rand(π.problem.T(s, a))
     end
     while !isempty(visited)
         if label!(π, U, solved, pop!(visited))

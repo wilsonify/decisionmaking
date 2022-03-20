@@ -8,7 +8,7 @@ to optimality in the limit of simulations if it is an upper bound on the
 optimal value function.
     """
     # problem
-    𝒫::Any
+    problem::Any
     Uhi::Any # upper bound on value function
     d::Any
     # depth
@@ -16,17 +16,17 @@ optimal value function.
     # number of simulations
 end
 function simulate!(π::HeuristicSearch, U, s)
-    𝒫 = π.𝒫
+    problem = π.problem
     for d = 1:π.d
-        a, u = greedy(𝒫, U, s)
+        a, u = greedy(problem, U, s)
         U[s] = u
-        s = rand(𝒫.T(s, a))
+        s = rand(problem.T(s, a))
     end
 end
 function (π::HeuristicSearch)(s)
-    U = [π.Uhi(s) for s in π.𝒫.𝒮]
+    U = [π.Uhi(s) for s in π.problem.𝒮]
     for i = 1:m
         simulate!(π, U, s)
     end
-    return greedy(π.𝒫, U, s).a
+    return greedy(π.problem, U, s).a
 end

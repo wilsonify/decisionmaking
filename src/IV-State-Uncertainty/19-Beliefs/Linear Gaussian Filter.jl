@@ -1,13 +1,13 @@
 """
 A method that
 updates a discrete belief based on
-equation (19.7), where b is a vector and 𝒫 is the POMDP model. If
+equation (19.7), where b is a vector and problem is the POMDP model. If
 the given observation has a zero
 likelihood, a uniform distribution
 is returned.
 """
-function update(b::Vector{Float64}, 𝒫, a, o)
-    𝒮, T, O = 𝒫.𝒮, 𝒫.T, 𝒫.O
+function update(b::Vector{Float64}, problem, a, o)
+    𝒮, T, O = problem.𝒮, problem.T, problem.O
     b′ = similar(b)
     for (i′, s′) in enumerate(𝒮)
         po = O(a, s′, o)

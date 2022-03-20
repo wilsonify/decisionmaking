@@ -6,7 +6,7 @@ struct DecPOMDP
     creation of all permutations of a
     set provided, such as 𝒜 or 𝒪 . The
     tensorform function converts the
-    Dec-POMDP 𝒫 to a tensor representation.
+    Dec-POMDP problem to a tensor representation.
     """
     γ::Any # discount factor
     ℐ::Any # agents

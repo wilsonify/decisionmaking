@@ -4,19 +4,19 @@ which finds the dominating h-step plans for a finite horizon POMDP of horizon k_
 iteratively constructing optimal subplans. 
 The ValueIteration structure is the same as what was defined in algorithm 7.8 in the context of MDPs.
 """
-function value_iteration(𝒫::POMDP, k_max)
-    𝒮, 𝒜, R = 𝒫.𝒮, 𝒫.𝒜, 𝒫.R
+function value_iteration(problem::POMDP, k_max)
+    𝒮, 𝒜, R = problem.𝒮, problem.𝒜, problem.R
     plans = [ConditionalPlan(a) for a in 𝒜]
     Γ = [[R(s, a) for s in 𝒮] for a in 𝒜]
     plans, Γ = prune(plans, Γ)
     for k = 2:k_max
-        plans, Γ = expand(plans, Γ, 𝒫)
+        plans, Γ = expand(plans, Γ, problem)
         plans, Γ = prune(plans, Γ)
     end
     return (plans, Γ)
 end
 
-function solve(M::ValueIteration, 𝒫::POMDP)
-    plans, Γ = value_iteration(𝒫, M.k_max)
-    return LookaheadAlphaVectorPolicy(𝒫, Γ)
+function solve(M::ValueIteration, problem::POMDP)
+    plans, Γ = value_iteration(problem, M.k_max)
+    return LookaheadAlphaVectorPolicy(problem, Γ)
 end

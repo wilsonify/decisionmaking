@@ -16,8 +16,8 @@ action in an h-step policy.
     Ra::Any # reward matrix with respect to action (negative definite)
     h_max::Any # horizon
 end
-function solve(𝒫::LinearQuadraticProblem)
-    Ts, Ta, Rs, Ra, h_max = 𝒫.Ts, 𝒫.Ta, 𝒫.Rs, 𝒫.Ra, 𝒫.h_max
+function solve(problem::LinearQuadraticProblem)
+    Ts, Ta, Rs, Ra, h_max = problem.Ts, problem.Ta, problem.Rs, problem.Ra, problem.h_max
     V = zeros(size(Rs))
     πs = Any[s->zeros(size(Ta, 2))]
     for h = 2:h_max

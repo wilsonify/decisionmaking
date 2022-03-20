@@ -14,7 +14,7 @@ with Q-learning with action value
 function approximation in simulation. The parameter settings are notional.
 With this linear model,
 ∇ θ Q θ ( s, a ) = β ( s, a )
-We can implement this as follows for problem 𝒫 :
+We can implement this as follows for problem problem :
 """
 
 β(s, a) = [s, s^2, a, a^2, 1]
@@ -22,10 +22,10 @@ Q(θ, s, a) = dot(θ, β(s, a))
 ∇Q(θ, s, a) = β(s, a)
 θ = [0.1, 0.2, 0.3, 0.4, 0.5] # initial parameter vector
 α = 0.5 # learning rate
-model = GradientQLearning(𝒫.𝒜, 𝒫.γ, Q, ∇Q, θ, α)
+model = GradientQLearning(problem.𝒜, problem.γ, Q, ∇Q, θ, α)
 ϵ = 0.1 # probability of random action
 α = 1.0 # exploration decay factor
 π = EpsilonGreedyExploration(ϵ, α)
 k = 20 # number of steps to simulate
 s = 0.0 # initial state
-simulate(𝒫, model, π, k, s)
+simulate(problem, model, π, k, s)

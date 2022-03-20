@@ -7,8 +7,8 @@ belief based on the agent’s action a and its observation o . Appendix G.5 prov
     """
     states::Any # vector of state samples
 end
-function update(b::ParticleFilter, 𝒫, a, o)
-    T, O = 𝒫.T, 𝒫.O
+function update(b::ParticleFilter, problem, a, o)
+    T, O = problem.T, problem.O
     states = [rand(T(s, a)) for s in b.states]
     weights = [O(a, s′, o) for s′ in states]
     D = SetCategorical(states, weights)
@@ -24,8 +24,8 @@ input observation o .
     """
     states::Any # vector of state samples
 end
-function update(b::RejectionParticleFilter, 𝒫, a, o)
-    T, O = 𝒫.T, 𝒫.O
+function update(b::RejectionParticleFilter, problem, a, o)
+    T, O = problem.T, problem.O
     states = similar(b.states)
     i = 1
     while i ≤ length(states)

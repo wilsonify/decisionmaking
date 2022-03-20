@@ -1,7 +1,7 @@
 
 struct POMGDynamicProgramming
     """
-    Dynamic programming computes a Nash equilibrium π for a POMG 𝒫 , given an
+    Dynamic programming computes a Nash equilibrium π for a POMG problem , given an
     initial belief b and horizon depth
     d . It iteratively computes the policy trees and their expected utilities
     at each step. The pruning phase at
@@ -14,25 +14,25 @@ struct POMGDynamicProgramming
     b::Any # initial belief
     d::Any # depth of conditional plans
 end
-function solve(M::POMGDynamicProgramming, 𝒫::POMG)
-    ℐ, 𝒮, 𝒜, R, γ, b, d = 𝒫.ℐ, 𝒫.𝒮, 𝒫.𝒜, 𝒫.R, 𝒫.γ, M.b, M.d
+function solve(M::POMGDynamicProgramming, problem::POMG)
+    ℐ, 𝒮, 𝒜, R, γ, b, d = problem.ℐ, problem.𝒮, problem.𝒜, problem.R, problem.γ, M.b, M.d
     Π = [[ConditionalPlan(ai) for ai in 𝒜[i]] for i in ℐ]
     for t = 1:d
-        Π = expand_conditional_plans(𝒫, Π)
-        prune_dominated!(Π, 𝒫)
+        Π = expand_conditional_plans(problem, Π)
+        prune_dominated!(Π, problem)
     end
-    𝒢 = SimpleGame(γ, ℐ, Π, π -> utility(𝒫, b, π))
+    𝒢 = SimpleGame(γ, ℐ, Π, π -> utility(problem, b, π))
     π = solve(NashEquilibrium(), 𝒢)
     return Tuple(argmax(πi.p) for πi in π)
 end
 
-function prune_dominated!(Π, 𝒫::POMG)
+function prune_dominated!(Π, problem::POMG)
     done = false
     while !done
         done = true
-        for i in shuffle(𝒫.ℐ)
+        for i in shuffle(problem.ℐ)
             for πi in shuffle(Π[i])
-                if length(Π[i]) > 1 && is_dominated(𝒫, Π, i, πi)
+                if length(Π[i]) > 1 && is_dominated(problem, Π, i, πi)
                     filter!(πi′ -> πi′ ≠ πi, Π[i])
                     done = false
                     break
@@ -41,12 +41,12 @@ function prune_dominated!(Π, 𝒫::POMG)
         end
     end
 end
-function is_dominated(𝒫::POMG, Π, i, πi)
-    ℐ, 𝒮 = 𝒫.ℐ, 𝒫.𝒮
+function is_dominated(problem::POMG, Π, i, πi)
+    ℐ, 𝒮 = problem.ℐ, problem.𝒮
     jointΠnoti = joint([Π[j] for j in ℐ if j ≠ i])
     π(πi′, πnoti) = [j == i ? πi′ : πnoti[j > i ? j - 1 : j] for j in ℐ]
     Ui = Dict(
-        (πi′, πnoti, s) => evaluate_plan(𝒫, π(πi′, πnoti), s)[i] for πi′ in Π[i],
+        (πi′, πnoti, s) => evaluate_plan(problem, π(πi′, πnoti), s)[i] for πi′ in Π[i],
         πnoti in jointΠnoti, s in 𝒮
     )
     model = Model(Ipopt.Optimizer)

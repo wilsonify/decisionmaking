@@ -1,7 +1,7 @@
 struct NaturalPolicyUpdate
     """
     The update function for the natural policy gradient given policy π(θ, s) for an
-    MDP 𝒫 with initial state distribution b . The natural gradient with
+    MDP problem with initial state distribution b . The natural gradient with
     respect to the parameter vector θ is
     estimated from m rollouts to depth
     d using the log policy gradients
@@ -10,7 +10,7 @@ struct NaturalPolicyUpdate
     an objective gradient ∇f(τ) and a
     Fisher matrix F(τ) for a list of trajectories.
     """
-    𝒫::Any # problem
+    problem::Any # problem
     b::Any # initial state distribution
     d::Any # depth
     m::Any # number of samples
@@ -27,12 +27,12 @@ end
 
 
 function update(M::NaturalPolicyUpdate, θ)
-    𝒫, b, d, m, ∇logπ, π, γ = M.𝒫, M.b, M.d, M.m, M.∇logπ, M.π, M.𝒫.γ
+    problem, b, d, m, ∇logπ, π, γ = M.problem, M.b, M.d, M.m, M.∇logπ, M.π, M.problem.γ
     πθ(s) = π(θ, s)
     R(τ) = sum(r * γ^(k - 1) for (k, (s, a, r)) in enumerate(τ))
     ∇log(τ) = sum(∇logπ(θ, a, s) for (s, a) in τ)
     ∇U(τ) = ∇log(τ) * R(τ)
     F(τ) = ∇log(τ) * ∇log(τ)'
-    τs = [simulate(𝒫, rand(b), πθ, d) for i = 1:m]
+    τs = [simulate(problem, rand(b), πθ, d) for i = 1:m]
     return natural_update(θ, ∇U, F, M.ϵ, τs)
 end

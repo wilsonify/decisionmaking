@@ -10,8 +10,8 @@ D_inject to reduce the risk of particle deprivation.
     m_inject::Any # number of samples to inject
     D_inject::Any # injection distribution
 end
-function update(b::InjectionParticleFilter, 𝒫, a, o)
-    T, O, m_inject, D_inject = 𝒫.T, 𝒫.O, b.m_inject, b.D_inject
+function update(b::InjectionParticleFilter, problem, a, o)
+    T, O, m_inject, D_inject = problem.T, problem.O, b.m_inject, b.D_inject
     states = [rand(T(s, a)) for s in b.states]
     weights = [O(a, s′, o) for s′ in states]
     D = SetCategorical(states, weights)

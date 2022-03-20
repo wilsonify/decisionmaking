@@ -10,7 +10,7 @@ struct MaximumEntropyIRL
     problem be discrete.
     """
 
-    𝒫::Any # problem
+    problem::Any # problem
     b::Any # initial state distribution
     d::Any# depth
     π::Any # parameterized policy π(θ,s)
@@ -22,9 +22,9 @@ struct MaximumEntropyIRL
 end
 
 function discounted_state_visitations(M::MaximumEntropyIRL, θ)
-    𝒫, b, d, Pπ = M.𝒫, M.b, M.d, M.Pπ
-    𝒮, 𝒜, T, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.T, 𝒫.γ
-    b_sk = zeros(length(𝒫.𝒮), d)
+    problem, b, d, Pπ = M.problem, M.b, M.d, M.Pπ
+    𝒮, 𝒜, T, γ = problem.𝒮, problem.𝒜, problem.T, problem.γ
+    b_sk = zeros(length(problem.𝒮), d)
     b_sk[:, 1] = [pdf(b, s) for s in 𝒮]
     for k = 2:d
         for (si′, s′) in enumerate(𝒮)
@@ -40,8 +40,8 @@ function discounted_state_visitations(M::MaximumEntropyIRL, θ)
     return normalize!(vec(mean(b_sk, dims = 2)), 1)
 end
 function optimize(M::MaximumEntropyIRL, D, ϕ, θ)
-    𝒫, π, Pπ, ∇R, RL, α, k_max = M.𝒫, M.π, M.Pπ, M.∇R, M.RL, M.α, M.k_max
-    𝒮, 𝒜, γ, nD = 𝒫.𝒮, 𝒫.𝒜, 𝒫.γ, length(D)
+    problem, π, Pπ, ∇R, RL, α, k_max = M.problem, M.π, M.Pπ, M.∇R, M.RL, M.α, M.k_max
+    𝒮, 𝒜, γ, nD = problem.𝒮, problem.𝒜, problem.γ, length(D)
     for k = 1:k_max
         copyto!(RL.ϕ, ϕ) # update parameters
         θ = optimize(RL, π, θ)

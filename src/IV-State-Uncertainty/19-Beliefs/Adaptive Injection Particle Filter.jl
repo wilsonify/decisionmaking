@@ -19,8 +19,8 @@ mutable struct AdaptiveInjectionParticleFilter
     D_inject::Any # injection distribution
 end
 
-function update(b::AdaptiveInjectionParticleFilter, 𝒫, a, o)
-    T, O = 𝒫.T, 𝒫.O
+function update(b::AdaptiveInjectionParticleFilter, problem, a, o)
+    T, O = problem.T, problem.O
     w_slow, w_fast, α_slow, α_fast, ν, D_inject =
         b.w_slow, b.w_fast, b.α_slow, b.α_fast, b.ν, b.D_inject
     states = [rand(T(s, a)) for s in b.states]

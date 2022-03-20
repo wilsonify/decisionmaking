@@ -5,8 +5,8 @@ function of U using the linear programming formulation from section 7.7.
 """
 struct FullUpdate end
 function update!(planner::FullUpdate, model, s, a, r, s′)
-𝒫 = MDP(model)
-U = solve(𝒫).U
+problem = MDP(model)
+U = solve(problem).U
 copy!(model.U, U)
 return planner
 end

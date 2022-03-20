@@ -5,7 +5,7 @@ tree search policy for finding of
 an approximately optimal action
 from a current state s . This twoargument version of argmax is defined in appendix G.5.
     """
-    𝒫::Any # problem
+    problem::Any # problem
     N::Any # visit counts
     Q::Any # action value estimates
     d::Any # depth
@@ -17,15 +17,15 @@ function (π::MonteCarloTreeSearch)(s)
     for k = 1:π.m
         simulate!(π, s)
     end
-    return argmax(a -> π.Q[(s, a)], π.𝒫.𝒜)
+    return argmax(a -> π.Q[(s, a)], π.problem.𝒜)
 end
 
 function simulate!(π::MonteCarloTreeSearch, s, d = π.d)
     if d ≤ 0
         return π.U(s)
     end
-    𝒫, N, Q, c = π.𝒫, π.N, π.Q, π.c
-    𝒜, TR, γ = 𝒫.𝒜, 𝒫.TR, 𝒫.γ
+    problem, N, Q, c = π.problem, π.N, π.Q, π.c
+    𝒜, TR, γ = problem.𝒜, problem.TR, problem.γ
     if !haskey(N, (s, first(𝒜)))
         for a in 𝒜
             N[(s, a)] = 0
@@ -55,7 +55,7 @@ infinity.
 bonus(Nsa, Ns) = Nsa == 0 ? Inf : sqrt(log(Ns) / Nsa)
 
 function explore(π::MonteCarloTreeSearch, s)
-    𝒜, N, Q, c = π.𝒫.𝒜, π.N, π.Q, π.c
+    𝒜, N, Q, c = π.problem.𝒜, π.N, π.Q, π.c
     Ns = sum(N[(s, a)] for a in 𝒜)
     return argmax(a -> Q[(s, a)] + c * bonus(N[(s, a)], Ns), 𝒜)
 end

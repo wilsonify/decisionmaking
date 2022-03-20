@@ -17,8 +17,8 @@ end
 
 
 struct CorrelatedEquilibrium end
-function solve(M::CorrelatedEquilibrium, 𝒫::SimpleGame)
-    ℐ, 𝒜, R = 𝒫.ℐ, 𝒫.𝒜, 𝒫.R
+function solve(M::CorrelatedEquilibrium, problem::SimpleGame)
+    ℐ, 𝒜, R = problem.ℐ, problem.𝒜, problem.R
     model = Model(Ipopt.Optimizer)
     @variable(model, π[joint(𝒜)] ≥ 0)
     @objective(model, Max, sum(sum(π[a] * R(a) for a in joint(𝒜))))

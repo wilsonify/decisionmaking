@@ -1,10 +1,10 @@
 
 """
-This nonlinear program computes a Nash equilibrium for a simple game 𝒫 . 
+This nonlinear program computes a Nash equilibrium for a simple game problem . 
 """
 struct NashEquilibrium end
-function tensorform(𝒫::SimpleGame)
-    ℐ, 𝒜, R = 𝒫.ℐ, 𝒫.𝒜, 𝒫.R
+function tensorform(problem::SimpleGame)
+    ℐ, 𝒜, R = problem.ℐ, problem.𝒜, problem.R
     ℐ′ = eachindex(ℐ)
     𝒜′ = [eachindex(𝒜[i]) for i in ℐ]
     R′ = [R(a) for a in joint(𝒜)]
@@ -12,8 +12,8 @@ function tensorform(𝒫::SimpleGame)
 end
 
 
-function solve(M::NashEquilibrium, 𝒫::SimpleGame)
-    ℐ, 𝒜, R = tensorform(𝒫)
+function solve(M::NashEquilibrium, problem::SimpleGame)
+    ℐ, 𝒜, R = tensorform(problem)
     model = Model(Ipopt.Optimizer)
     @variable(model, U[ℐ])
     @variable(model, π[i = ℐ, 𝒜[i]] ≥ 0)
@@ -35,6 +35,6 @@ function solve(M::NashEquilibrium, 𝒫::SimpleGame)
     )
     @constraint(model, [i = ℐ], sum(π[i, ai] for ai in 𝒜[i]) == 1)
     optimize!(model)
-    πi′(i) = SimpleGamePolicy(𝒫.𝒜[i][ai] => value(π[i, ai]) for ai in 𝒜[i])
+    πi′(i) = SimpleGamePolicy(problem.𝒜[i][ai] => value(π[i, ai]) for ai in 𝒜[i])
     return [πi′(i) for i in ℐ]
 end

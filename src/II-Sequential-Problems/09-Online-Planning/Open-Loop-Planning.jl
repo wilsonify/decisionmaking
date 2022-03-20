@@ -15,13 +15,13 @@ Otherwise, we add that envelope
 to the set of solved states.
 """
 function expand(π::LabeledHeuristicSearch, U, solved, s)
-    𝒫, δ = π.𝒫, π.δ
-    𝒮, 𝒜, T = 𝒫.𝒮, 𝒫.𝒜, 𝒫.T
+    problem, δ = π.problem, π.δ
+    𝒮, 𝒜, T = problem.𝒮, problem.𝒜, problem.T
     found, toexpand, envelope = false, Set(s), []
     while !isempty(toexpand)
         s = pop!(toexpand)
         push!(envelope, s)
-        a, u = greedy(𝒫, U, s)
+        a, u = greedy(problem, U, s)
         if abs(U[s] - u) > δ
             found = true
         else
@@ -41,7 +41,7 @@ function label!(π::LabeledHeuristicSearch, U, solved, s)
     found, envelope = expand(π, U, solved, s)
     if found
         for s ∈ reverse(envelope)
-            U[s] = greedy(π.𝒫, U, s).u
+            U[s] = greedy(π.problem, U, s).u
         end
     else
         union!(solved, envelope)

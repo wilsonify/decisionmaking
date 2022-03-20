@@ -1,20 +1,20 @@
 
 struct SawtoothPolicy
-    𝒫::Any # POMDP problem
+    problem::Any # POMDP problem
     V::Any # dictionary mapping beliefs to utilities
 end
-function basis(𝒫)
-    n = length(𝒫.𝒮)
+function basis(problem)
+    n = length(problem.𝒮)
     e(i) = [j == i ? 1.0 : 0.0 for j = 1:n]
     return [e(i) for i = 1:n]
 end
 function utility(π::SawtoothPolicy, b)
-    𝒫, V = π.𝒫, π.V
+    problem, V = π.problem, π.V
     if haskey(V, b)
         return V[b]
     end
-    n = length(𝒫.𝒮)
-    E = basis(𝒫)
+    n = length(problem.𝒮)
+    E = basis(problem)
     u = sum(V[E[i]] * b[i] for i = 1:n)
     for (b′, u′) in V
         if b′ ∉ E
@@ -62,12 +62,12 @@ run k_max iterations.
     # beliefs to compute values including those in V map
     k_max::Any # maximum number of iterations
 end
-function solve(M::SawtoothIteration, 𝒫::POMDP)
-    E = basis(𝒫)
-    π = SawtoothPolicy(𝒫, M.V)
+function solve(M::SawtoothIteration, problem::POMDP)
+    E = basis(problem)
+    π = SawtoothPolicy(problem, M.V)
     for k = 1:M.k_max
         V = Dict(b => (b ∈ E ? M.V[b] : greedy(π, b).u) for b in M.B)
-        π = SawtoothPolicy(𝒫, V)
+        π = SawtoothPolicy(problem, V)
     end
     return π
 end

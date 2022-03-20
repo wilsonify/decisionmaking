@@ -8,8 +8,8 @@ the likelihood of the resulting trajectory. It returns an MDP whose
 transition and reward models are
 represented as matrices.
 """
-function adversarial(𝒫::MDP, π, λ)
-    𝒮, 𝒜, T, R, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.T, 𝒫.R, 𝒫.γ
+function adversarial(problem::MDP, π, λ)
+    𝒮, 𝒜, T, R, γ = problem.𝒮, problem.𝒜, problem.T, problem.R, problem.γ
     𝒮′ = 𝒜′ = 𝒮
     R′ = zeros(length(𝒮′), length(𝒜′))
     T′ = zeros(length(𝒮′), length(𝒜′), length(𝒮′))

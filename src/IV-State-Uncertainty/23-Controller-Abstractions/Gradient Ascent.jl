@@ -2,7 +2,7 @@
 struct ControllerGradient
     """
     An implementation of a controller gradient ascent
-    algorithm for POMDP 𝒫 at initial
+    algorithm for POMDP problem at initial
     belief b . The controller itself has a
     fixed size of ℓ nodes. It is improved
     over k_max iterations by following
@@ -15,22 +15,22 @@ struct ControllerGradient
     α::Any # gradient step
     k_max::Any # maximum iterations
 end
-function solve(M::ControllerGradient, 𝒫::POMDP)
-    𝒜, 𝒪, ℓ, k_max = 𝒫.𝒜, 𝒫.𝒪, M.ℓ, M.k_max
+function solve(M::ControllerGradient, problem::POMDP)
+    𝒜, 𝒪, ℓ, k_max = problem.𝒜, problem.𝒪, M.ℓ, M.k_max
     X = collect(1:ℓ)
     ψ = Dict((x, a) => rand() for x in X, a in 𝒜)
     η = Dict((x, a, o, x′) => rand() for x in X, a in 𝒜, o in 𝒪, x′ in X)
-    π = ControllerPolicy(𝒫, X, ψ, η)
+    π = ControllerPolicy(problem, X, ψ, η)
     for i = 1:k_max
-        improve!(π, M, 𝒫)
+        improve!(π, M, problem)
     end
     return π
 end
 
-function improve!(π::ControllerPolicy, M::ControllerGradient, 𝒫::POMDP)
-    𝒮, 𝒜, 𝒪, X, x1, ψ, η = 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, π.X, 1, π.ψ, π.η
+function improve!(π::ControllerPolicy, M::ControllerGradient, problem::POMDP)
+    𝒮, 𝒜, 𝒪, X, x1, ψ, η = problem.𝒮, problem.𝒜, problem.𝒪, π.X, 1, π.ψ, π.η
     n, m, z, b, ℓ, α = length(𝒮), length(𝒜), length(𝒪), M.b, M.ℓ, M.α
-    ∂U′∂ψ, ∂U′∂η = gradient(π, M, 𝒫)
+    ∂U′∂ψ, ∂U′∂η = gradient(π, M, problem)
     UIndex(x, s) = (s - 1) * ℓ + (x - 1) + 1
     E(U, x1, b) = sum(b[s] * U[UIndex(x1, s)] for s = 1:n)
     ψ′ = Dict((x, a) => 0.0 for x in X, a in 𝒜)
@@ -65,8 +65,8 @@ method. It constructs the gradients
 of the utility U with respect to the
 policy ∂U′∂ψ and ∂U′∂η .
 """
-function gradient(π::ControllerPolicy, M::ControllerGradient, 𝒫::POMDP)
-    𝒮, 𝒜, 𝒪, T, O, R, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, 𝒫.T, 𝒫.O, 𝒫.R, 𝒫.γ
+function gradient(π::ControllerPolicy, M::ControllerGradient, problem::POMDP)
+    𝒮, 𝒜, 𝒪, T, O, R, γ = problem.𝒮, problem.𝒜, problem.𝒪, problem.T, problem.O, problem.R, problem.γ
     X, x1, ψ, η = π.X, 1, π.ψ, π.η
     n, m, z = length(𝒮), length(𝒜), length(𝒪)
     X𝒮 = vec(collect(product(X, 𝒮)))

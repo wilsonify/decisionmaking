@@ -1,7 +1,7 @@
 """
 Monte Carlo policy evaluation of a policy π . The
 method runs m rollouts to depth d
-according to the dynamics specified by the problem 𝒫 . Each rollout
+according to the dynamics specified by the problem problem . Each rollout
 is run from an initial state sampled
 from state distribution b . The final
 line in this algorithm block evaluates a policy π parameterized by
@@ -9,13 +9,13 @@ line in this algorithm block evaluates a policy π parameterized by
 to find a θ that maximizes U .
 """
 struct MonteCarloPolicyEvaluation
-    𝒫::Any # problem
+    problem::Any # problem
     b::Any # initial state distribution
     d::Any # depth
     m::Any # number of samples
 end
 function (U::MonteCarloPolicyEvaluation)(π)
-    R(π) = rollout(U.𝒫, rand(U.b), π, U.d)
+    R(π) = rollout(U.problem, rand(U.b), π, U.d)
     return mean(R(π) for i = 1:U.m)
 end
 (U::MonteCarloPolicyEvaluation)(π, θ) = U(s -> π(θ, s))

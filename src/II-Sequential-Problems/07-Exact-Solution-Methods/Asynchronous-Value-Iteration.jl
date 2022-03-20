@@ -7,12 +7,12 @@ value iteration, often saving computation time. The method terminates after k_ma
     """
     k_max::Any # maximum number of iterations
 end
-function solve(M::GaussSeidelValueIteration, 𝒫::MDP)
+function solve(M::GaussSeidelValueIteration, problem::MDP)
     U = [0.0 for s in 𝒮]
     for k = 1:M.k_max
-        for (s, i) in enumerate(𝒫.𝒮)
-            U[i] = backup(𝒫, U, s)
+        for (s, i) in enumerate(problem.𝒮)
+            U[i] = backup(problem, U, s)
         end
     end
-    return ValueFunctionPolicy(𝒫, U)
+    return ValueFunctionPolicy(problem, U)
 end

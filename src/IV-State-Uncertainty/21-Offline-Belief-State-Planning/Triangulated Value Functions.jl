@@ -25,16 +25,16 @@ It also provides belief_simplex ,
 which returns the set of enclosing
 points and weights for a belief.
     """
-    𝒫::Any # POMDP problem
+    problem::Any # POMDP problem
     V::Any # dictionary mapping beliefs to utilities
     B::Any # beliefs
     T::Any # Freudenthal triangulation
 end
-function TriangulatedPolicy(𝒫::POMDP, m)
-    T = FreudenthalTriangulation(length(𝒫.𝒮), m)
+function TriangulatedPolicy(problem::POMDP, m)
+    T = FreudenthalTriangulation(length(problem.𝒮), m)
     B = belief_vertices(T)
     V = Dict(b => 0.0 for b in B)
-    return TriangulatedPolicy(𝒫, V, B, T)
+    return TriangulatedPolicy(problem, V, B, T)
 end
 function utility(π::TriangulatedPolicy, b)
     B, λ = belief_simplex(π.T, b)
@@ -55,11 +55,11 @@ triangulated utilities.
     m::Any
     k_max::Any # maximum number of iterations
 end
-function solve(M::TriangulatedIteration, 𝒫)
-    π = TriangulatedPolicy(𝒫, M.m)
+function solve(M::TriangulatedIteration, problem)
+    π = TriangulatedPolicy(problem, M.m)
     U(b) = utility(π, b)
     for k = 1:M.k_max
-        U′ = [greedy(𝒫, U, b).u for b in π.B]
+        U′ = [greedy(problem, U, b).u for b in π.B]
         for (b, u′) in zip(π.B, U′)
             π.V[b] = u′
         end

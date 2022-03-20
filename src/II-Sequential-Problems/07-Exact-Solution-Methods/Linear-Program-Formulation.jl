@@ -13,21 +13,21 @@ A method for
     use this formulation.
 """
 struct LinearProgramFormulation end
-function tensorform(𝒫::MDP)
-    𝒮, 𝒜, R, T = 𝒫.𝒮, 𝒫.𝒜, 𝒫.R, 𝒫.T
+function tensorform(problem::MDP)
+    𝒮, 𝒜, R, T = problem.𝒮, problem.𝒜, problem.R, problem.T
     𝒮′ = eachindex(𝒮)
     𝒜′ = eachindex(𝒜)
     R′ = [R(s, a) for s in 𝒮, a in 𝒜]
     T′ = [T(s, a, s′) for s in 𝒮, a in 𝒜, s′ in 𝒮]
     return 𝒮′, 𝒜′, R′, T′
 end
-solve(𝒫::MDP) = solve(LinearProgramFormulation(), 𝒫)
-function solve(M::LinearProgramFormulation, 𝒫::MDP)
-    𝒮, 𝒜, R, T = tensorform(𝒫)
+solve(problem::MDP) = solve(LinearProgramFormulation(), problem)
+function solve(M::LinearProgramFormulation, problem::MDP)
+    𝒮, 𝒜, R, T = tensorform(problem)
     model = Model(GLPK.Optimizer)
     @variable(model, U[𝒮])
     @objective(model, Min, sum(U))
-    @constraint(model, [s = 𝒮, a = 𝒜], U[s] ≥ R[s, a] + 𝒫.γ * T[s, a, :] ⋅ U)
+    @constraint(model, [s = 𝒮, a = 𝒜], U[s] ≥ R[s, a] + problem.γ * T[s, a, :] ⋅ U)
     optimize!(model)
-    return ValueFunctionPolicy(𝒫, value.(U))
+    return ValueFunctionPolicy(problem, value.(U))
 end

@@ -4,12 +4,12 @@ struct ControllerPolicyIteration
     # number of iterations
     eval_max::Any # number of evaluation iterations
 end
-function solve(M::ControllerPolicyIteration, 𝒫::POMDP)
-    𝒜, 𝒪, k_max, eval_max = 𝒫.𝒜, 𝒫.𝒪, M.k_max, M.eval_max
+function solve(M::ControllerPolicyIteration, problem::POMDP)
+    𝒜, 𝒪, k_max, eval_max = problem.𝒜, problem.𝒪, M.k_max, M.eval_max
     X = [1]
     ψ = Dict((x, a) => 1.0 / length(𝒜) for x in X, a in 𝒜)
     η = Dict((x, a, o, x′) => 1.0 for x in X, a in 𝒜, o in 𝒪, x′ in X)
-    π = ControllerPolicy(𝒫, X, ψ, η)
+    π = ControllerPolicy(problem, X, ψ, η)
     for i = 1:k_max
         prevX = copy(π.X)
         U = iterative_policy_evaluation(π, eval_max)
@@ -21,14 +21,14 @@ end
 
 """
 Policy iteration
-for a POMDP 𝒫 given a fixed
+for a POMDP problem given a fixed
 number of iterations k_max and
 number of policy evaluation iterations eval_max . The algorithm
 iteratively applies policy evaluation (algorithm 23.2) and policy
 improvement. Pruning is implemented in algorithm 23.4.
 """
 function policy_improvement!(π::ControllerPolicy, U, prevX)
-    𝒮, 𝒜, 𝒪 = π.𝒫.𝒮, π.𝒫.𝒜, π.𝒫.𝒪
+    𝒮, 𝒜, 𝒪 = π.problem.𝒮, π.problem.𝒜, π.problem.𝒪
     X, ψ, η = π.X, π.ψ, π.η
     repeatX𝒪 = fill(X, length(𝒪))
     assign𝒜X′ = vec(collect(product(𝒜, repeatX𝒪...)))
@@ -38,7 +38,7 @@ function policy_improvement!(π::ControllerPolicy, U, prevX)
         successor(o) = ax′[findfirst(isequal(o), 𝒪)+1]
         U′(o, s′) = U[successor(o), s′]
         for s in 𝒮
-            U[x, s] = lookahead(π.𝒫, U′, s, a)
+            U[x, s] = lookahead(π.problem, U′, s, a)
         end
         for a′ in 𝒜
             ψ[x, a′] = a′ == a ? 1.0 : 0.0
@@ -71,7 +71,7 @@ new nodes. Finally, all marked
 nodes are pruned.
 """
 function prune!(π::ControllerPolicy, U, prevX)
-    𝒮, 𝒜, 𝒪, X, ψ, η = π.𝒫.𝒮, π.𝒫.𝒜, π.𝒫.𝒪, π.X, π.ψ, π.η
+    𝒮, 𝒜, 𝒪, X, ψ, η = π.problem.𝒮, π.problem.𝒜, π.problem.𝒪, π.X, π.ψ, π.η
     newX, removeX = setdiff(X, prevX), []
     # prune dominated from previous nodes
     dominated(x, x′) = all(U[x, s] ≤ U[x′, s] for s in 𝒮)

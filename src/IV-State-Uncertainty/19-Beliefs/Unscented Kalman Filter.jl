@@ -5,7 +5,7 @@
     nonlinear Gaussian dynamics. The
     current belief is represented by
     mean μb and covariance Σb . The
-    problem 𝒫 specifies the nonlinear
+    problem problem specifies the nonlinear
     dynamics using the mean transition dynamics function fT and
     mean observation dynamics function fO . The sigma points used in
     the unscented transforms are controlled by the spread parameter λ .
@@ -32,17 +32,17 @@ function unscented_transform(μ, Σ, f, λ, ws)
     return (μ′, Σ′, S, S′)
 end
 
-function update(b::UnscentedKalmanFilter, 𝒫, a, o)
+function update(b::UnscentedKalmanFilter, problem, a, o)
     μb, Σb, λ = b.μb, b.Σb, b.λ
-    fT, fO = 𝒫.fT, 𝒫.fO
+    fT, fO = problem.fT, problem.fO
     n = length(μb)
     ws = [λ / (n + λ); fill(1 / (2(n + λ)), 2n)]
     # predict
     μp, Σp, Sp, Sp′ = unscented_transform(μb, Σb, s -> fT(s, a), λ, ws)
-    Σp += 𝒫.Σs
+    Σp += problem.Σs
     # update
     μo, Σo, So, So′ = unscented_transform(μp, Σp, fO, λ, ws)
-    Σo += 𝒫.Σo
+    Σo += problem.Σo
     Σpo = sum(w * (s - μp) * (s′ - μo)' for (w, s, s′) in zip(ws, So, So′))
     K = Σpo / Σo
     μb′ = μp + K * (o - μo)

@@ -18,29 +18,29 @@ struct SawtoothHeuristicSearch
     k_max::Any # maximum number of iterations
     k_fib::Any # number of iterations for fast informed bound
 end
-function explore!(M::SawtoothHeuristicSearch, 𝒫, πhi, πlo, b, d = 0)
-    𝒮, 𝒜, 𝒪, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, 𝒫.γ
+function explore!(M::SawtoothHeuristicSearch, problem, πhi, πlo, b, d = 0)
+    𝒮, 𝒜, 𝒪, γ = problem.𝒮, problem.𝒜, problem.𝒪, problem.γ
     ϵ(b′) = utility(πhi, b′) - utility(πlo, b′)
     if d ≥ M.d || ϵ(b) ≤ M.δ / γ^d
         return
     end
     a = πhi(b)
-    o = argmax(o -> ϵ(update(b, 𝒫, a, o)), 𝒪)
-    b′ = update(b, 𝒫, a, o)
-    explore!(M, 𝒫, πhi, πlo, b′, d + 1)
-    if b′ ∉ basis(𝒫)
+    o = argmax(o -> ϵ(update(b, problem, a, o)), 𝒪)
+    b′ = update(b, problem, a, o)
+    explore!(M, problem, πhi, πlo, b′, d + 1)
+    if b′ ∉ basis(problem)
         πhi.V[b′] = greedy(πhi, b′).u
     end
-    push!(πlo.Γ, backup(𝒫, πlo.Γ, b′))
+    push!(πlo.Γ, backup(problem, πlo.Γ, b′))
 end
 
-function solve(M::SawtoothHeuristicSearch, 𝒫::POMDP)
-    πfib = solve(FastInformedBound(M.k_fib), 𝒫)
-    Vhi = Dict(e => utility(πfib, e) for e in basis(𝒫))
-    πhi = SawtoothPolicy(𝒫, Vhi)
-    πlo = LookaheadAlphaVectorPolicy(𝒫, [baws_lowerbound(𝒫)])
+function solve(M::SawtoothHeuristicSearch, problem::POMDP)
+    πfib = solve(FastInformedBound(M.k_fib), problem)
+    Vhi = Dict(e => utility(πfib, e) for e in basis(problem))
+    πhi = SawtoothPolicy(problem, Vhi)
+    πlo = LookaheadAlphaVectorPolicy(problem, [baws_lowerbound(problem)])
     for i = 1:M.k_max
-        explore!(M, 𝒫, πhi, πlo, M.b)
+        explore!(M, problem, πhi, πlo, M.b)
         if utility(πhi, M.b) - utility(πlo, M.b) < M.δ
             break
         end

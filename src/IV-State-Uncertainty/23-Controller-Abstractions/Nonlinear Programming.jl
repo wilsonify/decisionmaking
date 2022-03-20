@@ -3,15 +3,15 @@ struct NonlinearProgramming
     """
     A nonlinear programming approach to compute
     the optimal fixed-size controller
-    policy for POMDP 𝒫 starting at initial belief b . The size of the finite
+    policy for POMDP problem starting at initial belief b . The size of the finite
     state controller is specified by the
     number of nodes ℓ .
     """
     b::Any # initial belief
     ℓ::Any # number of nodes
 end
-function tensorform(𝒫::POMDP)
-    𝒮, 𝒜, 𝒪, R, T, O = 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, 𝒫.R, 𝒫.T, 𝒫.O
+function tensorform(problem::POMDP)
+    𝒮, 𝒜, 𝒪, R, T, O = problem.𝒮, problem.𝒜, problem.𝒪, problem.R, problem.T, problem.O
     𝒮′ = eachindex(𝒮)
     𝒜′ = eachindex(𝒜)
     𝒪′ = eachindex(𝒪)
@@ -21,10 +21,10 @@ function tensorform(𝒫::POMDP)
     return 𝒮′, 𝒜′, 𝒪′, R′, T′, O′
 end
 
-function solve(M::NonlinearProgramming, 𝒫::POMDP)
+function solve(M::NonlinearProgramming, problem::POMDP)
     x1, X = 1, collect(1:M.ℓ)
-    𝒫, γ, b = 𝒫, 𝒫.γ, M.b
-    𝒮, 𝒜, 𝒪, R, T, O = tensorform(𝒫)
+    problem, γ, b = problem, problem.γ, M.b
+    𝒮, 𝒜, 𝒪, R, T, O = tensorform(problem)
     model = Model(Ipopt.Optimizer)
     @variable(model, U[X, 𝒮])
     @variable(model, ψ[X, 𝒜] ≥ 0)
@@ -49,11 +49,11 @@ function solve(M::NonlinearProgramming, 𝒫::POMDP)
     optimize!(model)
     ψ′, η′ = value.(ψ), value.(η)
     return ControllerPolicy(
-        𝒫,
+        problem,
         X,
-        Dict((x, 𝒫.𝒜[a]) => ψ′[x, a] for x in X, a in 𝒜),
+        Dict((x, problem.𝒜[a]) => ψ′[x, a] for x in X, a in 𝒜),
         Dict(
-            (x, 𝒫.𝒜[a], 𝒫.𝒪[o], x′) => η′[x, a, o, x′] for x in X, a in 𝒜, o in 𝒪, x′ in X
+            (x, problem.𝒜[a], problem.𝒪[o], x′) => η′[x, a, o, x′] for x in X, a in 𝒜, o in 𝒪, x′ in X
         ),
     )
 end

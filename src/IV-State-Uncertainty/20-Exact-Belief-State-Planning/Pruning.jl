@@ -4,20 +4,20 @@ It uses one-step lookahead to produce an optimal action and associated utility. 
 used to compute the lookahead.
 """
 
-function lookahead(𝒫::POMDP, U, b::Vector, a)
-    𝒮, 𝒪, T, O, R, γ = 𝒫.𝒮, 𝒫.𝒪, 𝒫.T, 𝒫.O, 𝒫.R, 𝒫.γ
+function lookahead(problem::POMDP, U, b::Vector, a)
+    𝒮, 𝒪, T, O, R, γ = problem.𝒮, problem.𝒪, problem.T, problem.O, problem.R, problem.γ
     r = sum(R(s, a) * b[i] for (i, s) in enumerate(𝒮))
     Posa(o, s, a) = sum(O(a, s′, o) * T(s, a, s′) for s′ in 𝒮)
     Poba(o, b, a) = sum(b[i] * Posa(o, s, a) for (i, s) in enumerate(𝒮))
-    return r + γ * sum(Poba(o, b, a) * U(update(b, 𝒫, a, o)) for o in 𝒪)
+    return r + γ * sum(Poba(o, b, a) * U(update(b, problem, a, o)) for o in 𝒪)
 end
 
-function greedy(𝒫::POMDP, U, b::Vector)
-    u, a = findmax(a -> lookahead(𝒫, U, b, a), 𝒫.𝒜)
+function greedy(problem::POMDP, U, b::Vector)
+    u, a = findmax(a -> lookahead(problem, U, b, a), problem.𝒜)
     return (a = a, u = u)
 end
 struct LookaheadAlphaVectorPolicy
-    𝒫::Any # POMDP problem
+    problem::Any # POMDP problem
     Γ::Any # alpha vectors
 end
 function utility(π::LookaheadAlphaVectorPolicy, b)
@@ -25,7 +25,7 @@ function utility(π::LookaheadAlphaVectorPolicy, b)
 end
 function greedy(π, b)
     U(b) = utility(π, b)
-    return greedy(π.𝒫, U, b)
+    return greedy(π.problem, U, b)
 end
 (π::LookaheadAlphaVectorPolicy)(b) = greedy(π, b).a
 

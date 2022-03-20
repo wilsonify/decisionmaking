@@ -6,7 +6,7 @@ struct HistoryMonteCarloTreeSearch
     This implementation is similar to
     the one in algorithm 9.5.
     """
-    𝒫::Any # problem
+    problem::Any # problem
     N::Any # visit counts
     Q::Any # action value estimates
     d::Any # depth
@@ -16,7 +16,7 @@ struct HistoryMonteCarloTreeSearch
 end
 
 function explore(π::HistoryMonteCarloTreeSearch, h)
-    𝒜, N, Q, c = π.𝒫.𝒜, π.N, π.Q, π.c
+    𝒜, N, Q, c = π.problem.𝒜, π.N, π.Q, π.c
     Nh = sum(get(N, (h, a), 0) for a in 𝒜)
     return argmax(a -> Q[(h, a)] + c * bonus(N[(h, a)], Nh), 𝒜)
 end
@@ -24,8 +24,8 @@ function simulate(π::HistoryMonteCarloTreeSearch, s, h, d)
     if d ≤ 0
         return π.U(s)
     end
-    𝒫, N, Q, c = π.𝒫, π.N, π.Q, π.c
-    𝒮, 𝒜, TRO, γ = 𝒫.𝒮, 𝒫.𝒜, 𝒫.TRO, 𝒫.γ
+    problem, N, Q, c = π.problem, π.N, π.Q, π.c
+    𝒮, 𝒜, TRO, γ = problem.𝒮, problem.𝒜, problem.TRO, problem.γ
     if !haskey(N, (h, first(𝒜)))
         for a in 𝒜
             N[(h, a)] = 0
@@ -42,8 +42,8 @@ function simulate(π::HistoryMonteCarloTreeSearch, s, h, d)
 end
 function (π::HistoryMonteCarloTreeSearch)(b, h = [])
     for i = 1:π.m
-        s = rand(SetCategorical(π.𝒫.𝒮, b))
+        s = rand(SetCategorical(π.problem.𝒮, b))
         simulate(π, s, h, π.d)
     end
-    return argmax(a -> π.Q[(h, a)], π.𝒫.𝒜)
+    return argmax(a -> π.Q[(h, a)], π.problem.𝒜)
 end

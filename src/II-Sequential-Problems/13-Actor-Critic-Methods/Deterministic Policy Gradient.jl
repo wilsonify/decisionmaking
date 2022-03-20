@@ -3,7 +3,7 @@ struct DeterministicPolicyGradient
     The deterministic
 policy gradient method for computing a policy gradient ∇θ for a
 deterministic policy π and a value
-function gradient ∇ϕ for a continuous action MDP 𝒫 with initial state
+function gradient ∇ϕ for a continuous action MDP problem with initial state
 distribution b . The policy is parameterized by θ and has a gradient
 ∇π that produces a matrix where
 each column is the gradient with
@@ -15,7 +15,7 @@ runs m rollouts to depth d , and performs exploration using 0-mean
 Gaussian noise with standard deviation σ .
     """
     # problem
-    𝒫
+    problem
     b
     # initial state distribution
     d
@@ -34,8 +34,8 @@ Gaussian noise with standard deviation σ .
     # policy noise
     end
     function gradient(M::DeterministicPolicyGradient, π, θ, ϕ)
-    𝒫, b, d, m, ∇π = M.𝒫, M.b, M.d, M.m, M.∇π
-    Q, ∇Qϕ, ∇Qa, σ, γ = M.Q, M.∇Qϕ, M.∇Qa, M.σ, M.𝒫.γ
+    problem, b, d, m, ∇π = M.problem, M.b, M.d, M.m, M.∇π
+    Q, ∇Qϕ, ∇Qa, σ, γ = M.Q, M.∇Qϕ, M.∇Qa, M.σ, M.problem.γ
     π_rand(s) = π(θ, s) + σ*randn()*I
     ∇Uθ(τ) = sum(∇π(θ,s)*∇Qa(ϕ,s,π(θ,s))*γ^(j-1) for (j,(s,a,r))
     in enumerate(τ))
@@ -47,6 +47,6 @@ Gaussian noise with standard deviation σ .
     return δ*(γ*∇Qϕ(ϕ,s′,a′) - ∇Qϕ(ϕ,s,a))
     end
     ∇ℓϕ(τ) = sum(∇ℓϕ(τ,j) for j in 1:length(τ)-1)
-    trajs = [simulate(𝒫, rand(b), π_rand, d) for i in 1:m]
+    trajs = [simulate(problem, rand(b), π_rand, d) for i in 1:m]
     return mean(∇Uθ(τ) for τ in trajs), mean(∇ℓϕ(τ) for τ in trajs)
     end

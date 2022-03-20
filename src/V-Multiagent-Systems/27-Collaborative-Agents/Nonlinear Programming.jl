@@ -1,15 +1,15 @@
 struct DecPOMDPNonlinearProgramming
     """
     Nonlinear programming (NLP) computes the optimal joint controller policy π for
-    a Dec-POMDP 𝒫 , given an initial
+    a Dec-POMDP problem , given an initial
     belief b and number of controller
     nodes ℓ for each agent. This generalizes the NLP solution in algorithm 23.5.
     """
     b::Any # initial belief
     ℓ::Any # number of nodes for each agent
 end
-function tensorform(𝒫::DecPOMDP)
-    ℐ, 𝒮, 𝒜, 𝒪, R, T, O = 𝒫.ℐ, 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, 𝒫.R, 𝒫.T, 𝒫.O
+function tensorform(problem::DecPOMDP)
+    ℐ, 𝒮, 𝒜, 𝒪, R, T, O = problem.ℐ, problem.𝒮, problem.𝒜, problem.𝒪, problem.R, problem.T, problem.O
     ℐ′ = eachindex(ℐ)
     𝒮′ = eachindex(𝒮)
     𝒜′ = [eachindex(𝒜i) for 𝒜i in 𝒜]
@@ -20,9 +20,9 @@ function tensorform(𝒫::DecPOMDP)
     return ℐ′, 𝒮′, 𝒜′, 𝒪′, R′, T′, O′
 end
 
-function solve(M::DecPOMDPNonlinearProgramming, 𝒫::DecPOMDP)
-    𝒫, γ, b = 𝒫, 𝒫.γ, M.b
-    ℐ, 𝒮, 𝒜, 𝒪, R, T, O = tensorform(𝒫)
+function solve(M::DecPOMDPNonlinearProgramming, problem::DecPOMDP)
+    problem, γ, b = problem, problem.γ, M.b
+    ℐ, 𝒮, 𝒜, 𝒪, R, T, O = tensorform(problem)
     X = [collect(1:M.ℓ) for i in ℐ]
     jointX, joint𝒜, joint𝒪 = joint(X), joint(𝒜), joint(𝒪)
     x1 = jointX[1]
@@ -58,11 +58,11 @@ function solve(M::DecPOMDPNonlinearProgramming, 𝒫::DecPOMDP)
     ψ′, η′ = value.(ψ), value.(η)
     return [
         ControllerPolicy(
-            𝒫,
+            problem,
             X[i],
-            Dict((xi, 𝒫.𝒜[i][ai]) => ψ′[i, xi, ai] for xi in X[i], ai in 𝒜[i]),
+            Dict((xi, problem.𝒜[i][ai]) => ψ′[i, xi, ai] for xi in X[i], ai in 𝒜[i]),
             Dict(
-                (xi, 𝒫.𝒜[i][ai], 𝒫.𝒪[i][oi], xi′) => η′[i, xi, ai, oi, xi′] for xi in X[i],
+                (xi, problem.𝒜[i][ai], problem.𝒪[i][oi], xi′) => η′[i, xi, ai, oi, xi′] for xi in X[i],
                 ai in 𝒜[i], oi in 𝒪[i], xi′ in X[i]
             ),
         ) for i in ℐ

@@ -19,17 +19,17 @@ ConditionalPlan(a) = ConditionalPlan(a, Dict())
 """
 A method for
     evaluating a conditional plan π for
-    MDP 𝒫 starting at state s . Plans are
+    MDP problem starting at state s . Plans are
     represented as tuples consisting of
     an action and a dictionary mapping observations to subplans.
 """
 
-function lookahead(𝒫::POMDP, U, s, a)
-    𝒮, 𝒪, T, O, R, γ = 𝒫.𝒮, 𝒫.𝒪, 𝒫.T, 𝒫.O, 𝒫.R, 𝒫.γ
+function lookahead(problem::POMDP, U, s, a)
+    𝒮, 𝒪, T, O, R, γ = problem.𝒮, problem.𝒪, problem.T, problem.O, problem.R, problem.γ
     u′ = sum(T(s, a, s′) * sum(O(a, s′, o) * U(o, s′) for o in 𝒪) for s′ in 𝒮)
     return R(s, a) + γ * u′
 end
-function evaluate_plan(𝒫::POMDP, π::ConditionalPlan, s)
-    U(o, s′) = evaluate_plan(𝒫, π(o), s′)
-    return isempty(π.subplans) ? 𝒫.R(s, π()) : lookahead(𝒫, U, s, π())
+function evaluate_plan(problem::POMDP, π::ConditionalPlan, s)
+    U(o, s′) = evaluate_plan(problem, π(o), s′)
+    return isempty(π.subplans) ? problem.R(s, π()) : lookahead(problem, U, s, π())
 end

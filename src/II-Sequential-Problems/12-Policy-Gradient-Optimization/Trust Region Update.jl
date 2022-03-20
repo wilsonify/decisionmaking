@@ -1,7 +1,7 @@
 struct TrustRegionUpdate
     """
     The update procedure for trust region policy optimization, which augments the natural gradient with a line search. It
-generates m trajectories using policy π in problem 𝒫 with initial state
+generates m trajectories using policy π in problem problem with initial state
 distribution b and depth d . To obtain the starting point of the line
 search, we need the gradient of
 the log-probability of the policy
@@ -17,7 +17,7 @@ considered point θ′ and θ while
 maintaining the search direction.
     """
 
-    𝒫::Any # problem
+    problem::Any # problem
     b::Any # initial state distribution
     d::Any # depth
     m::Any # number of samples
@@ -29,14 +29,14 @@ maintaining the search direction.
     α::Any # line search reduction factor (e.g. 0.5)
 end
 function surrogate_objective(M::TrustRegionUpdate, θ, θ′, τs)
-    d, p, γ = M.d, M.p, M.𝒫.γ
+    d, p, γ = M.d, M.p, M.problem.γ
     R(τ, j) = sum(r * γ^(k - 1) for (k, (s, a, r)) in zip(j:d, τ[j:end]))
     w(a, s) = p(θ′, a, s) / p(θ, a, s)
     f(τ) = mean(w(a, s) * R(τ, k) for (k, (s, a, r)) in enumerate(τ))
     return mean(f(τ) for τ in τs)
 end
 function surrogate_constraint(M::TrustRegionUpdate, θ, θ′, τs)
-    γ = M.𝒫.γ
+    γ = M.problem.γ
     KL(τ) = mean(M.KL(θ, θ′, s) * γ^(k - 1) for (k, (s, a, r)) in enumerate(τ))
     return mean(KL(τ) for τ in τs)
 end
@@ -49,13 +49,13 @@ function linesearch(M::TrustRegionUpdate, f, g, θ, θ′)
     return θ′
 end
 function update(M::TrustRegionUpdate, θ)
-    𝒫, b, d, m, ∇logπ, π, γ = M.𝒫, M.b, M.d, M.m, M.∇logπ, M.π, M.𝒫.γ
+    problem, b, d, m, ∇logπ, π, γ = M.problem, M.b, M.d, M.m, M.∇logπ, M.π, M.problem.γ
     πθ(s) = π(θ, s)
     R(τ) = sum(r * γ^(k - 1) for (k, (s, a, r)) in enumerate(τ))
     ∇log(τ) = sum(∇logπ(θ, a, s) for (s, a) in τ)
     ∇U(τ) = ∇log(τ) * R(τ)
     F(τ) = ∇log(τ) * ∇log(τ)'
-    τs = [simulate(𝒫, rand(b), πθ, d) for i = 1:m]
+    τs = [simulate(problem, rand(b), πθ, d) for i = 1:m]
     θ′ = natural_update(θ, ∇U, F, M.ϵ, τs)
     f(θ′) = surrogate_objective(M, θ, θ′, τs)
     g(θ′) = surrogate_constraint(M, θ, θ′, τs)

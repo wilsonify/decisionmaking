@@ -18,14 +18,14 @@ more complicated forms of games.
     π::Any
     # initial policy
 end
-function IteratedBestResponse(𝒫::SimpleGame, k_max)
-    π = [SimpleGamePolicy(ai => 1.0 for ai in 𝒜i) for 𝒜i in 𝒫.𝒜]
+function IteratedBestResponse(problem::SimpleGame, k_max)
+    π = [SimpleGamePolicy(ai => 1.0 for ai in 𝒜i) for 𝒜i in problem.𝒜]
     return IteratedBestResponse(k_max, π)
 end
-function solve(M::IteratedBestResponse, 𝒫)
+function solve(M::IteratedBestResponse, problem)
     π = M.π
     for k = 1:M.k_max
-        π = [best_response(𝒫, π, i) for i in 𝒫.ℐ]
+        π = [best_response(problem, π, i) for i in problem.ℐ]
     end
     return π
 end

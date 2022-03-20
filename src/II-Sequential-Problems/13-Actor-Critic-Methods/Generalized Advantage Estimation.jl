@@ -2,7 +2,7 @@ struct GeneralizedAdvantageEstimation
     """
     Generalized advantage estimation for computing
 both a policy gradient and a value
-function gradient for an MDP 𝒫
+function gradient for an MDP problem
 with initial state distribution b . The
 policy is parameterized by θ and
 has a log-gradient ∇logπ . The value
@@ -16,7 +16,7 @@ included aspects of trust regions
 when taking steps.
     """
     # problem
-    𝒫
+    problem
     b
     # initial state distribution
     d
@@ -32,8 +32,8 @@ when taking steps.
     # weight ∈ [0,1]
     end
     function gradient(M::GeneralizedAdvantageEstimation, π, θ, ϕ)
-    𝒫, b, d, m, ∇logπ = M.𝒫, M.b, M.d, M.m, M.∇logπ
-    U, ∇U, γ, λ = M.U, M.∇U, M.𝒫.γ, M.λ
+    problem, b, d, m, ∇logπ = M.problem, M.b, M.d, M.m, M.∇logπ
+    U, ∇U, γ, λ = M.U, M.∇U, M.problem.γ, M.λ
     πθ(s) = π(θ, s)
     R(τ,j) = sum(r*γ^(k-1) for (k,(s,a,r)) in enumerate(τ[j:end]))
     δ(τ,j) = τ[j][3] + γ*U(ϕ,τ[j+1][1]) - U(ϕ,τ[j][1])
@@ -42,6 +42,6 @@ when taking steps.
     for (j, (s,a,r)) in enumerate(τ[1:end-1]))
     ∇ℓϕ(τ) = sum((U(ϕ,s) - R(τ,j))*∇U(ϕ,s)
     for (j, (s,a,r)) in enumerate(τ))
-    trajs = [simulate(𝒫, rand(b), πθ, d) for i in 1:m]
+    trajs = [simulate(problem, rand(b), πθ, d) for i in 1:m]
     return mean(∇Uθ(τ) for τ in trajs), mean(∇ℓϕ(τ) for τ in trajs)
     end

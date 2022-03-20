@@ -15,8 +15,8 @@ struct SimpleGamePolicy
     call πi() , then it will return a random action according to that policy.
     We can use joint(𝒜) to construct
     the joint action space from 𝒜 . We
-    can use utility(𝒫, π, i) to compute the utility associated with executing joint policy π in the game
-    𝒫 from the perspective of agent i .
+    can use utility(problem, π, i) to compute the utility associated with executing joint policy π in the game
+    problem from the perspective of agent i .
     """
     p::Any # dictionary mapping actions to probabilities
     function SimpleGamePolicy(p::Base.Generator)
@@ -37,20 +37,20 @@ end
 joint(X) = vec(collect(product(X...)))
 joint(π, πi, i) = [i == j ? πi : πj for (j, πj) in enumerate(π)]
 
-function utility(𝒫::SimpleGame, π, i)
-    𝒜, R = 𝒫.𝒜, 𝒫.R
+function utility(problem::SimpleGame, π, i)
+    𝒜, R = problem.𝒜, problem.R
     p(a) = prod(πj(aj) for (πj, aj) in zip(π, a))
     return sum(R(a)[i] * p(a) for a in joint(𝒜))
 end
 
 """
 For a simple game
-𝒫 , we can compute a deterministic best response for agent i given
+problem , we can compute a deterministic best response for agent i given
 that the other agents are playing
 the policies in π .
 """
-function best_response(𝒫::SimpleGame, π, i)
-    U(ai) = utility(𝒫, joint(π, SimpleGamePolicy(ai), i), i)
-    ai = argmax(U, 𝒫.𝒜[i])
+function best_response(problem::SimpleGame, π, i)
+    U(ai) = utility(problem, joint(π, SimpleGamePolicy(ai), i), i)
+    ai = argmax(U, problem.𝒜[i])
     return SimpleGamePolicy(ai)
 end

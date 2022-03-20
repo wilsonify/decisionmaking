@@ -4,7 +4,7 @@ struct DecPOMDPHeuristicSearch
     Memory bounded
     heuristic search uses a heuristic
     function to search the space of conditional plans for a Dec-POMDP
-    𝒫 . The solve function tries to maximize the value at an initial belief b for joint conditional plans
+    problem . The solve function tries to maximize the value at an initial belief b for joint conditional plans
     of depth d . The explore function
     generates a belief t steps into the
     future by taking random actions
@@ -15,29 +15,29 @@ struct DecPOMDPHeuristicSearch
     d::Any # depth of conditional plans
     π_max::Any # number of policies
 end
-function solve(M::DecPOMDPHeuristicSearch, 𝒫::DecPOMDP)
-    ℐ, 𝒮, 𝒜, 𝒪, T, O, R, γ = 𝒫.ℐ, 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, 𝒫.T, 𝒫.O, 𝒫.R, 𝒫.γ
+function solve(M::DecPOMDPHeuristicSearch, problem::DecPOMDP)
+    ℐ, 𝒮, 𝒜, 𝒪, T, O, R, γ = problem.ℐ, problem.𝒮, problem.𝒜, problem.𝒪, problem.T, problem.O, problem.R, problem.γ
     b, d, π_max = M.b, M.d, M.π_max
     R′(s, a) = [R(s, a) for i in ℐ]
-    𝒫′ = POMG(γ, ℐ, 𝒮, 𝒜, 𝒪, T, O, R′)
+    problem′ = POMG(γ, ℐ, 𝒮, 𝒜, 𝒪, T, O, R′)
     Π = [[ConditionalPlan(ai) for ai in 𝒜[i]] for i in ℐ]
     for t = 1:d
-        allΠ = expand_conditional_plans(𝒫, Π)
+        allΠ = expand_conditional_plans(problem, Π)
         Π = [[] for i in ℐ]
         for z = 1:π_max
-            b′ = explore(M, 𝒫, t)
-            π = argmax(π -> first(utility(𝒫′, b′, π)), joint(allΠ))
+            b′ = explore(M, problem, t)
+            π = argmax(π -> first(utility(problem′, b′, π)), joint(allΠ))
             for i in ℐ
                 push!(Π[i], π[i])
                 filter!(πi -> πi != π[i], allΠ[i])
             end
         end
     end
-    return argmax(π -> first(utility(𝒫′, b, π)), joint(Π))
+    return argmax(π -> first(utility(problem′, b, π)), joint(Π))
 end
 
-function explore(M::DecPOMDPHeuristicSearch, 𝒫::DecPOMDP, t)
-    ℐ, 𝒮, 𝒜, 𝒪, T, O, R, γ = 𝒫.ℐ, 𝒫.𝒮, 𝒫.𝒜, 𝒫.𝒪, 𝒫.T, 𝒫.O, 𝒫.R, 𝒫.γ
+function explore(M::DecPOMDPHeuristicSearch, problem::DecPOMDP, t)
+    ℐ, 𝒮, 𝒜, 𝒪, T, O, R, γ = problem.ℐ, problem.𝒮, problem.𝒜, problem.𝒪, problem.T, problem.O, problem.R, problem.γ
     b = copy(M.b)
     b′ = similar(b)
     s = rand(SetCategorical(𝒮, b))
