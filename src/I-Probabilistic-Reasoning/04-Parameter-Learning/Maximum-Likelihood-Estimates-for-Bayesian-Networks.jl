@@ -17,7 +17,7 @@ end
 
 function statistics(vars, G, D::Matrix{Int})
     n = size(D, 1)
-    r = [vars[i].r for i = 1:n]
+    r = [vars[i].m for i = 1:n]
     q = [prod([r[j] for j in inneighbors(G, i)]) for i = 1:n]
     M = [zeros(q[i], r[i]) for i = 1:n]
     for o in eachcol(D)
