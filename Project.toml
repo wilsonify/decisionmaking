@@ -1,0 +1,5 @@
+[deps]
+AMQPClient = "79c8b4cd-a41a-55fa-907c-fab5288e1383"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Formatting = "59287772-0a20-5a39-b81b-1366585eb4c0"
+LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
