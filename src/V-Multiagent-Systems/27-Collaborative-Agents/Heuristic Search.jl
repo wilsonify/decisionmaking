@@ -49,7 +49,7 @@ function explore(M::DecPOMDPHeuristicSearch, problem::DecPOMDP, t)
             po = O(a, s′, o)
             b′[i′] = po * sum(T(s, a, s′) * b[i] for (i, s) in enumerate(𝒮))
         end
-        normalize!(b′, 1)
+        normalize_factor!(b′, 1)
         b, s = b′, s′
     end
     return b′

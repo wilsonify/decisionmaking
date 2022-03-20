@@ -44,7 +44,7 @@ function blanket(bn::BayesianNetwork, a, i)
     a = delete!(copy(a), name)
     Φ = filter(ϕ -> in_scope(name, ϕ), bn.factors)
     ϕ = prod(conditioning(ϕ, a) for ϕ in Φ)
-    return normalize!(ϕ)
+    return normalize_factor!(ϕ)
 end
 
 function update_gibbs_sample!(a::Assignment, bn::BayesianNetwork, evidence::NamedTuple, ordering::Vector{Variable})

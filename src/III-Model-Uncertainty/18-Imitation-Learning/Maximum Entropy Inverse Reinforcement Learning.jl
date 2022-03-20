@@ -37,7 +37,7 @@ function discounted_state_visitations(M::MaximumEntropyIRL, θ)
                 )
         end
     end
-    return normalize!(vec(mean(b_sk, dims = 2)), 1)
+    return normalize_factor!(vec(mean(b_sk, dims = 2)), 1)
 end
 function optimize(M::MaximumEntropyIRL, D, ϕ, θ)
     problem, π, Pπ, ∇R, RL, α, k_max = M.problem, M.π, M.Pπ, M.∇R, M.RL, M.α, M.k_max

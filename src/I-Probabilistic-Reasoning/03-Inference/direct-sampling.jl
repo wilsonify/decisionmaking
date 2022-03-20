@@ -30,5 +30,5 @@ function infer(M::DirectSampling, bn::BayesianNetwork, query, evidence)
         end
     end
     vars = filter(v -> v.name ∈ query, bn.vars)
-    return normalize!(Factor(vars, table))
+    return normalize_factor!(Factor(vars, table))
 end

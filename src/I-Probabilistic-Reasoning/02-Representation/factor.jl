@@ -8,7 +8,7 @@ struct Factor
     table::FactorTable
 end
 
-function normalize!(ϕ::Factor)
+function normalize_factor!(ϕ::Factor)
     z = sum(p for (a, p) in ϕ.table)
     for (a, p) in ϕ.table
         ϕ.table[a] = p / z

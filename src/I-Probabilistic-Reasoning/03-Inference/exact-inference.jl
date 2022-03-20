@@ -20,5 +20,5 @@ function infer(M::ExactInference, bn::BayesianNetwork, query, evidence)
     for name in setdiff(variablenames(ϕ), query)
         ϕ = marginalize(ϕ, name)
     end
-    return normalize!(ϕ)
+    return normalize_factor!(ϕ)
 end

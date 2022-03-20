@@ -16,5 +16,5 @@ function infer(M::GibbsSampling, bn, query, evidence)
         table[b] = get(table, b, 0) + 1
     end
     vars = filter(v -> v.name ∈ query, bn.vars)
-    return normalize!(Factor(vars, table))
+    return normalize_factor!(Factor(vars, table))
 end

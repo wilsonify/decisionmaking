@@ -7,8 +7,6 @@ struct SimpleProblem
     Because variables in our Bayesian network take values from 1 : ri , 
     the utility variables are mapped to real values by the utilities field. 
     For example, if we have a utility variable :u1, the ith utility associated with that variable is utilities[:u1][i]. 
-    The solve function takes as input the problem, evidence, and an inference method. 
-    It returns the best assignment to the decision variables and its associated expected utility.
     """
     bn::BayesianNetwork
     chance_vars::Vector{Variable}
@@ -17,6 +15,10 @@ struct SimpleProblem
     utilities::Dict{Symbol,Vector{Float64}}
 end
 function solve(problem::SimpleProblem, evidence, M)
+    """
+    The solve function takes as input the problem, evidence, and an inference method. 
+    It returns the best assignment to the decision variables and its associated expected utility.    
+    """
     query = [var.name for var in problem.utility_vars]
     U(a) = sum(problem.utilities[uname][a[uname]] for uname in query)
     best = (a = nothing, u = -Inf)

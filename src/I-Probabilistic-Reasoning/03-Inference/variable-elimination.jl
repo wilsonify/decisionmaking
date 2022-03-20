@@ -24,5 +24,5 @@ function infer(M::VariableElimination, bn::BayesianNetwork, query, evidence)
             end
         end
     end
-    return normalize!(prod(Φ))
+    return normalize_factor!(prod(Φ))
 end

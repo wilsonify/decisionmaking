@@ -16,5 +16,5 @@ function update(b::Vector{Float64}, problem, a, o)
     if sum(b′) ≈ 0.0
         fill!(b′, 1)
     end
-    return normalize!(b′, 1)
+    return normalize_factor!(b′, 1)
 end
