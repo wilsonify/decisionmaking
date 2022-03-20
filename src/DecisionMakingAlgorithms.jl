@@ -162,11 +162,20 @@ export foo
 export receive
 export Variable
 export Assignment
+export assignments
 export Factor
 export FactorTable
 export SimpleDiGraph
 export add_edge!
 export BayesianNetwork
+export Exact
+export Direct
+export Gauss
+export Gibbs
+export Likelihood
 export statistics
 export normalize
+export SimpleProblem
+export value_of_information
+
 end

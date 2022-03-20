@@ -1,4 +1,4 @@
-using DescisionMakingAlgorithms
+using DecisionMakingAlgorithms
 
 B = Variable(:b, 2)
 S = Variable(:s, 2)
@@ -44,10 +44,10 @@ bn = BayesianNetwork(vars, factors, graph)
 chance_vars=vars
 decision_vars=vars
 utility_vars=vars
-utilities=Dict(B:[],S:[],E:[],D:[],C:[])
-
+utilities=Dict(pairs((c = [1], e = [1])))
 problem = SimpleProblem(bn,chance_vars,decision_vars,utility_vars,utilities)
 query = [var.name for var in problem.utility_vars]
 evidence = assignments(problem.decision_vars)
-value = value_of_information(problem, query, evidence, infer)
+ei=Exact.ExactInference()
+value = value_of_information(problem, query, evidence, ei)
 display(value)

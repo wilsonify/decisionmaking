@@ -4,7 +4,7 @@ A. B. Kahn, “Topological Sorting of Large Networks,”
 Communications of the ACM, vol. 5, no. 11, pp. 558-562, 1962. 
 An implementation of topological sorting is provided by the LightGraphs.jl package.
 """
-
+module Direct
 struct DirectSampling
     """
     The direct sampling inference method, 
@@ -20,7 +20,7 @@ struct DirectSampling
     m::Int # number of samples
 end
 
-function infer(M::DirectSampling, bn::BayesianNetwork, query, evidence)
+function infer(M::DirectSampling, bn, query, evidence)
     table = FactorTable()
     for i = 1:(M.m)
         a = rand(bn)
@@ -31,4 +31,5 @@ function infer(M::DirectSampling, bn::BayesianNetwork, query, evidence)
     end
     vars = filter(v -> v.name ∈ query, bn.vars)
     return normalize_factor!(Factor(vars, table))
+end
 end

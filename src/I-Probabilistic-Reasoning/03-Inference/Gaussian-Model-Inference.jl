@@ -1,3 +1,4 @@
+module Gauss
 using Distributions
 
 function infer(D::MvNormal, query, evidencevars, evidence)
@@ -11,10 +12,11 @@ function infer(D::MvNormal, query, evidencevars, evidence)
     """
     μ, Σ = D.μ, D.Σ.mat
     b, μa, μb = evidence, μ[query], μ[evidencevars]
-    A = Σ[query,query]
-    B = Σ[evidencevars,evidencevars]
-    C = Σ[query,evidencevars]
-    μ = μ[query] + C * (B\(b - μb))
+    A = Σ[query, query]
+    B = Σ[evidencevars, evidencevars]
+    C = Σ[query, evidencevars]
+    μ = μ[query] + C * (B \ (b - μb))
     Σ = A - C * (B \ C')
     return MvNormal(μ, Σ)
-    end
+end
+end

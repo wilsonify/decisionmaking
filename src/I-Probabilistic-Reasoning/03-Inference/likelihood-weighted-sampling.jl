@@ -1,4 +1,4 @@
-
+module Likelihood
 struct LikelihoodWeightedSampling
     """
     The likelihood weighted sampling inference method,
@@ -16,7 +16,7 @@ struct LikelihoodWeightedSampling
     m::Int # number of samples
 end
 
-function infer(M::LikelihoodWeightedSampling, bn::BayesianNetwork, query, evidence)
+function infer(M::LikelihoodWeightedSampling, bn, query, evidence)
     table = FactorTable()
     ordering = topological_sort(bn.graph)
     for i = 1:(M.m)
@@ -36,5 +36,5 @@ function infer(M::LikelihoodWeightedSampling, bn::BayesianNetwork, query, eviden
     vars = filter(v -> v.name ∈ query, bn.vars)
     return normalize_factor!(Factor(vars, table))
 end
-
+end
 
