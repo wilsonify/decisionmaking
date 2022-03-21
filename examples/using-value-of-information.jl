@@ -48,6 +48,6 @@ utilities=Dict(pairs((c = [1], e = [1])))
 problem = SimpleProblem(bn,chance_vars,decision_vars,utility_vars,utilities)
 query = [var.name for var in problem.utility_vars]
 evidence = assignments(problem.decision_vars)
-ei=Exact.ExactInference()
+ei=ExactInference()
 value = value_of_information(problem, query, evidence, ei)
 display(value)

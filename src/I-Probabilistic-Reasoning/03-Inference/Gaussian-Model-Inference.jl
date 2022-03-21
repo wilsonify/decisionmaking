@@ -1,4 +1,4 @@
-module Gauss
+
 using Distributions
 
 function infer(D::MvNormal, query, evidencevars, evidence)
@@ -19,4 +19,4 @@ function infer(D::MvNormal, query, evidencevars, evidence)
     Σ = A - C * (B \ C')
     return MvNormal(μ, Σ)
 end
-end
+

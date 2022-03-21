@@ -168,11 +168,11 @@ export FactorTable
 export SimpleDiGraph
 export add_edge!
 export BayesianNetwork
-export Exact
-export Direct
-export Gauss
-export Gibbs
-export Likelihood
+export ExactInference
+export DirectSampling
+export GibbsSampling
+export LikelihoodWeightedSampling
+export VariableElimination
 export statistics
 export normalize
 export SimpleProblem

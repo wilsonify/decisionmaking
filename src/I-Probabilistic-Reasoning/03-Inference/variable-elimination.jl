@@ -6,11 +6,12 @@ and evidence.
 
 The variables are processed in the order given by ordering .
 """
+
 struct VariableElimination
     ordering::Any # array of variable indices
 end
 
-function infer(M::VariableElimination, bn::BayesianNetwork, query, evidence)
+function infer(M::VariableElimination, bn, query, evidence)
     Φ = [conditioning(ϕ, evidence) for ϕ in bn.factors]
     for i in M.ordering
         name = bn.vars[i].name
