@@ -1,9 +1,6 @@
 struct PolicyIteration
     """
-    Policy iteration,
-which iteratively improves an initial policy π to obtain an optimal
-policy for an MDP problem with discrete
-state and action spaces.
+    iteratively improves an initial policy π to obtain an optimal policy for an MDP problem with discrete state and action spaces.
     """
     π::Any # initial policy
     k_max::Any # maximum number of iterations

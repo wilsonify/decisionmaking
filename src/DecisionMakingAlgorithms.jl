@@ -22,14 +22,16 @@ include("I-Probabilistic-Reasoning/05-Structure-Learning/LocalDirectedGraphSearc
 include("I-Probabilistic-Reasoning/05-Structure-Learning/Partially-Directed-Graph-Search.jl")
 include("I-Probabilistic-Reasoning/06-Simple-Decisions/SimpleProblem.jl")
 include("I-Probabilistic-Reasoning/06-Simple-Decisions/Value-of-Information.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Asynchronous-Value-Iteration.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Program-Formulation.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Systems-with-Quadratic-Reward.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Markov-Decision-Processes.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Policy-Evaluation.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Policy-Iteration.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Value-Function-Policies.jl")
-#include("II-Sequential-Problems/07-Exact-Solution-Methods/Value-Iteration.jl")
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Markov-Decision-Processes.jl")
+
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Asynchronous-Value-Iteration.jl")
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Program-Formulation.jl")
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Systems-with-Quadratic-Reward.jl")
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Policy-Evaluation.jl")
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Policy-Iteration.jl")
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Value-Function-Policies.jl")
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Value-Iteration.jl")
+
 #include("II-Sequential-Problems/08-Approximate-Value-Functions/Kernel-Smoothing.jl")
 #include("II-Sequential-Problems/08-Approximate-Value-Functions/Linear-Regression.jl")
 #include("II-Sequential-Problems/08-Approximate-Value-Functions/Nearest-Neighbor.jl")
@@ -177,5 +179,12 @@ export statistics
 export normalize
 export SimpleProblem
 export value_of_information
+export MDP
+export LinearProgramFormulation
+export LinearQuadraticProblem
+export GaussSeidelValueIteration
+export PolicyIteration
+export ValueFunctionPolicy
+export ValueIteration
 
 end
