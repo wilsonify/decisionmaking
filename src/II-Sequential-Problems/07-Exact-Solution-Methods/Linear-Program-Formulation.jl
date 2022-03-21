@@ -1,3 +1,4 @@
+using JuMP
 """
 A method for
     solving a discrete MDP using a

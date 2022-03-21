@@ -1,5 +1,5 @@
 module DecisionMakingAlgorithms
-
+include("Convenience Functions.jl")
 include("I-Probabilistic-Reasoning/01-Introduction/foo.jl")
 include("I-Probabilistic-Reasoning/01-Introduction/receive.jl")
 include("I-Probabilistic-Reasoning/02-Representation/variable.jl")
@@ -27,16 +27,16 @@ include("II-Sequential-Problems/07-Exact-Solution-Methods/Markov-Decision-Proces
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Asynchronous-Value-Iteration.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Program-Formulation.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Systems-with-Quadratic-Reward.jl")
-include("II-Sequential-Problems/07-Exact-Solution-Methods/Policy-Evaluation.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Policy-Iteration.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Value-Function-Policies.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Value-Iteration.jl")
 
-#include("II-Sequential-Problems/08-Approximate-Value-Functions/Kernel-Smoothing.jl")
-#include("II-Sequential-Problems/08-Approximate-Value-Functions/Linear-Regression.jl")
-#include("II-Sequential-Problems/08-Approximate-Value-Functions/Nearest-Neighbor.jl")
-#include("II-Sequential-Problems/08-Approximate-Value-Functions/Parametric Representations.jl")
-#include("II-Sequential-Problems/08-Approximate-Value-Functions/Simplex-Interpolation.jl")
+include("II-Sequential-Problems/08-Approximate-Value-Functions/Kernel-Smoothing.jl")
+include("II-Sequential-Problems/08-Approximate-Value-Functions/Linear-Regression.jl")
+include("II-Sequential-Problems/08-Approximate-Value-Functions/Nearest-Neighbor.jl")
+include("II-Sequential-Problems/08-Approximate-Value-Functions/Parametric Representations.jl")
+include("II-Sequential-Problems/08-Approximate-Value-Functions/Simplex-Interpolation.jl")
+
 #include("II-Sequential-Problems/09-Online-Planning/Branch-and-Bound.jl")
 #include("II-Sequential-Problems/09-Online-Planning/Forward-Search.jl")
 #include("II-Sequential-Problems/09-Online-Planning/Heuristic-Search.jl")
