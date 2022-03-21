@@ -1,3 +1,4 @@
+using Ipopt
 """
 An example of
 open-loop planning in a deterministic environment. We attempt
