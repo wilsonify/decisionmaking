@@ -45,9 +45,12 @@ chance_vars=vars
 decision_vars=vars
 utility_vars=vars
 utilities=Dict(pairs((c = [1], e = [1])))
-problem = SimpleProblem(bn,chance_vars,decision_vars,utility_vars,utilities)
-query = [var.name for var in problem.utility_vars]
-evidence = assignments(problem.decision_vars)
-ei=ExactInference()
-value = value_of_information(problem, query, evidence, ei)
+problem = SimpleProblem(bn,chance_vars,decision_vars,utility_vars,utilities) # simple problem
+query = [B, S] # a list of query variables query
+
+evidence = Dict(pairs((b=1, s=5, e=7, d=9, c=1))) # a dictionary containing observed chance variables and their values 
+
+M=ExactInference() # an inference strategy
+
+value = value_of_information(problem, query, evidence, M)
 display(value)
