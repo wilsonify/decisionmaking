@@ -33,3 +33,10 @@ function evaluate_plan(problem::POMDP, π::ConditionalPlan, s)
     U(o, s′) = evaluate_plan(problem, π(o), s′)
     return isempty(π.subplans) ? problem.R(s, π()) : lookahead(problem, U, s, π())
 end
+
+"""
+We can generate an alpha vector from a conditional plan by calling evaluate_plan from all possible initial states.
+"""
+function alphavector(problem::POMDP, π::ConditionalPlan)
+    return [evaluate_plan(problem, π, s) for s in problem.𝒮]
+end
