@@ -131,11 +131,12 @@ include("IV-State-Uncertainty/22-Online-Belief-State-Planning/Monte Carlo Tree S
 include("IV-State-Uncertainty/22-Online-Belief-State-Planning/Nonlinear Programming.jl")
 include("IV-State-Uncertainty/22-Online-Belief-State-Planning/Policy Iteration.jl")
 
-include("V-Multiagent-Systems/24-Multiagent-Reasoning/Simple Games.jl")
 include("IV-State-Uncertainty/23-Controller-Abstractions/Controllers.jl")
 include("IV-State-Uncertainty/23-Controller-Abstractions/Gradient Ascent.jl")
 include("IV-State-Uncertainty/23-Controller-Abstractions/Nonlinear Programming.jl")
 include("IV-State-Uncertainty/23-Controller-Abstractions/Policy Iteration.jl")
+
+include("V-Multiagent-Systems/24-Multiagent-Reasoning/Simple Games.jl")
 include("V-Multiagent-Systems/24-Multiagent-Reasoning/Correlated Equilibrium.jl")
 include("V-Multiagent-Systems/24-Multiagent-Reasoning/Dominant Strategy Equilibrium.jl")
 include("V-Multiagent-Systems/24-Multiagent-Reasoning/Fictitious Play.jl")
@@ -163,11 +164,6 @@ include("V-Multiagent-Systems/27-Collaborative-Agents/Heuristic Search.jl")
 include("V-Multiagent-Systems/27-Collaborative-Agents/Iterated Best Response.jl")
 include("V-Multiagent-Systems/27-Collaborative-Agents/Nonlinear Programming.jl")
 include("V-Multiagent-Systems/27-Collaborative-Agents/Subclasses.jl")
-
-include("VI-Appendix/G-Julia/Control Flow.jl")
-include("VI-Appendix/G-Julia/Functions.jl")
-include("VI-Appendix/G-Julia/Packages.jl")
-include("VI-Appendix/G-Julia/Types.jl")
 
 export foo 
 export receive
