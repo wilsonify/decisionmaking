@@ -9,6 +9,8 @@ Conditional evaluation will check the value of a Boolean expression and then
 evaluate the appropriate block of code. One of the most common ways to do this
 is with an if statement.
 """
+x=3
+y=10
 if x < y
     println("run this if x < y")
 elseif x > y
@@ -35,9 +37,9 @@ after the while keyword is met. The following example sums the values in the
 array x .
 """
 X = [1, 2, 3, 4, 6, 8, 11, 13, 16, 18]
-s = 0
+sum1 = 1.0
 while !isempty(X)
-    s += pop!(X)
+    sum1 += pop!(X)
 end
 
 """
@@ -45,18 +47,18 @@ Another type of loop is the for loop. It uses the for keyword. The following
 example will also sum over the values in the array x but will not modify x .
 """
 X = [1, 2, 3, 4, 6, 8, 11, 13, 16, 18]
-s = 0
+sum2 = 0
 for i = 1:length(X)
-    s += X[i]
+    sum2 += X[i]
 end
 
 """
 The = can be substituted with in or ∈ . The following code block is equivalent.
 """
 X = [1, 2, 3, 4, 6, 8, 11, 13, 16, 18]
-s = 0
+sum3 = 0
 for y in X
-    s += y
+    sum3 += y
 end
 
 # Iterators
