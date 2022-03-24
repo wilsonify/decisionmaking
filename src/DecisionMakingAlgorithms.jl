@@ -180,8 +180,13 @@ export DirectSampling
 export GibbsSampling
 export LikelihoodWeightedSampling
 export VariableElimination
+export probability
 export statistics
 export normalize
+export prior
+export infer
+export bayesian_score_component
+export bayesian_score
 export SimpleProblem
 export value_of_information
 export MDP
