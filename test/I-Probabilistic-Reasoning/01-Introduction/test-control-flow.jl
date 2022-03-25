@@ -55,6 +55,7 @@ using Test
         for i = 1:length(X)
             s += X[i]
         end
+        @test s == sum(X)
 
 
         #The = can be substituted with in or ∈ . The following code block is equivalent.
@@ -64,6 +65,7 @@ using Test
         for y in X
             s += y
         end
+        @test s == sum(X)
     end
 
     @testset "test Iterators" begin
