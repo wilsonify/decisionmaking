@@ -1,4 +1,4 @@
-include("Simple Games.jl")
+
 struct IteratedBestResponse
     """
     Iterated best response involves cycling through

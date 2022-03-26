@@ -1,4 +1,4 @@
-include("Belief Initialization.jl")
+
 struct ConditionalPlan
     """
     The conditional

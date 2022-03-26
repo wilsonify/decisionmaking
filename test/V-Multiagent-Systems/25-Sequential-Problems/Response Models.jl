@@ -1,4 +1,3 @@
-include("Markov Games.jl")
 """
 For a Markov game 𝒫, 
 we can compute a deterministic best response policy 

@@ -1,4 +1,4 @@
-include("Partially Observable Markov Games.jl")
+
 struct POMGNashEquilibrium
     """
     A Nash equilibrium is computed for a POMG 𝒫

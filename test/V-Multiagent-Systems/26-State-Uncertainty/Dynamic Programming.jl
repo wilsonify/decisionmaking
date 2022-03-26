@@ -1,4 +1,4 @@
-include("Partially Observable Markov Games.jl")
+
 struct POMGDynamicProgramming
     """
     Dynamic programming computes a Nash equilibrium π for a POMG 𝒫 , given an

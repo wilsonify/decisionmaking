@@ -1,4 +1,4 @@
-include("Fast Informed Bound.jl")
+
 
 """
 In this example, we apply branch and bound to the crying baby problem
