@@ -14,6 +14,7 @@ using SafeTestsets
     
     @time @safetestset "02-Representation Tests" begin
         path_to_here=@__DIR__
+        include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-factor-table.jl")
         include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-bayesian-networks.jl")
         
     end
