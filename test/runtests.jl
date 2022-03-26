@@ -24,9 +24,10 @@ using SafeTestsets
         include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-inference.jl")
     end
 
-    @time @safetestset "03-Inference Tests" begin
+    @time @safetestset "04-Parameter-Learning" begin
         path_to_here=@__DIR__
-        include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-gaussia-model-inference.jl")
+        include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning/test-prior.jl")
+        include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning/test-statistics.jl")
     end
 
     @time @safetestset "05-Structure-Learning Tests" begin
