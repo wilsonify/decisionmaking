@@ -1,29 +1,42 @@
 module DecisionMakingAlgorithms
+
 include("Convenience Functions.jl")
+include("VI-Appendix/E-Search-Algorithms/E1-search.jl")
+include("VI-Appendix/E-Search-Algorithms/E3-forward-search.jl")
+include("VI-Appendix/E-Search-Algorithms/E4-branch-and-bound.jl")
+include("VI-Appendix/E-Search-Algorithms/E5-dynamic-programming.jl")
+include("VI-Appendix/E-Search-Algorithms/E6-heuristic-search.jl")
+
 include("I-Probabilistic-Reasoning/01-Introduction/foo.jl")
 include("I-Probabilistic-Reasoning/01-Introduction/receive.jl")
+
 include("I-Probabilistic-Reasoning/02-Representation/variable.jl")
 include("I-Probabilistic-Reasoning/02-Representation/assignment.jl")
 include("I-Probabilistic-Reasoning/02-Representation/factor-table.jl")
 include("I-Probabilistic-Reasoning/02-Representation/factor.jl")
 include("I-Probabilistic-Reasoning/02-Representation/bayesian-network.jl")
+
 include("I-Probabilistic-Reasoning/03-Inference/exact-inference.jl")
 include("I-Probabilistic-Reasoning/03-Inference/direct-sampling.jl")
 include("I-Probabilistic-Reasoning/03-Inference/Gaussian-Model-Inference.jl")
 include("I-Probabilistic-Reasoning/03-Inference/gibbs-sampling.jl")
 include("I-Probabilistic-Reasoning/03-Inference/likelihood-weighted-sampling.jl")
 include("I-Probabilistic-Reasoning/03-Inference/variable-elimination.jl")
+
 include("I-Probabilistic-Reasoning/04-Parameter-Learning/Maximum-Likelihood-Estimates-for-Bayesian-Networks.jl")
 include("I-Probabilistic-Reasoning/04-Parameter-Learning/prior.jl")
+
 include("I-Probabilistic-Reasoning/04-Parameter-Learning/Nonparametric-Learning.jl")
 include("I-Probabilistic-Reasoning/05-Structure-Learning/Bayesian-Network-Scoring.jl")
+
 include("I-Probabilistic-Reasoning/05-Structure-Learning/K2Search.jl")
 include("I-Probabilistic-Reasoning/05-Structure-Learning/LocalDirectedGraphSearch.jl")
 include("I-Probabilistic-Reasoning/05-Structure-Learning/Partially-Directed-Graph-Search.jl")
+
 include("I-Probabilistic-Reasoning/06-Simple-Decisions/SimpleProblem.jl")
 include("I-Probabilistic-Reasoning/06-Simple-Decisions/Value-of-Information.jl")
-include("II-Sequential-Problems/07-Exact-Solution-Methods/Markov-Decision-Processes.jl")
 
+include("II-Sequential-Problems/07-Exact-Solution-Methods/Markov-Decision-Processes.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Asynchronous-Value-Iteration.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Program-Formulation.jl")
 include("II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Systems-with-Quadratic-Reward.jl")
@@ -69,6 +82,7 @@ include("II-Sequential-Problems/13-Actor-Critic-Methods/Generalized Advantage Es
 
 include("II-Sequential-Problems/14-Policy-Validation/Adversarial Analysis.jl")
 
+
 include("III-Model-Uncertainty/15-Exploration-and-Exploitation/Bandit Problems.jl")
 include("III-Model-Uncertainty/15-Exploration-and-Exploitation/Bayesian Model Estimation.jl")
 include("III-Model-Uncertainty/15-Exploration-and-Exploitation/Directed Exploration Strategies.jl")
@@ -97,6 +111,7 @@ include("III-Model-Uncertainty/18-Imitation-Learning/Maximum Entropy Inverse Rei
 include("III-Model-Uncertainty/18-Imitation-Learning/Maximum Margin Inverse Reinforcement Learning.jl")
 include("III-Model-Uncertainty/18-Imitation-Learning/Stochastic Mixing Iterative Learning.jl")
 
+
 include("IV-State-Uncertainty/19-Beliefs/Adaptive Injection Particle Filter.jl")
 include("IV-State-Uncertainty/19-Beliefs/Belief Initialization.jl")
 include("IV-State-Uncertainty/19-Beliefs/Discrete State Filter.jl")
@@ -112,6 +127,7 @@ include("IV-State-Uncertainty/20-Exact-Belief-State-Planning/Conditional Plans.j
 include("IV-State-Uncertainty/20-Exact-Belief-State-Planning/Linear Policies.jl")
 include("IV-State-Uncertainty/20-Exact-Belief-State-Planning/Pruning.jl")
 include("IV-State-Uncertainty/20-Exact-Belief-State-Planning/Value Iteration.jl")
+
 include("IV-State-Uncertainty/21-Offline-Belief-State-Planning/Fast Informed Bound.jl")
 include("IV-State-Uncertainty/21-Offline-Belief-State-Planning/Fast Lower Bounds.jl")
 include("IV-State-Uncertainty/21-Offline-Belief-State-Planning/Fully Observable Value Approximation.jl")
@@ -165,14 +181,9 @@ include("V-Multiagent-Systems/27-Collaborative-Agents/Iterated Best Response.jl"
 include("V-Multiagent-Systems/27-Collaborative-Agents/Nonlinear Programming.jl")
 include("V-Multiagent-Systems/27-Collaborative-Agents/Subclasses.jl")
 
-include("VI-Appendix/E-Search-Algorithms/E1-search.jl")
-include("VI-Appendix/E-Search-Algorithms/E3-forward-search.jl")
-include("VI-Appendix/E-Search-Algorithms/E4-branch-and-bound.jl")
-include("VI-Appendix/E-Search-Algorithms/E5-dynamic-programming.jl")
-include("VI-Appendix/E-Search-Algorithms/E6-heuristic-search.jl")
 
 export SetCategorical
-export foo 
+export foo
 export receive
 export Variable
 export Assignment
