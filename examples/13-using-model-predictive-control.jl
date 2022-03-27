@@ -1,15 +1,12 @@
 using Ipopt
+using DecisionMakingAlgorithms
 """
-An example of
-open-loop planning in a deterministic environment. We attempt
-to find a path around a circular obstacle. This implementation
-uses the JuMP.jl interface to the
-Ipopt solver. A. Wächter and L. T.
-Biegler, “On the Implementation of
-an Interior-Point Filter Line-Search
-Algorithm for Large-Scale Nonlinear Programming,” Mathematical
-Programming, vol. 106, no. 1, pp. 25–
-57, 2005.
+An example of open-loop planning in a deterministic environment. 
+We attempt to find a path around a circular obstacle. 
+This implementation uses the JuMP.jl interface to the Ipopt solver. 
+
+A. Wächter and L. T. Biegler, “On the Implementation of an Interior-Point Filter Line-Search Algorithm for Large-Scale Nonlinear Programming,” Mathematical Programming,
+vol. 106, no. 1, pp. 25-57, 2005.
 """
 model = Model(Ipopt.Optimizer)
 d = 10

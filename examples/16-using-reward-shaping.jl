@@ -1,19 +1,16 @@
+using DecisionMakingAlgorithms
+
 """
+An example of how to use an exploration strategy with Q-learning with action value function approximation in simulation. 
+The parameter settings are notional.
 
-An example of
-how to use an exploration strategy
-with Q-learning with action value
-function approximation in simulation. The parameter settings are notional.
+We are interesting in applying Q-learning with a linear action value approximation to the simple regulator problem with γ = 1. 
+Our action value approximation is Q θ ( s, a ) = θ ⊤ β ( s, a ) , 
+where our basis function is β ( s, a ) = [ s, s 2 , a, a 2 , 1 ]
 
-We are interesting in applying Q-learning with a linear action value approximation to the simple regulator problem with γ = 1. Our action value
-approximation is Q θ ( s, a ) = θ ⊤ β ( s, a ) , where our basis function is
-β ( s, a ) = [ s, s 2 , a, a 2 , 1 ]
-Example 17.3. An example of
-how to use an exploration strategy
-with Q-learning with action value
-function approximation in simulation. The parameter settings are notional.
-With this linear model,
-∇ θ Q θ ( s, a ) = β ( s, a )
+An example of how to use an exploration strategy with Q-learning with action value function approximation in simulation. 
+The parameter settings are notional. 
+With this linear model, ∇ θ Q θ ( s, a ) = β ( s, a )
 We can implement this as follows for problem problem :
 """
 

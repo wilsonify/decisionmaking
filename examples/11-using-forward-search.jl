@@ -1,6 +1,6 @@
+using DecisionMakingAlgorithms
 """
-An example of applying forward search to a POMDP
-problem.
+An example of applying forward search to a POMDP problem.
 
 Consider applying forward search to the machine replacement problem.
 We can first obtain an approximate value function through QMDP (algorithm 21.2). We can then construct a ForwardSearch object, which was originally defined in algorithm 9.2. The call to lookahead within that function

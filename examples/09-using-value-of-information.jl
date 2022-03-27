@@ -52,20 +52,6 @@ bn = BayesianNetwork(vars, factors, graph)
 chance_vars = [B, S]
 decision_vars = [D]
 utility_vars = [C, E]
-function utility_of_c(c)
-    if c > 10
-        return 0.9
-    else
-        return 0.1
-    end
-end
-function utility_of_e(e)
-    if e < 10
-        return 0.9
-    else
-        return 0.1
-    end
-end
 utilities = Dict{Symbol,Vector{Float64}}([(:c , [0.1,0.9]), (:e , [0.9,0.1])])
 problem = SimpleProblem(bn, chance_vars, decision_vars, utility_vars, utilities) # simple problem
 query = [:b, :s] # a list of query variables query

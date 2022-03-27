@@ -1,3 +1,4 @@
+using DecisionMakingAlgorithms
 """
 An example of how
 to use an exploration strategy with

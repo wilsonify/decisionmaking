@@ -1,3 +1,4 @@
+using DecisionMakingAlgorithms
 f(x) = x^2 + 1e-2*randn()
 m = 20
 δ = 1e-2

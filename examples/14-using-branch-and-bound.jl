@@ -1,10 +1,9 @@
-
-
+ 
+using DecisionMakingAlgorithms
 """
-In this example, we apply branch and bound to the crying baby problem
-with a depth of 5. The upper bound comes from the fast informed bound
-and the lower bound comes from point-based value iteration. We compute
-the action from belief [ 0.4, 0.6 ] .
+In this example, we apply branch and bound to the crying baby problem with a depth of 5. 
+The upper bound comes from the fast informed bound and the lower bound comes from point-based value iteration. 
+We compute the action from belief [ 0.4, 0.6 ] .
 """
 
 """ An application of branch and bound to the crying baby problem. """
