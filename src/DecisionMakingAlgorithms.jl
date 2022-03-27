@@ -165,6 +165,12 @@ include("V-Multiagent-Systems/27-Collaborative-Agents/Iterated Best Response.jl"
 include("V-Multiagent-Systems/27-Collaborative-Agents/Nonlinear Programming.jl")
 include("V-Multiagent-Systems/27-Collaborative-Agents/Subclasses.jl")
 
+include("VI-Appendix/E-Search-Algorithms/E1-search.jl")
+include("VI-Appendix/E-Search-Algorithms/E3-forward-search.jl")
+include("VI-Appendix/E-Search-Algorithms/E4-branch-and-bound.jl")
+include("VI-Appendix/E-Search-Algorithms/E5-dynamic-programming.jl")
+include("VI-Appendix/E-Search-Algorithms/E6-heuristic-search.jl")
+
 export SetCategorical
 export foo 
 export receive
