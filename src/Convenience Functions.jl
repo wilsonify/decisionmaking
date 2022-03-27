@@ -24,10 +24,6 @@ end
 
 Base.argmax(f::Function, xs) = findmax(f, xs)[2]
 
-@assert(findmax(x -> x^2, [0, -10, 3]) == (100, -10))
-@assert(argmax(abs, [0, -10, 3]) == -10)
-
-
 """
 The following functions are useful when working with dictionaries and named
 tuples:
@@ -36,25 +32,18 @@ Base.Dict{Symbol,V}(a::NamedTuple) where {V} = Dict{Symbol,V}(n => v for (n, v) 
 Base.convert(::Type{Dict{Symbol,V}}, a::NamedTuple) where {V} = Dict{Symbol,V}(a)
 Base.isequal(a::Dict{Symbol,<:Any}, nt::NamedTuple) = length(a) == length(nt) && all(a[n] == v for (n, v) in zip(keys(nt), values(nt)))
 
-
-a = Dict{Symbol,Integer}((a = 1, b = 2, c = 3))
+# a = Dict{Symbol,Integer}((a = 1, b = 2, c = 3))
 #Dict{Symbol, Integer} with 3 entries:
 #:a => 1
 #:b => 2
 #:c => 3
-@assert(isequal(a, (a = 1, b = 2, c = 3)) == true)
-@assert(isequal(a, (a = 1, c = 3, b = 2)) == true)
 
-Dict{Dict{Symbol,Integer},Float64}((a = 1, b = 1) => 0.2, (a = 1, b = 2) => 0.8)
-#Dict{Dict{Symbol, Integer}, Float64} with 2 entries:
-#Dict(:a=>1, :b=>1) => 0.2
-#Dict(:a=>1, :b=>2) => 0.8
+# Dict{Dict{Symbol,Integer},Float64}((a = 1, b = 1) => 0.2, (a = 1, b = 2) => 0.8)
 
-"""
-We define SetCategorical to represent distributions over discrete sets.
-"""
 
 struct SetCategorical{S}
+    """We define SetCategorical to represent distributions over discrete sets."""
+
     elements::Vector{S} # Set elements (could be repeated)
     distr::Categorical # Categorical distribution over set elements
     function SetCategorical(elements::AbstractVector{S}) where {S}
@@ -83,9 +72,7 @@ function Distributions.pdf(D::SetCategorical, x)
     sum(e == x ? w : 0.0 for (e, w) in zip(D.elements, D.distr.p))
 end
 
-D = SetCategorical(["up", "down", "left", "right"], [0.4, 0.2, 0.3, 0.1]);
-rand(D)
-# "down"
-rand(D, 5)
-# 5-element Vector{String}: ["up","up","left","up","up"]
-pdf(D, "up") # 0.3999999999999999
+# D = SetCategorical(["up", "down", "left", "right"], [0.4, 0.2, 0.3, 0.1]);
+# rand(D) # "down"
+# rand(D, 5) # 5-element Vector{String}: ["up","up","left","up","up"]
+# pdf(D, "up") # 0.3999999999999999

@@ -165,6 +165,7 @@ include("V-Multiagent-Systems/27-Collaborative-Agents/Iterated Best Response.jl"
 include("V-Multiagent-Systems/27-Collaborative-Agents/Nonlinear Programming.jl")
 include("V-Multiagent-Systems/27-Collaborative-Agents/Subclasses.jl")
 
+export SetCategorical
 export foo 
 export receive
 export Variable

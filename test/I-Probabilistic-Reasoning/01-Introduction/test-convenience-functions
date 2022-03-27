@@ -1,0 +1,45 @@
+using Distributions
+using LinearAlgebra
+using DecisionMakingAlgorithms
+using Test
+
+#There are a few functions that allow us to more compactly specify the algorithms
+#in the body of this book. Julia 1.7 will support a two-argument version of findmax ,
+#where we can pass in a function and a collection. It returns the maximum of
+#the function when evaluated on the elements of the collection along with the
+#first maximizing element. The argmax function is similar, but it only returns the
+#first maximizing element. To support this in Julia 1.6, we manually extend these
+#functions.
+
+@testset "Test Convenience Functions" begin
+    @testset "test findmax" begin
+        @test(findmax(x -> x^2, [0, -10, 3]) == (100, -10))
+    end
+    @testset "test argmax" begin
+        @test(argmax(abs, [0, -10, 3]) == -10)
+    end
+    @testset "test construct a dict of named tuples" begin
+        a_dict = Dict{Symbol,Integer}((a = 1, b = 2, c = 3))
+        #Dict{Symbol, Integer} with 3 entries:
+        #:a => 1
+        #:b => 2
+        #:c => 3
+        @test(isequal(a_dict, (a = 1, b = 2, c = 3)))
+        @test(isequal(a_dict, (a = 1, c = 3, b = 2)))
+
+        b_dict = Dict{Dict{Symbol,Integer},Float64}((a = 1, b = 1) => 0.2, (a = 1, b = 2) => 0.8)
+        #Dict{Dict{Symbol, Integer}, Float64} with 2 entries:
+        #Dict(:a=>1, :b=>1) => 0.2
+        #Dict(:a=>1, :b=>2) => 0.8
+        @show(b_dict)
+
+    end
+
+    @testset "Test SetCategorical to represent distributions over discrete sets" begin
+        D = SetCategorical(["up", "down", "left", "right"], [0.4, 0.2, 0.3, 0.1])
+        random_D = rand(D) # "down"
+        random_D_array = rand(D, 5) # 5-element Vector{String}: ["up","up","left","up","up"]
+        @test length(random_D_array) == 5
+        @test pdf(D, "up") == 0.3999999999999999
+    end
+end

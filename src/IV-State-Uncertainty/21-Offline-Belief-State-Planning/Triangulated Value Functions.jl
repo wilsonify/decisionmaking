@@ -1,29 +1,17 @@
+using FreudenthalTriangulations
 
 struct TriangulatedPolicy
     """
-    A policy representation using Freudenthal
-triangulation with granularity m .
-As with the sawtooth method,
-we maintain a dictionary that
-maps belief vectors to utilities.
-This implementation initializes
-the utilities to 0, but if we want to
-represent an upper bound, then
-we would need to initialize those
-utilities appropriately. We define a
-function to estimate the utility of
-a given belief using interpolation.
-We can extract a policy using
-greedy lookahead. The Freudenthal triangulation structure is
-passed the dimensionality and
-granularity at construction. The
-FreudenthalTriangulations.jl
-package provides the function
-belief_vertices , which returns
-B given a particular triangulation.
-It also provides belief_simplex ,
-which returns the set of enclosing
-points and weights for a belief.
+    A policy representation using Freudenthal triangulation with granularity m .
+    As with the sawtooth method, we maintain a dictionary that maps belief vectors to utilities.
+    This implementation initializes the utilities to 0, but if we want to represent an upper bound, 
+    then we would need to initialize those utilities appropriately. 
+    We define a function to estimate the utility of a given belief using interpolation. 
+    We can extract a policy using greedy lookahead. 
+    The Freudenthal triangulation structure is passed the dimensionality and granularity at construction. 
+    The FreudenthalTriangulations.jl package provides the function belief_vertices , 
+    which returns B given a particular triangulation. 
+    It also provides belief_simplex , which returns the set of enclosing points and weights for a belief.
     """
     problem::Any # POMDP problem
     V::Any # dictionary mapping beliefs to utilities
