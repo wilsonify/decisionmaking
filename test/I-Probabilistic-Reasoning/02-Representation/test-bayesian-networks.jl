@@ -1,3 +1,4 @@
+using LightGraphs
 using Test
 using DecisionMakingAlgorithms
 

@@ -1,4 +1,5 @@
 using LightGraphs
+using LinearAlgebra
 using DecisionMakingAlgorithms
 
 @testset "Using the statistics function" begin
