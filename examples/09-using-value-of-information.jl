@@ -46,8 +46,10 @@ add_edge!(graph, 1, 3);
 add_edge!(graph, 2, 3);
 add_edge!(graph, 3, 4);
 add_edge!(graph, 3, 5);
-bn = BayesianNetwork(vars, factors, graph)
+@show(graph)
 
+bn = BayesianNetwork(vars, factors, graph)
+@show(bn)
 
 chance_vars = [B, S]
 decision_vars = [D]
