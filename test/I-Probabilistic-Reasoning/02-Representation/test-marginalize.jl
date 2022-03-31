@@ -1,0 +1,1 @@
+#marginalize(ϕ::Factor, name)

@@ -1,0 +1,1 @@
+#infer(D::MvNormal, query, evidencevars, evidence)
