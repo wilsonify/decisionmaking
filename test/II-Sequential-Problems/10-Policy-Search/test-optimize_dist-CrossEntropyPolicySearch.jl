@@ -1,0 +1,1 @@
+#optimize_dist(M::CrossEntropyPolicySearch, π, U)

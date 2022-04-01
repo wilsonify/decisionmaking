@@ -1,0 +1,1 @@
+#simulate!(π::LabeledHeuristicSearch, U, solved, s)

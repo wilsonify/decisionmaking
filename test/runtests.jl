@@ -7,261 +7,170 @@ using SafeTestsets
     @time @safetestset "I-Probabilistic-Reasoning Tests" begin
         @time @safetestset "01-Introduction Tests" begin
             path_to_here = @__DIR__
-            include(
-                "$path_to_here/I-Probabilistic-Reasoning/01-Introduction/test-control-flow.jl",
-            )
-            include(
-                "$path_to_here/I-Probabilistic-Reasoning/01-Introduction/test-functions.jl",
-            )
-            include(
-                "$path_to_here/I-Probabilistic-Reasoning/01-Introduction/test-packages.jl",
-            )
-            include("$path_to_here/I-Probabilistic-Reasoning/01-Introduction/test-types.jl")
+            path_to_there = "$path_to_here/I-Probabilistic-Reasoning/01-Introduction"
+            include("$path_to_there/test-control-flow.jl")
+            include("$path_to_there/test-functions.jl")
+            include("$path_to_there/test-packages.jl")
+            include("$path_to_there/test-types.jl")
         end
 
         @time @safetestset "02-Representation Tests" begin
             path_to_here = @__DIR__
-            
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-assignments.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-bayesian-networks.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-blanket.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-conditioning.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-condition.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-factor-table.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-gibbs_sample.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-in_scope.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-marginalize.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-normalize_factor.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-probability.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-update_gibbs_sample.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/02-Representation/test-variablenames.jl")
-            
+            path_to_there = "$path_to_here/I-Probabilistic-Reasoning/02-Representation"
+
+            include("$path_to_there/test-assignments.jl")
+            include("$path_to_there/test-bayesian-networks.jl")
+            include("$path_to_there/test-blanket.jl")
+            include("$path_to_there/test-conditioning.jl")
+            include("$path_to_there/test-condition.jl")
+            include("$path_to_there/test-factor-table.jl")
+            include("$path_to_there/test-gibbs_sample.jl")
+            include("$path_to_there/test-in_scope.jl")
+            include("$path_to_there/test-marginalize.jl")
+            include("$path_to_there/test-normalize_factor.jl")
+            include("$path_to_there/test-probability.jl")
+            include("$path_to_there/test-update_gibbs_sample.jl")
+            include("$path_to_there/test-variablenames.jl")
+
         end
 
         @time @safetestset "03-Inference Tests" begin
             path_to_here = @__DIR__
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-gaussia-model-inference.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-inference.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-infer-direct-sampling.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-infer-likelihood-weighted-sampling.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-infer-gibbs-sampling.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-infer-variable-elimination.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-infer-exact-inference.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/03-Inference/test-infer-mvnormal.jl")
-            
+            path_to_there = "$path_to_here/I-Probabilistic-Reasoning/03-Inference"
+            include("$path_to_there/test-gaussia-model-inference.jl")
+            include("$path_to_there/test-inference.jl")
+            include("$path_to_there/test-infer-direct-sampling.jl")
+            include("$path_to_there/test-infer-likelihood-weighted-sampling.jl")
+            include("$path_to_there/test-infer-gibbs-sampling.jl")
+            include("$path_to_there/test-infer-variable-elimination.jl")
+            include("$path_to_there/test-infer-exact-inference.jl")
+            include("$path_to_there/test-infer-mvnormal.jl")
+
         end
 
         @time @safetestset "04-Parameter-Learning" begin
             path_to_here = @__DIR__
-            include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning//test-statistics.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning//test-gaussian_kernel.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning//test-prior.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning//packages.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning//Nonparametric-Learning.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning//test-kernel_density_estimate.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning//test-sub2ind.jl")
-            
+            path_to_there = "$path_to_here/I-Probabilistic-Reasoning/04-Parameter-Learning"
+            include("$path_to_there/test-statistics.jl")
+            include("$path_to_there/test-gaussian_kernel.jl")
+            include("$path_to_there/test-prior.jl")
+            include("$path_to_there/test-kernel_density_estimate.jl")
+            include("$path_to_there/test-sub2ind.jl")
+
         end
 
         @time @safetestset "05-Structure-Learning Tests" begin
             path_to_here = @__DIR__
-            include("$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning//test-bayesian-network-scoring.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning//test-are_markov_equivalent.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning//test-bayesian_score_component.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning//test-rand_graph_neighbor.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning//test-bayesian_score.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning//test-fit-k2search.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning//test-fit-local-directed-graph-search.jl")
-            
+            path_to_there = "$path_to_here/I-Probabilistic-Reasoning/05-Structure-Learning"
+            include("$path_to_there/test-bayesian-network-scoring.jl")
+            include("$path_to_there/test-are_markov_equivalent.jl")
+            include("$path_to_there/test-bayesian_score_component.jl")
+            include("$path_to_there/test-rand_graph_neighbor.jl")
+            include("$path_to_there/test-bayesian_score.jl")
+            include("$path_to_there/test-fit-k2search.jl")
+            include("$path_to_there/test-fit-local-directed-graph-search.jl")
+
         end
 
         @time @safetestset "06-Simple-Decisions Tests" begin
-            include("$path_to_here/I-Probabilistic-Reasoning/06-Simple-Decisions/test-solve.jl")
-            include("$path_to_here/I-Probabilistic-Reasoning/06-Simple-Decisions/test-value-of-information.jl")            
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/I-Probabilistic-Reasoning/06-Simple-Decisions"
+            include("$path_to_there/test-solve.jl")
+            include("$path_to_there/test-value-of-information.jl")
         end
 
     end
     @time @safetestset "II-Sequential-Problems Tests" begin
-        @time @safetestset "07-Exact-Solution-Methods Tests" begin 
-        """
-
-src/II-Sequential-Problems/07-Exact-Solution-Methods/Asynchronous-Value-Iteration.jl:
-9: function solve(M::GaussSeidelValueIteration, problem::MDP)
-
-src/II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Program-Formulation.jl:
-18: function tensorform(problem::MDP)
-29: function solve(M::LinearProgramFormulation, problem::MDP)
-
-src/II-Sequential-Problems/07-Exact-Solution-Methods/Linear-Systems-with-Quadratic-Reward.jl:
-13: function solve(problem::LinearQuadraticProblem)
-
-src/II-Sequential-Problems/07-Exact-Solution-Methods/Markov-Decision-Processes.jl:
-18: function lookahead(problem::MDP, U, s, a)
-30: function lookahead(problem::MDP, U::Vector, s, a)
-35: function backup(problem::MDP, U, s)
-43: function iterative_policy_evaluation(problem::MDP, π, k_max)
-57: function policy_evaluation(problem::MDP, π)
-
-src/II-Sequential-Problems/07-Exact-Solution-Methods/Policy-Iteration.jl:
-8: function solve(M::PolicyIteration, problem::MDP)
-
-src/II-Sequential-Problems/07-Exact-Solution-Methods/Value-Function-Policies.jl:
-10: function greedy(problem::MDP, U, s)
-
-src/II-Sequential-Problems/07-Exact-Solution-Methods/Value-Iteration.jl:
-11: function solve(M::ValueIteration, problem::MDP)
-
-
-        """
+        @time @safetestset "07-Exact-Solution-Methods Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/07-Exact-Solution-Methods"
+            include("$path_to_there/test-iterative_policy_evaluation.jl")
+            include("$path_to_there/test-solve-gauss-seidel-value-iteration.jl")
+            include("$path_to_there/test-policy_evaluation.jl")
+            include("$path_to_there/test-backup.jl")
+            include("$path_to_there/test-solve-linear-program-formulation.jl")
+            include("$path_to_there/test-solve-policy-iteration.jl")
+            include("$path_to_there/test-tensorform.jl")
+            include("$path_to_there/test-solve-value-iteration.jl")
+            include("$path_to_there/test-solve-linear-quadratic-problem.jl")
+            include("$path_to_there/test-greedy.jl")
+            include("$path_to_there/test-iterative_policy_evaluation.jl")
+            include("$path_to_there/test-lookahead.jl")
         end
-        @time @safetestset "08-Approximate-Value-Functions Tests" begin 
-        """
-        src/II-Sequential-Problems/08-Approximate-Value-Functions/Kernel-Smoothing.jl:
-14: function (Uθ::LocallyWeightedValueFunction)(s)
-18: function fit!(Uθ::LocallyWeightedValueFunction, S, U)
-
-src/II-Sequential-Problems/08-Approximate-Value-Functions/Linear-Regression.jl:
-12: function (Uθ::LinearRegressionValueFunction)(s)
-16: function fit!(Uθ::LinearRegressionValueFunction, S, U)
-
-src/II-Sequential-Problems/08-Approximate-Value-Functions/Nearest-Neighbor.jl:
-19: function (Uθ::NearestNeighborValueFunction)(s)
-25: function fit!(Uθ::NearestNeighborValueFunction, S, U)
-
-src/II-Sequential-Problems/08-Approximate-Value-Functions/Parametric Representations.jl:
-16: function solve(M::ApproximateValueIteration, problem::MDP)
-
-src/II-Sequential-Problems/08-Approximate-Value-Functions/Simplex-Interpolation.jl:
-19: function (Uθ::MultilinearValueFunction)(s)
-44: function fit!(Uθ::MultilinearValueFunction, S, U)
-67: function (Uθ::SimplexValueFunction)(s)
-85: function fit!(Uθ::SimplexValueFunction, S, U)
-
-
-        """
+        @time @safetestset "08-Approximate-Value-Functions Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/08-Approximate-Value-Functions"
+            include("$path_to_there/test-fit-MultilinearValueFunction.jl")
+            include("$path_to_there/test-fit-NearestNeighborValueFunction.jl")
+            include("$path_to_there/test-solve-ApproximateValueIteration.jl")
+            include("$path_to_there/test-fit-LocallyWeightedValueFunction.jl")
+            include("$path_to_there/test-fit-LinearRegressionValueFunction.jl")
+            include("$path_to_there/test-fit-SimplexValueFunction.jl")
         end
-        @time @safetestset "09-Online-Planning Tests" begin 
-        """
-        src/II-Sequential-Problems/09-Online-Planning/Branch-and-Bound.jl:
-16: function branch_and_bound(problem, s, d, Ulo, Qhi)
+        @time @safetestset "09-Online-Planning Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/09-Online-Planning"
 
-src/II-Sequential-Problems/09-Online-Planning/Forward-Search.jl:
-19: function forward_search(problem, s, d, U)
-
-src/II-Sequential-Problems/09-Online-Planning/Heuristic-Search.jl:
-13: function simulate!(π::HeuristicSearch, U, s)
-21: function (π::HeuristicSearch)(s)
-
-
-src/II-Sequential-Problems/09-Online-Planning/Labeled-Heuristic-Search.jl:
-23: function (π::LabeledHeuristicSearch)(s)
-31: function simulate!(π::LabeledHeuristicSearch, U, solved, s)
-
-src/II-Sequential-Problems/09-Online-Planning/Lookahead-with-Rollouts.jl:
-16: function rollout(problem, s, π, d)
-25: function (π::RolloutLookahead)(s)
-
-src/II-Sequential-Problems/09-Online-Planning/Monte-Carlo-Tree-Search.jl:
-16: function (π::MonteCarloTreeSearch)(s)
-23: function simulate!(π::MonteCarloTreeSearch, s, d = π.d)
-57: function explore(π::MonteCarloTreeSearch, s)
-
-src/II-Sequential-Problems/09-Online-Planning/Open-Loop-Planning.jl:
-37: function label!(π::LabeledHeuristicSearch, U, solved, s)
-
-src/II-Sequential-Problems/09-Online-Planning/Sparse-Sampling.jl:
-15: function sparse_sampling(problem, s, d, m, U)
-
-
-        """
+            include("$path_to_there/test-simulate-LabeledHeuristicSearch.jl")
+            include("$path_to_there/test-sparse_sampling.jl")
+            include("$path_to_there/test-forward_search.jl")
+            include("$path_to_there/test-branch-and-bound.jl")
+            include("$path_to_there/test-label-LabeledHeuristicSearch.jl")
+            include("$path_to_there/test-simulate-MonteCarloTreeSearch.jl")
+            include("$path_to_there/test-simulate-HeuristicSearch.jl")
+            include("$path_to_there/test-rollout.jl")
+            include("$path_to_there/test-explore-MonteCarloTreeSearch.jl")
         end
-        @time @safetestset "10-Policy-Search Tests" begin 
-        """
-        src/II-Sequential-Problems/10-Policy-Search/Approximate-Policy-Evaluation.jl:
-15: function (U::MonteCarloPolicyEvaluation)(π)
-36: function optimize(M::HookeJeevesPolicySearch, π, U)
-78: function optimize(M::GeneticPolicySearch, π, U)
+        @time @safetestset "10-Policy-Search Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/10-Policy-Search"
+            include("$path_to_there/test-optimize_dist-EvolutionStrategies.jl")
+            include("$path_to_there/test-optimize_dist-IsotropicEvolutionStrategies.jl")
+            include("$path_to_there/test-optimize-HookeJeevesPolicySearch.jl")
+            include("$path_to_there/test-optimize-M.jl")
+            include("$path_to_there/test-optimize-GeneticPolicySearch.jl")
+            include("$path_to_there/test-evolution_strategy_weights.jl")
+            include("$path_to_there/test-optimize_dist-CrossEntropyPolicySearch.jl")
 
-src/II-Sequential-Problems/10-Policy-Search/Cross-Entropy-Method.jl:
-16: function optimize_dist(M::CrossEntropyPolicySearch, π, U)
-27: function optimize(M, π, U)
-
-src/II-Sequential-Problems/10-Policy-Search/Isotropic-Evolutionary-Strategies.jl:
-25: function evolution_strategy_weights(m)
-32: function optimize_dist(M::EvolutionStrategies, π, U)
-59: function optimize_dist(M::IsotropicEvolutionStrategies, π, U)
-
-
-        """
-        
         end
-        @time @safetestset "11-Policy-Gradient-Estimation Tests" begin 
-        """
-        src/II-Sequential-Problems/11-Policy-Gradient-Estimation/Baseline-Subtraction.jl:
-14: function gradient(M::BaselineSubtractionGradient, π, θ)
-
-src/II-Sequential-Problems/11-Policy-Gradient-Estimation/Finite-Difference.jl:
-1: function simulate(problem::MDP, s, π, d)
-35: function gradient(M::FiniteDifferenceGradient, π, θ)
-
-src/II-Sequential-Problems/11-Policy-Gradient-Estimation/Likelihood-Ratio.jl:
-14:     function gradient(M::LikelihoodRatioGradient, π, θ)
-
-src/II-Sequential-Problems/11-Policy-Gradient-Estimation/Regression-Gradient.jl:
-19: function gradient(M::RegressionGradient, π, θ)
-
-src/II-Sequential-Problems/11-Policy-Gradient-Estimation/Reward-to-Go.jl:
-15: function gradient(M::RewardToGoGradient, π, θ)
-
-
-        """
+        @time @safetestset "11-Policy-Gradient-Estimation Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/11-Policy-Gradient-Estimation"
+            include("$path_to_there/test-gradient-BaselineSubtractionGradient.jl")
+            include("$path_to_there/test-regression-gradient.jl")
+            include("$path_to_there/test-gradient-FiniteDifferenceGradient.jl")
+            include("$path_to_there/test-gradient-RegressionGradient.jl")
+            include("$path_to_there/test-gradient-RewardToGoGradient.jl")
+            include("$path_to_there/test-simulate-MDP.jl")
+            include("$path_to_there/test-gradient-LikelihoodRatioGradient.jl")
         end
-        @time @safetestset "12-Policy-Gradient-Optimization Tests" begin 
-        """
-        src/II-Sequential-Problems/12-Policy-Gradient-Optimization/Clamped Surrogate Objective.jl:
-24: function clamped_gradient(M::ClampedSurrogateUpdate, θ, θ′, τs)
-38: function update(M::ClampedSurrogateUpdate, θ)
-
-src/II-Sequential-Problems/12-Policy-Gradient-Optimization/Gradient Ascent Update.jl:
-12: function update(M::PolicyGradientUpdate, θ)
-
-src/II-Sequential-Problems/12-Policy-Gradient-Optimization/Natural Gradient Update.jl:
-22: function natural_update(θ, ∇f, F, ϵ, τs)
-29: function update(M::NaturalPolicyUpdate, θ)
-
-src/II-Sequential-Problems/12-Policy-Gradient-Optimization/Restricted Gradient Update.jl:
-19: function update(M::RestrictedPolicyUpdate, θ)
-
-src/II-Sequential-Problems/12-Policy-Gradient-Optimization/Trust Region Update.jl:
-31: function surrogate_objective(M::TrustRegionUpdate, θ, θ′, τs)
-38: function surrogate_constraint(M::TrustRegionUpdate, θ, θ′, τs)
-44: function linesearch(M::TrustRegionUpdate, f, g, θ, θ′)
-51: function update(M::TrustRegionUpdate, θ)
-
-
-        """
+        @time @safetestset "12-Policy-Gradient-Optimization Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/12-Policy-Gradient-Optimization"
+            include("$path_to_there/test-update-NaturalPolicyUpdate.jl")
+            include("$path_to_there/test-surrogate_constraint-TrustRegionUpdate.jl")
+            include("$path_to_there/test-surrogate_objective-TrustRegionUpdate.jl")
+            include("$path_to_there/test-update-ClampedSurrogateUpdate.jl")
+            include("$path_to_there/test-natural_update.jl")
+            include("$path_to_there/test-clamped_gradient-ClampedSurrogateUpdate.jl")
+            include("$path_to_there/test-update-TrustRegionUpdate.jl")
+            include("$path_to_there/test-update-RestrictedPolicyUpdate.jl")
+            include("$path_to_there/test-update-PolicyGradientUpdate.jl")
+            include("$path_to_there/test-linesearch-TrustRegionUpdate.jl")
         end
-        @time @safetestset "13-Actor-Critic-Methods Tests" begin 
-        """
-        src/II-Sequential-Problems/13-Actor-Critic-Methods/Actor-Critic.jl:
-30:     function gradient(M::ActorCritic, π, θ, ϕ)
+        @time @safetestset "13-Actor-Critic-Methods Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/13-Actor-Critic-Methods"
+include("$path_to_there/test-gradient-DeterministicPolicyGradient.jl")
+include("$path_to_there/test-gradient-ActorCritic.jl")
+include("$path_to_there/test-gradient-GeneralizedAdvantageEstimation.jl")
 
-src/II-Sequential-Problems/13-Actor-Critic-Methods/Deterministic Policy Gradient.jl:
-36:     function gradient(M::DeterministicPolicyGradient, π, θ, ϕ)
-
-src/II-Sequential-Problems/13-Actor-Critic-Methods/Generalized Advantage Estimation.jl:
-34:     function gradient(M::GeneralizedAdvantageEstimation, π, θ, ϕ)
-
-
-        """
         end
 
-        @time @safetestset "14-Policy-Validation Tests" begin 
-        """
-        src/II-Sequential-Problems/14-Policy-Validation/Adversarial Analysis.jl:
-11: function adversarial(problem::MDP, π, λ)
-
-        """
+        @time @safetestset "14-Policy-Validation Tests" begin
+            path_to_here = @__DIR__
+            path_to_there = "$path_to_here/II-Sequential-Problems/14-Policy-Validation"
+            include("$path_to_there/test-adversarial-MDP.jl")
         end
     end
     @time @safetestset "III-Model-Uncertainty Tests" begin

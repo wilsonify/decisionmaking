@@ -1,0 +1,1 @@
+#label!(π::LabeledHeuristicSearch, U, solved, s)

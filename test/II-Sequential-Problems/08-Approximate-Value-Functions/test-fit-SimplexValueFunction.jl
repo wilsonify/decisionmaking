@@ -1,0 +1,1 @@
+#fit!(Uθ::SimplexValueFunction, S, U)

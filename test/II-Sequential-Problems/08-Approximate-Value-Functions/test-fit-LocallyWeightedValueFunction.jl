@@ -1,0 +1,1 @@
+#fit!(Uθ::LocallyWeightedValueFunction, S, U)
