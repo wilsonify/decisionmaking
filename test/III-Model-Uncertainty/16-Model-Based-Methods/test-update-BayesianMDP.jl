@@ -1,0 +1,1 @@
+#update!(model::BayesianMDP, s, a, r, s′)

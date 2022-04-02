@@ -1,0 +1,1 @@
+#update!(model::SarsaLambda, s, a, r, s′)

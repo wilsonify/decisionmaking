@@ -1,0 +1,1 @@
+#update!(model::ReplayGradientQLearning, s, a, r, s′)
