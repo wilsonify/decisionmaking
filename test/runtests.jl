@@ -1,9 +1,9 @@
 # using DecisionMakingAlgorithms
 using Test
-using SafeTestsets
 
-@time @safetestset "test_helloWorld Tests" begin
-    path_to_here = @__DIR__
+path_to_here = @__DIR__
+
+@time @testset "test_helloWorld Tests" begin
     include("$path_to_here/I-Probabilistic-Reasoning/01-Introduction/test_helloWorld.jl")
 end
 
