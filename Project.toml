@@ -22,15 +22,12 @@ SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 Formatting = "0.4"
 
+FreudenthalTriangulations = "2"
+
 SpecialFunctions = "2"
-
-
 LightGraphs = "1"
-
 JuMP = "1"
-
 Distributions = "0.25"
-
 AMQPClient = "0.5"
 Formatting = "0.4"
 ForwardDiff = "0.10"
@@ -38,7 +35,6 @@ FreudenthalTriangulations = "2"
 Ipopt = "1"
 IterTools = "1"
 SpecialFunctions = "2"
-
 julia = "1.7"
 
 
