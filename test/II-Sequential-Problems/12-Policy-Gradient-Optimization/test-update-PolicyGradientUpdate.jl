@@ -1,0 +1,1 @@
+#update(M::PolicyGradientUpdate, θ)

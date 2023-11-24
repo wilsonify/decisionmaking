@@ -1,0 +1,1 @@
+#infer(M::GibbsSampling, bn, query, evidence)

@@ -1,0 +1,1 @@
+#infer(M::VariableElimination, bn, query, evidence)

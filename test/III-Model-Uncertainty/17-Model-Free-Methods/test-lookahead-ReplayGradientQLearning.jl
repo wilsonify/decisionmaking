@@ -1,0 +1,1 @@
+#lookahead(model::ReplayGradientQLearning, s, a)

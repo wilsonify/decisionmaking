@@ -1,0 +1,1 @@
+#update!(model::IncrementalEstimate, x)
