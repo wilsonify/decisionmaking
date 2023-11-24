@@ -8,6 +8,7 @@ include("VI-Appendix/E-Search-Algorithms/E5-dynamic-programming.jl")
 include("VI-Appendix/E-Search-Algorithms/E6-heuristic-search.jl")
 
 include("I-Probabilistic-Reasoning/01-Introduction/foo.jl")
+include("I-Probabilistic-Reasoning/01-Introduction/helloWorld.jl")
 include("I-Probabilistic-Reasoning/01-Introduction/receive.jl")
 
 include("I-Probabilistic-Reasoning/02-Representation/variable.jl")
@@ -374,6 +375,8 @@ export Search
 
 #functions
 export foo
+export hello
+export hello_squares
 export receive
 export assignments
 export probability
