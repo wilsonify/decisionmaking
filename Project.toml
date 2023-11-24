@@ -19,6 +19,10 @@ SafeTestsets = "1bc83da4-3b8d-516f-aca4-4fe02f6d838f"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [compat]
+Distributions = "0.25"
+
+Formatting = "0.4"
+
 LightGraphs = "1"
 LightGraphs = "1"
 FreudenthalTriangulations = "2"
@@ -37,6 +41,7 @@ IterTools = "1"
 JuMP = "1"
 LightGraphs = "1"
 SpecialFunctions = "2"
+
 julia = "1.7"
 
 
