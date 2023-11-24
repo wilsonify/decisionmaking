@@ -1,24 +1,15 @@
 # using DecisionMakingAlgorithms
 using Test
 
-path_to_here = @__DIR__
-
-@time @testset "test_helloWorld Tests" begin
-    include("$path_to_here/I-Probabilistic-Reasoning/01-Introduction/test_helloWorld.jl")
+@time @testset "01-Introduction Tests" begin
+    path_to_there = "$(@__DIR__)/I-Probabilistic-Reasoning/01-Introduction"
+    include("$path_to_there/test_helloWorld.jl")
+    include("$path_to_there/test-control-flow.jl")
+    include("$path_to_there/test-functions.jl")
+    #include("$path_to_there/test-packages.jl")
+    #include("$path_to_there/test-types.jl")
 end
 
-
-# @testset "DecisionMakingAlgorithms.jl" begin
-#     @time @safetestset "I-Probabilistic-Reasoning Tests" begin
-#         @time @safetestset "01-Introduction Tests" begin
-#             path_to_here = @__DIR__
-#             path_to_there = "$path_to_here/I-Probabilistic-Reasoning/01-Introduction"
-#             include("$path_to_there/test-control-flow.jl")
-#             include("$path_to_there/test-functions.jl")
-#             include("$path_to_there/test-packages.jl")
-#             include("$path_to_there/test-types.jl")
-#         end
-#
 #         @time @safetestset "02-Representation Tests" begin
 #             path_to_here = @__DIR__
 #             path_to_there = "$path_to_here/I-Probabilistic-Reasoning/02-Representation"
