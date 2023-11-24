@@ -1,0 +1,1 @@
+#bayesian_score_component(M, α)

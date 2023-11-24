@@ -1,4 +1,4 @@
-module Gibbs
+
 struct GibbsSampling
     m_samples # number of samples
     m_burnin # number of samples
@@ -17,5 +17,4 @@ function infer(M::GibbsSampling, bn, query, evidence)
     end
     vars = filter(v -> v.name ∈ query, bn.vars)
     return normalize_factor!(Factor(vars, table))
-end
 end

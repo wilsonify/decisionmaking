@@ -1,3 +1,4 @@
+using JuMP
 """
 A method for
     solving a discrete MDP using a
@@ -13,6 +14,7 @@ A method for
     use this formulation.
 """
 struct LinearProgramFormulation end
+
 function tensorform(problem::MDP)
     𝒮, 𝒜, R, T = problem.𝒮, problem.𝒜, problem.R, problem.T
     𝒮′ = eachindex(𝒮)
@@ -21,7 +23,9 @@ function tensorform(problem::MDP)
     T′ = [T(s, a, s′) for s in 𝒮, a in 𝒜, s′ in 𝒮]
     return 𝒮′, 𝒜′, R′, T′
 end
+
 solve(problem::MDP) = solve(LinearProgramFormulation(), problem)
+
 function solve(M::LinearProgramFormulation, problem::MDP)
     𝒮, 𝒜, R, T = tensorform(problem)
     model = Model(GLPK.Optimizer)

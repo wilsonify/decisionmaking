@@ -39,6 +39,7 @@ function discounted_state_visitations(M::MaximumEntropyIRL, θ)
     end
     return normalize_factor!(vec(mean(b_sk, dims = 2)), 1)
 end
+
 function optimize(M::MaximumEntropyIRL, D, ϕ, θ)
     problem, π, Pπ, ∇R, RL, α, k_max = M.problem, M.π, M.Pπ, M.∇R, M.RL, M.α, M.k_max
     𝒮, 𝒜, γ, nD = problem.𝒮, problem.𝒜, problem.γ, length(D)
@@ -47,9 +48,9 @@ function optimize(M::MaximumEntropyIRL, D, ϕ, θ)
         θ = optimize(RL, π, θ)
         b = discounted_state_visitations(M, θ)
         ∇Rτ = τ -> sum(γ^(i - 1) * ∇R(ϕ, s, a) for (i, (s, a)) in enumerate(τ))
-        ∇f = sum(∇Rτ(τ) for τ in D) nD * sum(
-                b[si] * sum(Pπ(θ, a, s) * ∇R(ϕ, s, a) for (ai, a) in enumerate(𝒜)) for
-                (si, s) in enumerate(𝒮)
+        ∇f = sum(∇Rτ(τ) for τ in D) - nD * sum(
+                b[si] * sum(Pπ(θ, a, s) * ∇R(ϕ, s, a) for (ai, a) in enumerate(𝒜)
+                ) for (si, s) in enumerate(𝒮)
             )
         ϕ += α * ∇f
     end

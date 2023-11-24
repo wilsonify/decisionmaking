@@ -1,6 +1,5 @@
-path_to_top = dirname(dirname(dirname(@__DIR__)))
-include("$path_to_top/src/I-Probabilistic-Reasoning/03-Inference/Gaussian-Model-Inference.jl")
 using Distributions
+using DecisionMakingAlgorithms
 
 D = MvNormal([0.0,1.0],[3.0 1.0; 1.0 2.0])
 

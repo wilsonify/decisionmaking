@@ -1,14 +1,8 @@
 struct LinearQuadraticProblem
     """
-    A method that
-computes an optimal policy for
-an h_max -step horizon MDP with
-stochastic linear dynamics parameterized by matrices Ts and Ta and
-quadratic reward parameterized
-by matrices Rs and Ra . The method
-returns a vector of policies where
-entry h produces the optimal first
-action in an h-step policy.
+    A method that computes an optimal policy for an h_max-step horizon MDP with
+    stochastic linear dynamics parameterized by matrices Ts and Ta and quadratic reward parameterized by matrices Rs and Ra . 
+    The method returns a vector of policies where entry h produces the optimal first action in an h-step policy.
     """
     Ts::Any # transition matrix with respect to state
     Ta::Any # transition matrix with respect to action

@@ -1,0 +1,1 @@
+#gibbs_sample!(a, bn, evidence, ordering, m)

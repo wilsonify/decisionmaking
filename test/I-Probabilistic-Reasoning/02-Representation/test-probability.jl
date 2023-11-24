@@ -1,0 +1,1 @@
+#probability(bn::BayesianNetwork, assignment::Assignment)

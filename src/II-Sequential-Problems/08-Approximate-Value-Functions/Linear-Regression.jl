@@ -12,6 +12,7 @@ end
 function (Uθ::LinearRegressionValueFunction)(s)
     return Uθ.β(s) ⋅ Uθ.θ
 end
+
 function fit!(Uθ::LinearRegressionValueFunction, S, U)
     X = hcat([Uθ.β(s) for s in S]...)'
     Uθ.θ = pinv(X) * U

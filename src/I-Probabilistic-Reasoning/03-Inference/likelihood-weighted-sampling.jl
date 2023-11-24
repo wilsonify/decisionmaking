@@ -1,4 +1,4 @@
-module Likelihood
+
 struct LikelihoodWeightedSampling
     """
     The likelihood weighted sampling inference method,
@@ -36,5 +36,3 @@ function infer(M::LikelihoodWeightedSampling, bn, query, evidence)
     vars = filter(v -> v.name ∈ query, bn.vars)
     return normalize_factor!(Factor(vars, table))
 end
-end
-

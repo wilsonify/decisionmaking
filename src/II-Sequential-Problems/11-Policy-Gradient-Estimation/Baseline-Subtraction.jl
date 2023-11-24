@@ -1,11 +1,8 @@
 struct BaselineSubtractionGradient
     """
-    Likelihood ratio
-gradient estimation with rewardto-go and baseline subtraction for
-an MDP problem , policy π , and initial state
-distribution b . The gradient with
-respect to the parameterization vector θ is estimated from m rollouts to
-depth d using the log policy gradients ∇logπ .
+    Likelihood ratio gradient estimation with rewardto-go and baseline subtraction for an MDP problem , 
+    policy π , and initial state distribution b . 
+    The gradient with respect to the parameterization vector θ is estimated from m rollouts to depth d using the log policy gradients ∇logπ .
     """
     problem::Any # problem
     b::Any # initial state distribution
@@ -13,6 +10,7 @@ depth d using the log policy gradients ∇logπ .
     m::Any # number of samples
     ∇logπ::Any # gradient of log likelihood
 end
+
 function gradient(M::BaselineSubtractionGradient, π, θ)
     problem, b, d, m, ∇logπ, γ = M.problem, M.b, M.d, M.m, M.∇logπ, M.problem.γ
     πθ(s) = π(θ, s)

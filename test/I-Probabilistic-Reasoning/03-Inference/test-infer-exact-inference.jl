@@ -1,0 +1,1 @@
+#infer(M::ExactInference, bn, query, evidence)
