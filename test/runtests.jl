@@ -1,4 +1,4 @@
-# using DecisionMakingAlgorithms
+using DecisionMakingAlgorithms
 using Test
 
 @time @testset "01-Introduction Tests" begin
@@ -10,25 +10,22 @@ using Test
     include("$path_to_there/test-types.jl")
 end
 
-#         @time @safetestset "02-Representation Tests" begin
-#             path_to_here = @__DIR__
-#             path_to_there = "$path_to_here/I-Probabilistic-Reasoning/02-Representation"
-#
-#             include("$path_to_there/test-assignments.jl")
-#             include("$path_to_there/test-bayesian-networks.jl")
-#             include("$path_to_there/test-blanket.jl")
-#             include("$path_to_there/test-conditioning.jl")
-#             include("$path_to_there/test-condition.jl")
-#             include("$path_to_there/test-factor-table.jl")
-#             include("$path_to_there/test-gibbs_sample.jl")
-#             include("$path_to_there/test-in_scope.jl")
-#             include("$path_to_there/test-marginalize.jl")
-#             include("$path_to_there/test-normalize_factor.jl")
-#             include("$path_to_there/test-probability.jl")
-#             include("$path_to_there/test-update_gibbs_sample.jl")
-#             include("$path_to_there/test-variablenames.jl")
-#
-#         end
+@time @testset "02-Representation Tests" begin
+    path_to_there = "$(@__DIR__)/I-Probabilistic-Reasoning/02-Representation"
+    include("$path_to_there/test-assignments.jl")
+    include("$path_to_there/test-bayesian-networks.jl")
+    include("$path_to_there/test-blanket.jl")
+    include("$path_to_there/test-conditioning.jl")
+    include("$path_to_there/test-condition.jl")
+    include("$path_to_there/test-factor-table.jl")
+    include("$path_to_there/test-gibbs_sample.jl")
+    include("$path_to_there/test-in_scope.jl")
+    include("$path_to_there/test-marginalize.jl")
+    include("$path_to_there/test-normalize_factor.jl")
+    include("$path_to_there/test-probability.jl")
+    include("$path_to_there/test-update_gibbs_sample.jl")
+    include("$path_to_there/test-variablenames.jl")
+end
 #
 #         @time @safetestset "03-Inference Tests" begin
 #             path_to_here = @__DIR__
