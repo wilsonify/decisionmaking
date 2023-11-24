@@ -20,6 +20,14 @@ SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [compat]
 AMQPClient = "0.4"
+LightGraphs = "1"
+FreudenthalTriangulations = "2"
+Ipopt = "1"
+IterTools = "1"
+ForwardDiff = "0.10"
+
+GLPK = "1"
+AMQPClient = "0.5"
 Distributions = "0.25"
 Formatting = "0.4"
 ForwardDiff = "0.10"
