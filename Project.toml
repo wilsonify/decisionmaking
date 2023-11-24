@@ -21,15 +21,14 @@ SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 [compat]
 
 
+SpecialFunctions = "2"
+
+
 LightGraphs = "1"
-
-
 
 JuMP = "1"
 
-
 Distributions = "0.25"
-
 
 AMQPClient = "0.5"
 Formatting = "0.4"
