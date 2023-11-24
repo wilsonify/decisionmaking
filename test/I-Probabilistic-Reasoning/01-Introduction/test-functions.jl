@@ -1,9 +1,6 @@
 using Test
 
-struct A
-    a::Int64
-    b::Float64
-end
+
 
 @testset " Functions" begin
     #A function maps its arguments, given as a tuple, to a result that is returned.
@@ -13,10 +10,10 @@ end
         #One way to define a named function is to use the function keyword, followed by
         #the name of the function and a tuple of names of arguments.
 
-        function f1(x, y)
+        function f1_sum(x, y)
             return x + y
         end
-        @test(f1(3, 0.1415) == 3.1415)
+        @test(f1_sum(3, 0.1415) == 3.1415)
 
         #We can also define functions compactly using assignment form.
 
@@ -84,11 +81,11 @@ end
         #execute the appropriate method. The mechanism for choosing which method to
         #execute is called dispatch.
 
-        f(x::Int64) = x + 10
-        f(x::Float64) = x + 3.1415
-        @test(f(1) == 11)
-        @test(f(1.0) == 4.141500000000001)
-        @test(f(1.3) == 4.4415000000000004)
+        f_plus_const(x::Int64) = x + 10
+        f_plus_const(x::Float64) = x + 3.1415
+        @test(f_plus_const(1) == 11)
+        @test(f_plus_const(1.0) == 4.141500000000001)
+        @test(f_plus_const(1.3) == 4.4415000000000004)
 
         # The method with a type signature that best matches the types of the arguments given will be used.
 

@@ -6,8 +6,8 @@ using Test
     include("$path_to_there/test_helloWorld.jl")
     include("$path_to_there/test-control-flow.jl")
     include("$path_to_there/test-functions.jl")
-    #include("$path_to_there/test-packages.jl")
-    #include("$path_to_there/test-types.jl")
+    include("$path_to_there/test-packages.jl")
+    include("$path_to_there/test-types.jl")
 end
 
 #         @time @safetestset "02-Representation Tests" begin
