@@ -1,0 +1,1 @@
+#infer(M::DirectSampling, bn, query, evidence)

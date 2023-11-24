@@ -1,0 +1,1 @@
+#update!(model::Sarsa, s, a, r, s′)

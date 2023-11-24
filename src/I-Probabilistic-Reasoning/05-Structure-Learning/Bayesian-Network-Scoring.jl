@@ -1,3 +1,4 @@
+using Distributions
 using SpecialFunctions
 
 function bayesian_score_component(M, α)

@@ -1,0 +1,1 @@
+#natural_update(θ, ∇f, F, ϵ, τs)

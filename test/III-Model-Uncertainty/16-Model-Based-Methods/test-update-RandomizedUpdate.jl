@@ -1,0 +1,1 @@
+#update!(planner::RandomizedUpdate, model, s, a, r, s′)

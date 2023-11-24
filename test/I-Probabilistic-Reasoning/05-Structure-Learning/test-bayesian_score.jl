@@ -1,0 +1,1 @@
+#bayesian_score(vars, G, D)

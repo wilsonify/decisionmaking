@@ -1,0 +1,1 @@
+#infer(M::LikelihoodWeightedSampling, bn, query, evidence)

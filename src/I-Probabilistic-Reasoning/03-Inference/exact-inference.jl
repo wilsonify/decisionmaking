@@ -1,6 +1,3 @@
-module Exact
-export ExactInference
-export infer
 
 struct ExactInference
     """
@@ -24,5 +21,4 @@ function infer(M::ExactInference, bn, query, evidence)
         ϕ = marginalize(ϕ, name)
     end
     return normalize_factor!(ϕ)
-end
 end

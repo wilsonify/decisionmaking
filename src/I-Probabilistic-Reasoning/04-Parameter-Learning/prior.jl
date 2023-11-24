@@ -8,7 +8,7 @@ function prior(vars, G)
     the function takes as input the list of variables vars and structure G.
     """
     n = length(vars)
-    r = [vars[i].r for i = 1:n]
+    r = [vars[i].m for i = 1:n]
     q = [prod([r[j] for j in inneighbors(G, i)]) for i = 1:n]
     return [ones(q[i], r[i]) for i = 1:n]
 end

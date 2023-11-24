@@ -1,14 +1,23 @@
 using Test
-include("../03-Inference/inference-library.jl")
-@testset "bayesian scoreing tests" begin
-    @testset "bayesian_score_component" begin
-        M = statistics(vars, G, D)
-        α = prior(vars, G)
-        @test bayesian_score_component(M, α)==2
+using DecisionMakingAlgorithms
+using LightGraphs
 
-    end
+A = Variable(:A, 2)
+B = Variable(:B, 2)
+C = Variable(:C, 2)
 
+G = SimpleDiGraph(3); # create a directed graph with three nodes
+add_edge!(G, 1, 2)
+add_edge!(G, 3, 2)
+vars = [A, B, C]
+D = [
+    1 2 2 1
+    1 2 2 1
+    2 2 2 2
+]
+
+@testset "bayesian scoring tests" begin
     @testset "bayesian_score" begin
-        @test bayesian_score(vars, G, D)==2
+        @test bayesian_score(vars, G, D) == -7.207859871432474
     end
 end
