@@ -1,0 +1,32 @@
+name: CreateCache
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cacher:
+    name: Julia ${{ matrix.version }} Cache
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ '1.4', '1.5', '1.6', '1.7', '1.8', '1.9' ]
+    steps:
+      - name: Setup Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.version }}
+        env:
+          JULIA_DEPOT_PATH: ~/.julia
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Julia Dependencies
+        run: julia --project=~/.julia/environments/v${{ matrix.version }} setup.jl
+
+      - name: Cache Julia dependencies
+        uses: actions/cache/save@v3
+        with:
+          path: ~/.julia
+          key: ${{ runner.os }}-julia-${{ matrix.version }}-${{ hashFiles('setup.jl') }}
