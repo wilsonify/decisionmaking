@@ -1,0 +1,34 @@
+name: ContinuousIntegration
+
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  test:
+    name: Julia ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ '1.4', '1.5', '1.6', '1.7', '1.8', '1.9' ]
+    steps:
+      - name: Setup Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.version }}
+        env:
+          JULIA_DEPOT_PATH: ~/.julia
+
+      - name: Restore Cached Julia dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/.julia
+          key: ${{ runner.os }}-julia-${{ matrix.version }}-${{ hashFiles('setup.jl') }}
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Tests
+        run: julia --project=~/.julia/environments/v${{ matrix.version }} test/runtests.jl
