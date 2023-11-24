@@ -20,6 +20,10 @@ SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [compat]
 AMQPClient = "0.4"
+Distributions = "0.25"
+
+Formatting = "0.4"
+
 LightGraphs = "1"
 FreudenthalTriangulations = "2"
 Ipopt = "1"
@@ -37,6 +41,7 @@ IterTools = "1"
 JuMP = "1"
 LightGraphs = "1"
 SpecialFunctions = "2"
+
 julia = "1.7"
 
 
