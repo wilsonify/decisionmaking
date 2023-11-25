@@ -1,7 +1,4 @@
-
-"""
-A factor is defined by a factor table that assigns values to different assignments involving a set of variables.
-"""
+#A factor is defined by a factor table that assigns values to different assignments involving a set of variables.
 
 struct Factor
     vars::Vector{Variable}
@@ -12,9 +9,9 @@ function normalize_factor!(ϕ::Factor)
     z = sum(p for (a, p) in ϕ.table)
     for (a, p) in ϕ.table
         ϕ.table[a] = p / z
-    end
+        end
     return ϕ
-end
+    end
 
 function Base.rand(ϕ::Factor)
     """

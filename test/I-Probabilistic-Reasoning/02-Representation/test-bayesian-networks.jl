@@ -1,6 +1,12 @@
 using LightGraphs
-using Test
-using DecisionMakingAlgorithms
+
+
+using DecisionMakingAlgorithms: Variable
+using DecisionMakingAlgorithms: Assignment
+using DecisionMakingAlgorithms: Factor
+using DecisionMakingAlgorithms: FactorTable
+using DecisionMakingAlgorithms: BayesianNetwork
+using DecisionMakingAlgorithms: probability
 
 B = Variable(:b, 2)
 S = Variable(:s, 2)
@@ -52,6 +58,8 @@ bn = BayesianNetwork(vars, factors, graph)
 
 a = Dict(pairs((b = 1, s = 1, e = 1, d = 2, c = 1)))
 
+
+using Test
 @testset "BayesianNetwork" begin
     @testset "probability of an assignment" begin
 
@@ -138,8 +146,6 @@ a = Dict(pairs((b = 1, s = 1, e = 1, d = 2, c = 1)))
         bn = BayesianNetwork(vars, factors, graph)
 
         display(bn)
-
     end
-
 end
 

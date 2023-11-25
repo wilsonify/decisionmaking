@@ -9,7 +9,7 @@ using Test
     # a few of the key packages that we build upon. To add a registered package like
     # Distributions.jl , we can run:
     @testset "Pkg" begin
-        using Pkg
+        #using Pkg
         #Pkg.add("Distributions")
         #Pkg.update()#To update packages
     end

@@ -1,5 +1,5 @@
 using Test
-
+using DecisionMakingAlgorithms: structureA
 
 
 @testset " Functions" begin
@@ -37,9 +37,9 @@ using Test
 
         # We can define a type and associate functions with it, allowing objects of that type to be callable.
 
-        (x::A)() = x.a + x.b # adding a zero-argument function to the type A defined earlier
-        (x::A)(y) = y * x.a + x.b # adding a single-argument function
-        x = A(22, 8)
+        (x::structureA)() = x.a + x.b # adding a zero-argument function to the type A defined earlier
+        (x::structureA)(y) = y * x.a + x.b # adding a single-argument function
+        x = structureA(22, 8)
         @test(x() == 30)
         @test(x(2) == 52)
     end
