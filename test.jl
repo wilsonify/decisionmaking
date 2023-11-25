@@ -1,3 +1,2 @@
 using Pkg
-Pkg.activate(".")
-Pkg.test()
+Pkg.test("DecisionMakingAlgorithms")
